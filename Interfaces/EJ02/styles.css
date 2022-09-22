@@ -1,0 +1,39 @@
+body {
+    background-image: url('fondo.jpg');
+    font-family: 'Times New Roman', Times, serif;
+  }
+h1.italic{
+    font-style: italic;
+    padding-left: 20px;
+    text-align:justify;
+}
+div.base{
+    padding-left: 20px;
+    padding-right: 10px;
+    width: 70%;
+}
+p.lateral{
+    text-align: center;
+}
+.last{
+    padding-left: 40px;
+}
+span.letra{
+    color:white;
+    background-color: black;
+    font-size:35px;
+    padding:2px;
+    margin:3px;
+    float:left;
+    line-height: 25px;
+}
+.barra{
+    border-left: 2px solid chocolate;
+}
+div.derecha{
+    float:right;
+    width: 25%;
+}
+u{
+    text-decoration: underline dotted black;
+}
