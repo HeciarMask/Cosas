@@ -1,0 +1,10 @@
+.mario{
+    width: 400px;
+    height: 300px;
+    border: 5px solid red;
+    padding: 20px;
+    background: url("f01.png") repeat-x bottom, 
+                url("f02.png") no-repeat bottom left, 
+                url("f03.png") repeat-x;
+    background-color:lightskyblue;
+}

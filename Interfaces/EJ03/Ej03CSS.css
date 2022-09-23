@@ -1,0 +1,22 @@
+.cuadrao{
+    margin: 20px;
+    background-color:#f2f1ee;
+}
+#A{
+    box-shadow: -5px -5px gray;
+}
+#B{
+    box-shadow: -3px -3px 10px gray;
+}
+#C{
+    box-shadow: -5px -5px 0px 5px gray;
+}
+#D{
+    box-shadow: -5px -5px 5px 5px gray;
+}
+#E{
+    box-shadow: 0px 0px 5px 3px gray;
+}
+#F{
+    box-shadow: 0px 0px 7px 5px gray;
+}
