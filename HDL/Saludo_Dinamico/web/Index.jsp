@@ -20,10 +20,10 @@
         </head>
         <body>
             <h:form>
-                <h1>Mi Primer Proyecto</h1>
-                Teclea tu nombre: <br>
-                <h:inputText value="#{datos.nombre}"/>
-                <h:commandButton value="Procesar" action="Proceso"></h:commandButton>
+                <h1>Mi Segundo Proyecto</h1>
+                <p>Teclea tu nombre: <h:inputText value="#{datos.nombre}"/></p>
+                <p>Teclea tu contraseña:  <h:inputSecret value="#{datos.psswd}"/></p>
+                <h:commandButton value="Procesar" action="Proceso" />
             </h:form>
         </body>
     </html>

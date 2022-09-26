@@ -23,7 +23,7 @@
                 <h1>Mi Primer Proyecto</h1>
                 Teclea tu nombre: <br>
                 <h:inputText value="#{datos.nombre}"/>
-                <h:commandButton value="Procesar" action="Proceso"></h:commandButton>
+                <h:commandButton value="Procesar" action="Proceso" />
             </h:form>
         </body>
     </html>
