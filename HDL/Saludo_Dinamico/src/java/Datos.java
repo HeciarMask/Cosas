@@ -36,5 +36,10 @@ public class Datos {
     public void setPsswd(String psswd) {
         this.psswd = psswd;
     }
-    
+    public String comprobarClave(){
+        if(psswd.equals("80085"))
+            return "Proceso";
+        else
+            return "Fallo";
+    }
 }

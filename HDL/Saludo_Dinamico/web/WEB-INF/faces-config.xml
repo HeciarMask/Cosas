@@ -14,5 +14,9 @@
             <from-outcome>Proceso</from-outcome>
             <to-view-id>/Saludar.jsp</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>Fallo</from-outcome>
+            <to-view-id>/Error.jsp</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
