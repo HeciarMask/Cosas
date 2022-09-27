@@ -12,8 +12,13 @@ div.base{
     padding-right: 10px;
     width: 70%;
 }
-p.lateral{
+#fox{
+    size:auto;
+}
+.derecha{
     text-align: center;
+    width:20%;
+    height: auto;
 }
 .last{
     padding-left: 40px;
