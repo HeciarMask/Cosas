@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="Saludo_Dinamico" default="default" basedir=".">
-    <description>Builds, tests, and runs the project Saludo_Dinamico.</description>
+<project name="Hoja2Ejercicio6" default="default" basedir=".">
+    <description>Builds, tests, and runs the project Hoja2Ejercicio6.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 

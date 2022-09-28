@@ -1,7 +1,7 @@
 <%-- 
-    Document   : Proceso
-    Created on : 28-sep-2022, 11:09:59
-    Author     : alumno
+    Document   : index
+    Created on : 20-nov-2020, 8:23:22
+    Author     : Juan
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,8 +19,7 @@
             <title>JSP Page</title>
         </head>
         <body>
-            <h1>Operacion seleccionada: <h:outputText value="#{datos.operacion}"/></h1><br>
-            <h1><h:outputText value="#{datos.resultado}" /></h1>
+            <h1><h:outputText value="Hello World!"/></h1>
         </body>
     </html>
 </f:view>

@@ -20,7 +20,7 @@
         </head>
         <body>
             <h1>Operacion seleccionada: <h:outputText value="#{datos.operacion}"/></h1><br>
-            <h:outputText value="#{datos.resultado}" />
+            <h1><h:outputText value="#{datos.resultado}" /></h1>
         </body>
     </html>
 </f:view>

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Error
-    Created on : 26-sep-2022, 14:44:10
+    Document   : Index
+    Created on : 28-sep-2022, 12:39:43
     Author     : alumno
 --%>
 
@@ -19,7 +19,14 @@
             <title>JSP Page</title>
         </head>
         <body>
-            <h1><h:outputText value="Contraseña Incorrecta."/></h1>
+            <!
+            6. Escriba un Script que introduzca una cadena y, usando bucles, muestre esa cadena en
+               los distintos tamaños posibles (tamaños del 1 al 7). >
+               <h:form>
+                    <h:inputText value="#{data.cadena}" /><br>
+                    <h:commandButton value="Enviar" action="proceso" />
+               </h:form>
+               
         </body>
     </html>
 </f:view>

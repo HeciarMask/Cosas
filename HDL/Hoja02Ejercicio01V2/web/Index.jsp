@@ -24,9 +24,7 @@
             Operando 1: <h:inputText value="#{datos.operando1}" /><br>
             Operando 2: <h:inputText value="#{datos.operando2}" /><br>
             Seleccione operación: <h:selectOneMenu value="#{datos.operacion}">
-                <f:selectItem itemLabel="Suma" itemValue="suma"/>
-                <f:selectItem itemLabel="Resta" itemValue="resta"/>
-                <f:selectItem itemLabel="Multiplicacion" itemValue="multiplicacion"/>
+                <f:selectItems value="#{datos.listaOpcional}"/>
             </h:selectOneMenu>
                 <h:commandButton value="Calcular" action="proceso" />
             </h:form>

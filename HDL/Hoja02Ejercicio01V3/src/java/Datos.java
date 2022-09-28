@@ -1,3 +1,7 @@
+
+import java.util.ArrayList;
+import javax.faces.model.SelectItem;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -82,4 +86,12 @@ public class Datos {
         return "" + cuenta;
     }
     
+    public ArrayList getListaOpcional(){
+        ArrayList lista = new ArrayList();
+        lista.add(new SelectItem("suma","Suma"));
+        lista.add(new SelectItem("resta","Resta"));
+        lista.add(new SelectItem("multiplicacion","Multiplicacion"));
+        
+        return lista;
+    }
 }
