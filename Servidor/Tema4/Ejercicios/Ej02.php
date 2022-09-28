@@ -7,7 +7,7 @@ del array y completa el script de forma que se visualice un listado con los nomb
 calificaciones de cada una de las materias. 
 */
 
-$nombres = array(
+$notas = array(
     "Antonio" => array(
         "Filosofia" => 9,
         "Matematicas" => 5,
@@ -24,4 +24,11 @@ $nombres = array(
         "Fisica" => 8
     )
     );
+
+    foreach($notas as $alumno => $lista){
+        echo "$alumno: <br>";
+        foreach($lista as $asignatura => $nota){
+            echo " - ".$asignatura.": $nota <br>"; 
+        }
+    }
 ?>
