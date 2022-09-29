@@ -1,23 +1,27 @@
-ul {
+#menu {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color:rgb(32, 176, 233);
+    width:fit-content;
   }
   
   li {
-    float: left;
+    display:inline;
+    padding:1px;
   }
   
   li a {
     display: block;
+    background-color:#2175bc;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    float: left;
   }
   
   li a:hover {
-    background-color: rgb(57, 117, 228);
+    background-color: #2586d7;
+    padding-top:2px;
   }

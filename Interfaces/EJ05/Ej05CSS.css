@@ -1,0 +1,13 @@
+#rotado{
+    transform: rotate(30deg);
+}
+.bloque{
+    background-color: lightskyblue;
+    height: 100px;
+    width: 160px;
+    border-radius: 10px;
+    text-align: center;
+    color:#ffffff;
+    font-size: 20px;
+    font-weight: bold;
+}
