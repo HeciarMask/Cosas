@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="EjerciciosBoletin02.js"></script>
-    <style>
-        .botones{
-            margin:20px;
-        }
-    </style>
-  </head>
-  <body>
-    <h1>Ejercicios Boletin 02</h1>
-    <br />
-    Por Francisco López Balsera
-    <div class="botones">
-      <input type="button" onclick="ejercicio01()" value="Ejercicio 01" />
-      <input type="button" onclick="ejercicio02()" value="Ejercicio 02" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="EjerciciosBoletin02.js"></script>
+  <style>
+    .botones {
+      margin: 20px;
+    }
+    #myForm{
+      margin: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  Por Francisco López Balsera
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<form id="myForm">
+  <div class="form-group">
+    <label>Ejercicios Boletín 2</label> 
+    <div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="radio" id="radio_0" type="radio" class="custom-control-input" value="ejercicio01"> 
+        <label for="radio_0" class="custom-control-label">Ejercicio 01</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="radio" id="radio_1" type="radio" class="custom-control-input" value="ejercicio02"> 
+        <label for="radio_1" class="custom-control-label">Ejercicio 02</label>
+      </div>
     </div>
-  </body>
+  </div> 
+  <div class="form-group">
+    <button name="submit" type="submit" class="btn btn-primary">Ejecutar</button>
+  </div>
+</form>
+</body>
 </html>
