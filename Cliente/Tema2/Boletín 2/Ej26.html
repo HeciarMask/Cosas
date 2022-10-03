@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 26</title>
+</head>
+
+<body>
+  26. Desarrollar un programa que permita la carga de 5 valores por teclado utilizando<br>
+  una única variable para dichos valores y nos muestre posteriormente la suma<br>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <form name="frmDatos">
+    <div class="form-group row">
+      <label for="numberValor" class="col-4 col-form-label">Ingrese un valor</label>
+      <div class="col-8">
+        <input id="numberValor" name="numberValor" placeholder="0 - 10" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="numberResultado" class="col-4 col-form-label">Resultado</label>
+      <div class="col-8">
+        <input readonly id="datosJS" name="numberResultado" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-4 col-8">
+        <button name="agregar" type="button" class="btn btn-primary" onclick="agregarValor()">Agregar Valor</button>
+        <br>
+        Iteraciones: <spam id="num"></spam><br>
+      </div>
+      <div class="offset-4 col-8">
+        <button name="submit" type="button" class="btn btn-primary" onClick="calcular()">Calcular</button>
+      </div>
+    </div>
+  </form>
+<script>
+  let lista = [];
+  
+  function agregarValor(){
+    lista.push(Number(frmDatos.numberValor.value));
+    document.getElementById("num").innerHTML = lista.length;
+  }
+
+  function calcular(){
+    let cadena = "";
+    let tamaño = lista.length;
+    let suma = 0;
+    for(let i = 0; i < tamaño; i++){
+      suma += lista[i];
+      if(i != 0){
+        cadena += " + " + lista[i];
+      }else{
+        cadena += lista[i];
+      }
+      
+    }
+    frmDatos.numberResultado.value = cadena + " = " + suma;
+  }
+</script>
+</body>
+</html>

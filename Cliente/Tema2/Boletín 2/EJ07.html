@@ -26,7 +26,8 @@
         <div class="form-group row">
             <label for="cantidad" class="col-4 col-form-label">Cantidad:</label>
             <div class="col-8">
-                <input id="cantidad" name="numberCantidad" placeholder="1, 2, 3, ..." type="text" class="form-control" />
+                <input id="cantidad" name="numberCantidad" placeholder="1, 2, 3, ..." type="text"
+                    class="form-control" />
             </div>
         </div>
         <div class="form-group row">
@@ -39,7 +40,7 @@
 
     </p>
     <script>
-        function Calculo(){
+        function Calculo() {
             let precio = Number(frmDatos.numberPrecio.value);
             let cantidad = Number(frmDatos.numberCantidad.value);
             let total = precio * cantidad;
