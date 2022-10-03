@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 07</title>
+</head>
+
+<body>
+    7. Se debe desarrollar un programa que pida el ingreso del precio de un
+    artículo y las unidades<br />
+    que lleva el cliente. Utilizar un formulario HTML. Mostrar lo que debe
+    abonar el comprador.
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <form name="frmDatos" id="frmDatos">
+        <div class="form-group row">
+            <label class="col-4 col-form-label" for="precio">Precio:</label>
+            <div class="col-8">
+                <input id="precio" name="numberPrecio" placeholder="€" type="text" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="cantidad" class="col-4 col-form-label">Cantidad:</label>
+            <div class="col-8">
+                <input id="cantidad" name="numberCantidad" placeholder="1, 2, 3, ..." type="text" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="offset-4 col-8">
+                <input type="button" value="Calcular" onclick="Calculo()">
+            </div>
+        </div>
+    </form>
+    <p id="areaJS">
+
+    </p>
+    <script>
+        function Calculo(){
+            let precio = Number(frmDatos.numberPrecio.value);
+            let cantidad = Number(frmDatos.numberCantidad.value);
+            let total = precio * cantidad;
+
+            document.getElementById("areaJS").innerHTML = precio + " x " + cantidad + " = " + total;
+        }
+    </script>
+</body>
+
+</html>

@@ -2,6 +2,7 @@
 estado civil de una persona y a continuación lo muestre por pantalla.   */
 
 function ejercicio01() {
+  
   let edad = prompt("Introduzca su Edad:");
   let nombre = prompt("Introduzca su Nombre:");
   let eCivil = prompt("Introduzca su Estado Civil:");
