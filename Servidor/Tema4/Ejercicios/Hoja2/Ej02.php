@@ -3,19 +3,19 @@ include ("arrays.php");
 
 if(isset($_POST['curso'])){
     $res = $_POST['curso'];
-    switch($res){
-        case "Todos":
-            $tabla = array();
-            foreach($arrayNotas as $calificacion => $asignaturas){
-                $notas = 0;
-                foreach($asignaturas as $nota){
-                    $notas += $nota;
-                }
-                $todos[] = ($calificacion => $notas);
+    
+    if($res == "Todos"){
+        $tabla = array();
+        foreach($arrayNotas as $calificacion => $asignaturas){
+            $notas = 0;
+            foreach($asignaturas as $nota){
+                $notas += $nota;
             }
-            break;
-    }
+            $todos[$calificacion] = $notas;
+        }
+    }else{
 
+    }
     echo "
         Seleccion: $res <br>
         <table border='solid'>
@@ -26,7 +26,12 @@ if(isset($_POST['curso'])){
     ";
     
     foreach($tabla as $calificacion => $notas){
-        
+        echo "
+            <tr>
+                <td>$calificacion</td>
+                <td>$notas</td>
+            </tr>
+        ";
     }
 
     echo "
