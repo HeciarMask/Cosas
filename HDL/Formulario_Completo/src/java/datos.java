@@ -1,3 +1,7 @@
+
+import java.util.ArrayList;
+import javax.faces.model.SelectItem;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -20,6 +24,16 @@ public class datos {
      * Creates a new instance of datos
      */
     public datos() {
+    }
+        
+    
+    public String implode(String[] pArray){
+        String devuelve = "";
+        for(String cadena:pArray){
+            devuelve += cadena + ", ";
+        }
+        devuelve = devuelve.substring(0, devuelve.length() - 2);
+        return devuelve;
     }
 
     /**
@@ -92,4 +106,27 @@ public class datos {
         this.lenguajes = lenguajes;
     }
     
+    
+    public ArrayList getListaSistemas(){
+        ArrayList lista = new ArrayList();
+        
+        lista.add(new SelectItem("Win7","Windows 7"));
+        lista.add(new SelectItem("Win10","Windows 10"));
+        lista.add(new SelectItem("Linux","Linux"));
+        lista.add(new SelectItem("Ios","Ios"));
+        
+        return lista;
+    }
+    
+    public ArrayList getListaLenguajes(){
+        ArrayList lista = new ArrayList();
+        
+        lista.add(new SelectItem("PHP","PHP"));
+        lista.add(new SelectItem("Java","Java"));
+        lista.add(new SelectItem("Asp","ASP.NET"));
+        lista.add(new SelectItem("JavaScript","JavaScript"));
+        lista.add(new SelectItem("CSS","CSS"));
+        
+        return lista;
+    }
 }
