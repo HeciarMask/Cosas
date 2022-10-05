@@ -4,35 +4,45 @@ include ("arrays.php");
 if(isset($_POST['curso'])){
     $res = $_POST['curso'];
     
-    if($res == "Todos"){
-        $tabla = array();
-        foreach($arrayNotas as $calificacion => $asignaturas){
-            $notas = 0;
-            foreach($asignaturas as $nota){
-                $notas += $nota;
-            }
-            $todos[$calificacion] = $notas;
-        }
-    }else{
-
-    }
     echo "
-        Seleccion: $res <br>
         <table border='solid'>
             <tr>
-                <th>Calificacion</th>
-                <th>Alumnos</th>
+                <th colspan='2'>Seleccion: $res</th>
             </tr>
     ";
-    
-    foreach($tabla as $calificacion => $notas){
+
+    if($res == "Todos"){
+        foreach($arrayNotas as $calificacion => $asignaturas){
+            $contador = 0;
+            foreach($asignaturas as $nota){
+                $contador += $nota;
+            }
+            echo "
+                <tr>
+                    <td>$calificacion</td>
+                    <td>$contador</td>
+                </tr>
+            ";
+        }
         echo "
-            <tr>
-                <td>$calificacion</td>
-                <td>$notas</td>
-            </tr>
+        </table>
         ";
-    }
+
+    }else{
+
+        foreach($arrayNotas as $calificacion => $asignaturas){
+            foreach($asignaturas as $nombre => $alumnos){
+                if($res == $nombre){
+                    echo "
+                        <tr>
+                            <td>$calificacion</td>
+                            <td>$alumnos</td>
+                        </tr>
+                    ";
+                }
+            }
+        }
+   }
 
     echo "
         </table>
