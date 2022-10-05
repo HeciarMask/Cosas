@@ -37,11 +37,12 @@
         function calcular() {
             let number = Number(frmDatos.numberValor.value);
             let isPrime = true;
+            let half = number/2;
 
             if (number == 1) {
                 frmDatos.numberResultado.value = "Es primo";
             } else if (number > 1) {
-                for (let i = 2; i < number; i++) {
+                for (let i = 2; i < half; i++) {
                     if (number % i == 0) {
                         isPrime = false;
                         break;
