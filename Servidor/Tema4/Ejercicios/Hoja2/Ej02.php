@@ -2,6 +2,42 @@
 include ("arrays.php");
 
 if(isset($_POST['curso'])){
+    echo "
+    <form name='cursos' action='Ej02.php' method='post'>
+        <table border='solid'>
+            <tr>
+                <th>Enseñanza:</th>
+                <th>
+                    <select name='curso'>
+                    <option selected>Todos</option>
+                        ";
+                        $cursos = array();
+                        foreach($arrayNotas as $matriculado){
+                            foreach($matriculado as $curso => $alumnos){
+                                if(in_array($curso,$cursos) == NULL){
+                                    $cursos[] = $curso;
+                                }
+                            }
+                        }
+                        foreach($cursos as $i){
+                            echo "
+                                <option>$i</option>
+                            ";
+                        }
+                    echo  "
+                    </select>
+                </th>
+            </tr>
+            <tr>
+                <th colspan='2'>
+                    <input type='submit' value='Consultar'>
+                </th>
+            </tr>
+        </table>
+    </form>
+    ";
+
+
     $res = $_POST['curso'];
     
     echo "
