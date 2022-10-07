@@ -42,8 +42,10 @@
   let lista = [];
   
   function agregarValor(){
-    lista.push(Number(frmDatos.numberValor.value));
-    document.getElementById("num").innerHTML = lista.length;
+    if(lista.length < 5){
+      lista.push(Number(frmDatos.numberValor.value));
+      document.getElementById("num").innerHTML = lista.length;
+    }
   }
 
   function calcular(){
