@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 01</title>
+</head>
+
+<body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <div class="container">
+        <form name="formNombre">
+            <div class="form-group row">
+                <label for="nombre" class="col-2 col-form-label">Nombre</label>
+                <div class="col-5">
+                    <input id="nombre" name="nombre" type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="apell1" class="col-2 col-form-label">Apellido 1</label>
+                <div class="col-5">
+                    <input id="apell1" name="apell1" type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="apell2" class="col-2 col-form-label">Apellido 2</label>
+                <div class="col-5">
+                    <input id="apell2" name="apell2" type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-2 col-5">
+                    <button name="submit" type="button" class="btn btn-primary" onclick="procesar()">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="res1" class="col-2 col-form-label">Resultado 1</label>
+                <div class="col-9">
+                    <input readonly id="res1" name="res1" type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="res2" class="col-2 col-form-label">Resultado 2</label>
+                <div class="col-9">
+                    <input readonly id="res2" name="res2" type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="res3" class="col-2 col-form-label">Resultado 3</label>
+                <div class="col-9">
+                    <textarea readonly id="res3" name="res3" cols="40" rows="5" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="res4" class="col-2 col-form-label">Resultado 4</label>
+                <div class="col-9">
+                    <input readonly id="res4" name="res4" type="text" class="form-control" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        /*
+          Crear un programa que solicite al usuario nombre y apellidos y devuelva:
+          El tamaño del nombre más los apellidos sin contar los espacios.
+          La cadena completa en minúsculas y mayúsculas.
+          La división del nombre, apellido1 y apellido2 en tres líneas distintas.
+          Una propuesta de nombre usuario de la siguiente forma: inicial del nombre, primeras tres letras del apellido1 y 
+          primeras tres letras del apellido2. Ejemplo: Juan Martín López  → jmarlop
+          */
+
+        function procesar() {
+            let nombre = String(formNombre.nombre.value);
+            let apellido1 = String(formNombre.apell1.value);
+            let apellido2 = String(formNombre.apell2.value);
+
+            let nomCompleto = nombre + " " + apellido1 + " " + apellido2;
+
+            let nomJunto = nomCompleto.replace(/ /g, "");
+
+            let apellido1Aux = apellido1.replace(/ /g, "");
+            let apellido2Aux = apellido2.replace(/ /g, "");
+            let usuario = nombre.slice(0,1) + apellido1Aux.slice(0,3) + apellido2Aux.slice(0,3);
+
+            document.getElementById("res1").placeholder = nomJunto + ". Tamaño: " + nomJunto.length;
+            document.getElementById("res2").placeholder = nomCompleto.toUpperCase() + " - " + nomCompleto.toLowerCase();
+            document.getElementById("res3").placeholder = nombre + "\r" + apellido1 + "\r" + apellido2;
+            document.getElementById("res4").placeholder = usuario.toLowerCase();
+        }
+    </script>
+</body>
+
+</html>
