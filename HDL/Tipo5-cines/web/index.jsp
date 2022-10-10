@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 20-nov-2020, 8:23:22
-    Author     : Juan
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
@@ -19,7 +13,27 @@
             <title>JSP Page</title>
         </head>
         <body>
-            <h1><h:outputText value="Hello World!"/></h1>
+            <h:form>
+                <p>
+                    Inserte aqui los datos requeridos:<br>
+                    Su nombre es:<br>
+                    <h:inputText value="#{datos.nombre}"></h:inputText><br>
+                    Su correo es:<br>
+                    <h:inputText value="#{datos.correo}"></h:inputText><br>
+                    Su dni es:<br>
+                    <h:inputText value="#{datos.dni}"></h:inputText><br>
+                </p>
+                <p>
+                    Su cliente es asiduo:<br>
+                    <h:selectOneRadio value="#{datos.asiduo}">
+                        <f:selectItem itemValue="true" itemLabel="Sí"/>
+                        <f:selectItem itemValue="false" itemLabel="No"/>
+                    </h:selectOneRadio>
+                </p>
+                <p>
+                    
+                </p>
+            </h:form>
         </body>
     </html>
 </f:view>
