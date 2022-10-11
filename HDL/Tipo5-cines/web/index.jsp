@@ -14,25 +14,30 @@
         </head>
         <body>
             <h:form>
-                <p>
-                    Inserte aqui los datos requeridos:<br>
+                <h:panelGrid columns="2" border="1">
+                    <f:facet name="header">
+                        <h:outputText style="font-size:25px" value="Inserte aquí los datos requeridos:"/>
+                    </f:facet>
                     Su nombre es:<br>
-                    <h:inputText value="#{datos.nombre}"></h:inputText><br>
+                    <h:inputText value="#{datos.nombre}"></h:inputText>
                     Su correo es:<br>
-                    <h:inputText value="#{datos.correo}"></h:inputText><br>
+                    <h:inputText value="#{datos.correo}"></h:inputText>
                     Su dni es:<br>
-                    <h:inputText value="#{datos.dni}"></h:inputText><br>
-                </p>
-                <p>
-                    Su cliente es asiduo:<br>
+                    <h:inputText value="#{datos.dni}"></h:inputText>
+                </h:panelGrid>
+                <h:panelGrid columns="4" border="1">
+                    <f:facet name="header">
+                        <h:outputText style="font-size:25px" value="Su cliente es asiduo:"/>
+                    </f:facet>
                     <h:selectOneRadio value="#{datos.asiduo}">
                         <f:selectItem itemValue="true" itemLabel="Sí"/>
                         <f:selectItem itemValue="false" itemLabel="No"/>
                     </h:selectOneRadio>
-                </p>
-                <p>
-                    
-                </p>
+                    <h:selectOneListbox value="#{datos.provincias}">
+                        
+                    </h:selectOneListbox>
+                </h:panelGrid>
+                
             </h:form>
         </body>
     </html>
