@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Formularios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+   
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Formularios</h1>
+
+        <h2>Básico</h2>
+
+        <form role="form">
+            <div class="mb-3">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="checkbox"> Remember me
+                </label>
+            </div>
+            <button type="submit" class="btn btn-light">Sign in</button>
+        </form>
+
+        <h2>form-horizontal</h2>
+
+
+        <form class="form-horizontal" role="form">
+            <div class="row md-3">
+                <label for="inputEmail3" class="col-12 col-sm-2 form-label text-end">Email</label>
+                <div class="col-12 col-sm-10">
+                    <input class="form-control" id="inputEmail3" placeholder="Enter Email" type="email">
+                </div>
+            </div>
+            <div class="row md-3">
+                <label for="inputPassword3" class="col-12 col-sm-2 col-form-label text-end">Password</label>
+                <div class="col-12 col-sm-10">
+                    <input class="form-control" id="inputPassword3" placeholder="Password" type="password">
+                </div>
+            </div>
+            <div class="row md-3">
+                <div class="col-10 col-sm-2 offset-2">
+                    <div class="form-check p-0">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 col-sm-2 offset-2 md-3">
+                    <button type="submit" class="btn btn-light">Sign in</button>
+                </div>
+            </div>
+        </form>
+
+        <h2>checkbox y radiobouttons</h2>
+
+        <div class="form-check">
+            <label>
+                <input type="checkbox" value="check1" checked> checked
+            </label>
+        </div>
+        <div class="form-check">
+            <label>
+                <input type="checkbox" value="check2" disabled> disabled
+            </label>
+        </div>
+
+        <div class="form-check">
+            <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> checked
+            </label>
+        </div>
+        <div class="form-check">
+            <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled> disabled
+            </label>
+        </div>
+
+        <h2>Validaciones</h2>
+
+        <div class="row needs-validation">
+            <label class="form-label" for="inputSuccess2">Input with success</label>
+            <input type="text" class="form-control is-valid" id="inputSuccess2">
+            <span class="valid-feedback">Looks good!</span>
+        </div>
+        <div class="row needs-validation">
+            <label class="form-label" for="inputError2">Input with error</label>
+            <input type="text" class="form-control is-invalid" id="inputError2">
+            <span class="invalid-feedback"> NO NO!</span>
+        </div>
+
+        <h2>Tamaños</h2>
+
+        <input class="form-control form-control-lg" type="text" placeholder=".input-lg">
+        <input class="form-control" type="text" placeholder="Default input">
+        <input class="form-control form-control-sm" type="text" placeholder=".input-sm">
+
+        <br />
+
+        <form class="form-horizontal" role="form">
+            <div class="row">
+                <label class="col-12 col-sm-2 form-label form-label-lg text-end mb-3" for="formGroupInputLarge">Large label</label>
+                <div class="col-12 col-sm-8">
+                    <input class="form-control form-control-lg mb-3" type="text" id="formGroupInputLarge" placeholder="Large input">
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-12 col-sm-2 form-label form-label-sm text-end mb-3" for="formGroupInputSmall">Small label</label>
+                <div class="col-12 col-sm-8">
+                    <input class="form-control form-control-sm mb-3" type="text" id="formGroupInputSmall" placeholder="Small input">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
