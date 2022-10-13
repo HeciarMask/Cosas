@@ -5,11 +5,31 @@ public class datos {
     private String correo;
     private String dni;
     private boolean asiduo;
-    private String[] provincias;
-    private String[] peliculas;
+    private String[] pelicula;
+    private String provincia = "";
+    private String[] provincias = {"Huelva","Cadiz","Malaga","Almeria","Sevilla","Cordoba","Granada","Jaen"};
+    private String[] peliculas = {"Regresión","Pan:Viaje a nunca jamás","Golpe de Estado","Everest","Hitman:Agente47",
+                                   "El Desconocido","El corredor del laberinto","Atrapa la bandera","La playa de los ahogados"};
     private String[] aperitivos;
     
     public datos() {
+    }
+    
+    public String implode(String[] pArray){
+        String devuelve = "";
+        for(String cadena:pArray){
+            devuelve += cadena + ", ";
+        }
+        devuelve = devuelve.substring(0, devuelve.length() - 2);
+        return devuelve;
+    }
+    
+    public String concadenaPelicula(){
+        return implode(getPelicula());
+    }
+    
+    public String concadenaAperitivo(){
+        return implode(aperitivos);
     }
 
     /**
@@ -109,5 +129,38 @@ public class datos {
     public void setAperitivos(String[] aperitivos) {
         this.aperitivos = aperitivos;
     }
+
+    /**
+     * @return the provincia
+     */
+    public String getProvincia() {
+        return provincia;
+    }
+
+    /**
+     * @param provincia the provincia to set
+     */
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
+
+    /**
+     * @return the pelicula
+     */
+    public String[] getPelicula() {
+        return pelicula;
+    }
+
+    /**
+     * @param pelicula the pelicula to set
+     */
+    public void setPelicula(String[] pelicula) {
+        this.pelicula = pelicula;
+    }
+
+    /**
+     * @return the pelicula
+     */
+    
     
 }
