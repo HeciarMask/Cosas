@@ -1,0 +1,1 @@
+﻿<?phpecho "<h2>prueba del or die</h2>";$c=@mysqli_connect("localhost","root","pepi") or die("No se conectó");echo "<h1>DRRDRDRDRDRDR</h1>";if(mysqli_close($c)){	print "<br>Se ha cerrado la conexión con el servidor de bases de datos<BR>";}?>
