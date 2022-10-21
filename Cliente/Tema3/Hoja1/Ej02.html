@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Ejercicio 02</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <div clas="container">
+    <div class="row justify-content-center">
+      <form class="col-12 col-lg-6" name="miForm">
+        <div class="m-3">
+          <label for="exampleInputEmail1" class="form-label">Direccion de Correo Electronico</label>
+          <input type="email" class="form-control" id="correo" aria-describedby="emailHelp" name="correo">
+          <div id="emailHelp" class="form-text">Nunca compartiremos esta información</div>
+        </div>
+        <div class="m-3 has-validation">
+          <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+          <input type="text" class="form-control" id="psswd" name="psswd">
+          <div id="validacionContraseña" class="invalid-feedback"></div>
+          <div class="valid-feedback">
+            Oleeeeee
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary m-3" id="aceptar">Aceptar</button>
+
+      </form>
+    </div>
+  </div>
+  <!--JavaScript-->
+  <script>
+
+    document.getElementById("aceptar").onclick = function () {
+      let correo = miForm.correo.value;
+      let psswd = miForm.psswd.value;
+      let cadena = "";
+      let error = false;
+
+      if (psswd.length < 8 || psswd.length > 16) {
+        cadena += "- Tiene entre 8 y 16 caracteres.<br>"
+        error = true;
+      }
+
+      if (psswd.match(/[A-Z]/) == null) {
+        cadena += "- Tiene, al menos, una letra mayúscula.<br>";
+        error = true;
+      }
+
+      if (psswd.match(/[a-z]/) == null) {
+        cadena += "- Tiene, al menos, una letra minúscula.<br>"
+        error = true;
+      }
+
+      if (psswd.match(/[0-9]/) == null) {
+        cadena += "- Tiene, al menos, un dígito.<br>"
+        error = true;
+      }
+
+      if (psswd.match(/[-_@#$%&]/) == null) {
+        cadena += "- Tiene, al menos, uno de los siguientes caracteres especiales:<br>(-, _, @, #, $, %, &)";
+        error = true;
+      }
+
+      if (error == true) {
+        document.getElementById("validacionContraseña").innerHTML = "- La contraseña no cumple con alguna de las condiciones:<br>" + cadena;
+        document.getElementById("psswd").className = "form-control is-invalid";
+      } else {
+        document.getElementById("psswd").className = "form-control is-valid";
+      }
+    }
+
+  </script>
+  <!--Bootstrap-->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
