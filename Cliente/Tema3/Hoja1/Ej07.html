@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Ejercicio 5</title>
+    <title>Ejercicio 7</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,23 +31,29 @@
                 </div>
             </div>
             <div class="row justify-content-center ">
-                <div class="col-5 col-lg-5">
-                    <p id="resultado" style="background-color: lightgray"></p>
-                </div>
+                <ul class="list-group col-12 col-lg-6" id="resultado">
+                    <li class="list-group-item">Ejemplo</li>
+                </ul>
             </div>
         </form>
     </div>
-
     <!--Javascript-->
     <script>
-        document.getElementById("frase").onkeydown = function () {
-            let cadena = miForm.frase.value;
-            let res = cadena.replace(/[a-z]/g, function (x) { return x.italics(); });
+        document.getElementById("aceptar").onclick = function () {
+            let cadena = miForm.frase.value; //Entrada: “nombre:apellidos:telefono:email:codigopostal”
+            const aux = cadena.split(":");
+            const lista = { nombre: aux[0], apellidos: aux[1], telefono: aux[2], email: aux[3], codigopostal: aux[4] };
+
+            let res = '<li class="list-group-item">Codigo Postal: ' + lista.codigopostal + '</li>' +
+                '<li class="list-group-item">Apellidos: ' + lista.apellidos + '</li>' +
+                '<li class="list-group-item">Email: ' + lista.email + '</li>' +
+                '<li class="list-group-item">Servidor de email: ' + lista.email.slice(lista.email.indexOf("@") + 1) + '</li>';
 
             document.getElementById("resultado").innerHTML = res;
         }
-    </script>
 
+
+    </script>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">

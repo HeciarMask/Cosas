@@ -43,8 +43,17 @@
         document.getElementById("aceptar").onclick = function () {
             let cadena = miForm.frase.value;
             const res = cadena.split(" ");
+            res.sort();
+            res.reverse();
+            res.forEach(purga());
 
             document.getElementById("resultado").placeholder = res.length;
+
+            function purga() {
+                if (res[res.length - 1] == undefined) {
+                    res.pop();
+                }
+            }
 
         }
     </script>
