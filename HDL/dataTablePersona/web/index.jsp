@@ -1,8 +1,4 @@
-<%-- 
-    Document   : index
-    Created on : 20-nov-2020, 8:23:22
-    Author     : Juan
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -19,7 +15,13 @@
             <title>JSP Page</title>
         </head>
         <body>
-            <h1><h:outputText value="Hello World!"/></h1>
+            <h1><h:outputText value="Lista de personas:"/></h1>
+            <h:dataTable border='1' value="#{listaPersonas.personajes}" var="unaPersona" />
+            <h:column>
+                <f:facet name="header">
+                <h:outputText value="#{unaPersona.dni}" />
+                </f:facet>
+            </h:column>
         </body>
     </html>
 </f:view>
