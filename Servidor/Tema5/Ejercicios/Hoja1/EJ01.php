@@ -10,7 +10,7 @@ $crear = "CREATE OR REPLACE TABLE `practicas`.`tabla1` (
     `nombre` VARCHAR(20) NOT NULL , 
     `apellidos` VARCHAR(20) NOT NULL , 
     `fechaNac` DATE NOT NULL , 
-    `repetidor` BOOLEAN NOT NULL , 
+    `repetidor` CHAR(1) NOT NULL , 
     PRIMARY KEY (`DNI`));";
 
     if(mysqli_query($conexion, $crear)){

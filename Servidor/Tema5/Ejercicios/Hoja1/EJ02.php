@@ -25,29 +25,27 @@ for($i = 0; $i < 100; $i++){
         default:
             $dni = "00".$dni;
     }
-    $nombre = "nom".$dni;
-    $apellido = "apel".$dni;
+    $nombre = "nom..".$dni;
+    $apellido = "apel..".$dni;
     $fechaNac = rand(1986,1999)."-".rand(1,12)."-".rand(2,20);
 
-    if(rand(1,2) > 1 || $nRepetidores < 40){
-        $repetidor = 1;
+    if($nRepetidores < 40){
+        $repetidor = "S";
         $nRepetidores++;
     }else{
-        $repetidor = 0;
+        $repetidor = "N";
     }
 
-    mysqli_query($c,"INSERT INTO tabla1(DNI,nombre,apellidos,fechaNac,repetidor 
-                    VALUES ($dni,$nombre,$apellido,$fechaNac,$repetidor)");
+    mysqli_query($c,"INSERT INTO tabla1(DNI,nombre,apellidos,fechaNac,repetidor)
+                    VALUES ('$dni','$nombre','$apellido','$fechaNac','$repetidor')");
 
-    /* if (mysqli_errno($c)==0){
+     if (mysqli_errno($c)==0){
         echo "<h2>Registro AÑADIDO</b></H2>"; 
-    }else if (mysqli_errno($c)==1062){
-        echo "<h2>No ha podido añadirse el registro<br>Ya existe un campo con este DNI</h2>"; 
     }else{ 
         $numerror=mysqli_errno($c); 
         $descrerror=mysqli_error($c); 
         echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>"; 
-    } */ 
+    } 
 } 
 mysqli_close($c);
 
