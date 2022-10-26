@@ -20,14 +20,25 @@
     <!--JavaScript-->
     <script>
         let d = 0;
+        let s = 0;
+        let m = 0;
         function cronometro() {
-            document.getElementById("reloj").innerHTML = d;
-        }
-        function contar() {
             d++;
+
+            if (d >= 100) {
+                d = 0;
+                s++;
+            }
+            if (s >= 60) {
+                s = 0;
+                m++;
+            }
+
+            document.getElementById("reloj").innerHTML = m + ":" + s + ":" + d;
+
         }
-        let intervalo = setInterval(cronometro, 1000);
-        let contador = setInterval(contar, 1);
+
+        let intervalo = setInterval(cronometro, 10);
     </script>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

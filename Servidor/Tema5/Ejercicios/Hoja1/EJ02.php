@@ -10,12 +10,13 @@ izquierda hasta una longitud de 3.
 <?php
 $c = mysqli_connect ("localhost", "root", "","practicas") or die("No ha conectado.");
 
-$listaDNI = range(1,500);
+$listaDNI = range(1,500); # Hacer una lista con todos los DNIs posibles
 $nRepetidores = 0;
-shuffle($listaDNI);
+shuffle($listaDNI); # Mezclar los DNIs para que se puedan hacer 'pop' de forma aleatoria
 
 for($i = 0; $i < 100; $i++){
     $dni = array_pop($listaDNI);
+
     switch($dni){
         case $dni > 99:
             break;
@@ -25,6 +26,7 @@ for($i = 0; $i < 100; $i++){
         default:
             $dni = "00".$dni;
     }
+
     $nombre = "nom..".$dni;
     $apellido = "apel..".$dni;
     $fechaNac = rand(1986,1999)."-".rand(1,12)."-".rand(2,20);
