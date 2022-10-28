@@ -31,7 +31,7 @@ if(!is_numeric($precio)){
     echo $mensaje."<br>
     Supermercado: $supermercado <br>
     Articulo: $articulo <br>
-    Precio: $precio" ;
+    Precio: $precio";
 }
 echo "
         

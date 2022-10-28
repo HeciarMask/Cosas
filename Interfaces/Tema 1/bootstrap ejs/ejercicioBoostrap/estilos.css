@@ -1,0 +1,57 @@
+#carouselExampleIndicators {
+    padding: 0;
+}
+
+.custom-slider .carousel-item{
+	width: auto;
+}
+
+.row .custom-card{
+    border: 0px;
+    text-align: center;
+}
+
+.row .custom-card img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+}
+
+.row .custom-card img {
+    height: 150px;
+    width: 150px;
+    border-radius: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row.my-reportage{
+    padding: 5vw 0vw;
+    border-top: 1px solid grey;
+    overflow: hidden;
+}
+
+.row.my-reportage img{
+    width: 100%;
+}
+
+.go-up{
+    float: right;
+}
+
+.row.footer{
+    padding: 5vw 0vw;
+    border-top: 1px solid grey;
+}
+
+@media (min-width: 768px){
+    #carouselExampleIndicators {
+        height: 50vw;
+        overflow: hidden;
+    }
+    
+    .custom-slider .carousel-item{
+        width: 100%;
+    }
+
+}
