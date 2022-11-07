@@ -1,0 +1,36 @@
+.movil {
+    display:none;
+}
+.tablet {
+    display: none;
+  }
+.desktop{
+    display: none;
+}
+
+@media (max-width: 575px) {
+    .movil {
+        display:block;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px){
+    .tablet {
+      display: block;
+    }
+}
+
+@media (min-width: 993px) {
+    .desktop{
+        display: block;
+    }
+}
+
+body {
+    background-image: url("bg1.png");
+    background-size: cover;
+}
+
+.custom-nav-container-lg{
+    background:black;
+}
