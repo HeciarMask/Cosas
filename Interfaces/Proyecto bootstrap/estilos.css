@@ -1,77 +1,97 @@
 @import url("https://fonts.googleapis.com/css2?family=Arvo&display=swap");
 
 body {
-	background-image: url("bg1.png");
-	background-size: cover;
-	font-family: "Arvo", serif;
+  background-image: url("images/bg1.png");
+  background-size: cover;
+  font-family: "Arvo", serif;
 }
-
 .navbar.custom-bg-1 {
-	background: #292929;
-	text-align: center;
+  background: #292929;
+  text-align: center;
 }
-
 .navbar-nav .nav-link.custom-header-text-1 {
-	color: #679453;
-	font-size: 30px;
+  color: #679453;
+  font-size: 30px;
 }
-
 .titulo {
-	color: #679453;
-	text-align: center;
+  color: #679453;
+  text-align: center;
+}
+.material-icons.custom-icon-1 {
+  font-size: 25px;
+}
+.custom-box-1 {
+  background: rgba(41, 41, 41, 1);
+  width: 778px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.custom-main-text-1 {
+  margin-top: 1fr;
+  margin-bottom: 1fr;
+  color: #eaa487;
+  font-size: 30px;
+  text-align: center;
 }
 
 .movil {
-	display: none;
+  display: none;
 }
 .tablet {
-	display: none;
+  display: none;
 }
 .desktop {
-	display: none;
+  display: none;
 }
 /*MOVIL*/
 @media (max-width: 575px) {
-	.movil {
-		display: block;
-	}
-	.tablet {
-		display: none;
-	}
-	.desktop {
-		display: none;
-	}
-	.titulo {
-		font-size: 30px;
-	}
+  .movil {
+    display: block;
+  }
+  .tablet {
+    display: none;
+  }
+  .desktop {
+    display: none;
+  }
+  .titulo {
+    font-size: 30px;
+  }
 }
 /*TABLET*/
 @media (min-width: 576px) and (max-width: 992px) {
-	.movil {
-		display: none;
-	}
-	.tablet {
-		display: block;
-	}
-	.desktop {
-		display: none;
-	}
-	.titulo {
-		font-size: 48px;
-	}
+  .movil {
+    display: none;
+  }
+  .tablet {
+    display: block;
+  }
+  .desktop {
+    display: none;
+  }
+  .titulo {
+    font-size: 48px;
+  }
 }
 /*ESCRITORIO*/
 @media (min-width: 993px) {
-	.movil {
-		display: none;
-	}
-	.tablet {
-		display: none;
-	}
-	.desktop {
-		display: block;
-	}
-	.titulo {
-		font-size: 48px;
-	}
+  .movil {
+    display: none;
+  }
+  .tablet {
+    display: none;
+  }
+  .desktop {
+    display: block;
+  }
+  .titulo {
+    font-size: 48px;
+  }
 }
