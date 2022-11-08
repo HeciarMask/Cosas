@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <!--Crear una función constructora de objetos Producto. Dichos productos tendrán tres atributos, uno de tipo cadena de 
+        caracteres llamado nombre, otro de tipo entero llamado unidades y otro de tipo real llamado precio. Aparte de estos 
+        tres atributos también contendría los siguientes métodos:
+            valorEnStock: que no recibe parámetros y devuelve el importe total de las unidades disponibles, es decir, la multiplicación 
+            de las unidades por el precio del producto.
+
+            incrementarStock: que recibe un entero como parámetro y aumenta el número de unidades en la cantidad indicada en el parámetro.
+    
+            disminuirStock: que recibe un entero como parámetro y disminuye el número de unidades en la cantidad indicada en el parámetro.
+
+
+            Todos los métodos consultores (getter) y modificadores (setter) de los tres atributos descritos anteriormente, teniendo en 
+            cuenta que si por error se intentara modificar el atributo precio con un valor negativo, este debería guardarse automáticamente 
+            como positivo.
+-->
+
+    <script>
+        class Producto {
+            constructor(nom, uni, prec) {
+                this._nombre = nom;
+                this._unidades = uni;
+                this._precio = prec;
+            }
+
+            valorEnStock() {
+                return (this._unidades * this._precio);
+            }
+
+            incrementarValor(x) {
+                this._unidades = (this._unidades + x);
+            }
+
+            disminuirValor(x) {
+                this._unidades = (this._unidades - x);
+            }
+
+            get nombre() {
+                return this._nombre;
+            }
+            set nombre(x) {
+                this._nombre = x;
+            }
+
+            get unidades() {
+                return this._unidades;
+            }
+            set unidades(x) {
+                this._unidades = x;
+            }
+
+            get precio() {
+                return this._precio;
+            }
+            set precio(x) {
+                try {
+                    this._precio = Math.abs(x);
+                }
+                catch (err) {
+                    alert("Error al introducir el precio");
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,36 +1,77 @@
-.movil {
-    display:none;
-}
-.tablet {
-    display: none;
-  }
-.desktop{
-    display: none;
-}
-
-@media (max-width: 575px) {
-    .movil {
-        display:block;
-    }
-}
-
-@media (min-width: 576px) and (max-width: 992px){
-    .tablet {
-      display: block;
-    }
-}
-
-@media (min-width: 993px) {
-    .desktop{
-        display: block;
-    }
-}
+@import url("https://fonts.googleapis.com/css2?family=Arvo&display=swap");
 
 body {
-    background-image: url("bg1.png");
-    background-size: cover;
+	background-image: url("bg1.png");
+	background-size: cover;
+	font-family: "Arvo", serif;
 }
 
-.custom-nav-container-lg{
-    background:black;
+.navbar.custom-bg-1 {
+	background: #292929;
+	text-align: center;
+}
+
+.navbar-nav .nav-link.custom-header-text-1 {
+	color: #679453;
+	font-size: 30px;
+}
+
+.titulo {
+	color: #679453;
+	text-align: center;
+}
+
+.movil {
+	display: none;
+}
+.tablet {
+	display: none;
+}
+.desktop {
+	display: none;
+}
+/*MOVIL*/
+@media (max-width: 575px) {
+	.movil {
+		display: block;
+	}
+	.tablet {
+		display: none;
+	}
+	.desktop {
+		display: none;
+	}
+	.titulo {
+		font-size: 30px;
+	}
+}
+/*TABLET*/
+@media (min-width: 576px) and (max-width: 992px) {
+	.movil {
+		display: none;
+	}
+	.tablet {
+		display: block;
+	}
+	.desktop {
+		display: none;
+	}
+	.titulo {
+		font-size: 48px;
+	}
+}
+/*ESCRITORIO*/
+@media (min-width: 993px) {
+	.movil {
+		display: none;
+	}
+	.tablet {
+		display: none;
+	}
+	.desktop {
+		display: block;
+	}
+	.titulo {
+		font-size: 48px;
+	}
 }

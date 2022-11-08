@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Ejercicio 2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row m3-">
+            <div class="col-4" id="pr1">
+
+            </div>
+            <div class="col-4" id="pr2">
+
+            </div>
+            <div class="col-4" id="pr3">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        /*
+            Desarrolle un programa en el que se instancien varios objetos Producto llamando a la función constructora 
+            implementada en el ejercicio anterior. Seguidamente modificar el stock de los productos creados, así como 
+            su nombre y precio. Implemente un documento web donde se muestre claramente el funcionamiento de todos los 
+            métodos disponibles en los objetos Producto creados.
+        */
+        class Producto {
+            constructor(nom, uni, prec) {
+                this._nombre = nom;
+                this._unidades = uni;
+                this._precio = prec;
+            }
+
+            valorEnStock() {
+                return (this.unidades * this.precio);
+            }
+
+            incrementarValor(x) {
+                this.unidades = (this.unidades + x);
+            }
+
+            disminuirValor(x) {
+                this.unidades = (this.unidades - x);
+            }
+
+            get nombre() {
+                return this._nombre;
+            }
+            set nombre(x) {
+                this._nombre = x;
+            }
+
+            get unidades() {
+                return this._unidades;
+            }
+            set unidades(x) {
+                this._unidades = x;
+            }
+
+            get precio() {
+                return this._precio;
+            }
+            set precio(x) {
+                try {
+                    this._precio = Math.abs(x);
+                }
+                catch (err) {
+                    alert("Error al introducir el precio");
+                }
+            }
+        }
+
+        let pr1 = new Producto("producto1", 10, 10);
+        let pr2 = new Producto("producto2", 20, 20);
+        let pr3 = new Producto("producto3", 30, 30);
+
+        pr1.nombre = "Queso";
+        pr2.unidades = 60;
+        pr3.precio = 120;
+
+        pr1.valorEnStock;
+        pr2.incrementarValor(2);
+        pr3.disminuirValor(10);
+
+        document.getElementById("pr1").innerHTML = pr1.nombre + ", " + pr1.unidades + ", " + pr1.precio;
+        document.getElementById("pr2").innerHTML = pr2.nombre + ", " + pr2.unidades + ", " + pr2.precio;
+        document.getElementById("pr3").innerHTML = pr3.nombre + ", " + pr3.unidades + ", " + pr3.precio;
+    </script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
