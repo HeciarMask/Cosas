@@ -11,6 +11,11 @@
 <p>Mostrar los inmuebles a la venta:
 <table  cellpadding="10" cellspacing="8"><tr><td>
 Tipo de vivienda:</td><td>
+    
+<!-- <input type="checkbox" name="tipo" value="indice">Valor</input> -->
+<?php
+    
+?>
 </td></tr>
 
 <tr><td>Localidad:</td><td>
