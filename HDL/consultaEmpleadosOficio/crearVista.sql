@@ -1,0 +1,1 @@
+create or replace view vistaEmpleados AS SELECT empleado.ENAME AS nombreEmpleado,empleado.sal as salario1, empleado.job as oficio, jefe.ENAME AS nombreJefe, jefe.sal AS salario2 FROM EMP empleado LEFT JOIN EMP jefe ON empleado.MGR=jefe.EMPNO
