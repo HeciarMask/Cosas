@@ -17,13 +17,19 @@ $dwes=new mysqli("localhost","root","","ejercicio1");
 if(!empty($tipo)){
     $cadTipo = implode(' \', \'', $tipo);
 }else{
-
+    $listaCadena = new array();
+    $sqlAux="SELECT DISTINCT tipo FROM propiedades";
+    $resultadoAux=$dwes->query($sqlAux);
+    while($filaAux=$resultadoAux->fetch_assoc()){
+        $listaCadena[] = $filaAux['tipo'];
+    }
+    $cadTipo = implode('\',\'', $listaCadena);
 }
 
 
 
     if($localidad == "todos"){
-        $sql1="SELECT localidad, domicilio, tipo, precio FROM propiedades WHERE vendida='NO' AND tipo IN  (\'$cadTipo\')";
+        $sql1="SELECT domicilio, localidad, tipo, precio FROM propiedades WHERE vendida='NO' AND tipo IN  (\'$cadTipo\')";
     }else{
         $sql1="SELECT localidad, domicilio, tipo, precio FROM propiedades WHERE vendida='NO' AND localidad=\'$localidad\'  AND tipo IN  (\'$cadTipo\')";
     }

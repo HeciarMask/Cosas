@@ -19,19 +19,19 @@
             <title>JSP Page</title>
         </head>
         <body>
-            <h1>Consulta de Trenes</h1><br>
+            <h4>Nuevo Departamento</h4>
             <h:form>
-                Seleccione el tipo de tren:
-                <h:selectOneMenu value="#{bean.arrayTrenes()}"></h:selectOneMenu><br>
-               
-                 Seleccione el criterio de ordenacion:<h:selectOneRadio value="">
-                    <f:selectItem itemValue="false" itemLabel="Origen"/>
-                    <f:selectItem itemValue="false" itemLabel="Destino"/>
-                    <f:selectItem itemValue="false" itemLabel="Salida"/>
-                    <f:selectItem itemValue="false" itemLabel="Llegada"/>
-                </h:selectOneRadio>
-                <h:commandButton value="Enviar" action="aux.jsp" />
+                <h:panelGrid columns="2">
+                    <h:outputText value="Número de Departamento:" />
+                    <h:inputText value="#{departamento.txtNumero}"/>
+                    <h:outputText value="Denominación:" />
+                    <h:inputText value="#{departamento.txtNombre}"/>
+                    <h:outputText value="Localidad" />
+                    <h:inputText value="#{departamento.txtLocalidad}"/>
+                    <h:commandButton value="Enviar" action="#{departamento.altaDept}"/>
+                </h:panelGrid>
             </h:form>
+            <h:outputText value="#{departamento.mensaje}" />
         </body>
     </html>
 </f:view>

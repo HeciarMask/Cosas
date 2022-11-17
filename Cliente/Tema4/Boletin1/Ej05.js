@@ -59,31 +59,6 @@ class BonoDiezViajesConTrasbordo extends BonoDiezViajes {
 		return false;
 	}
 
-	/* dentroDePrimeraHora(dia, mes, anno, hh, mm) {
-		if (anno == this.#anno) {
-			if (mes == this.#mes) {
-				if (dia == this.#dia) {
-					if (hh == this.#hora) {
-						return true;
-					} else if (mm <= this.#mm) {
-						return true;
-					}
-				} else if (dia == dia + 1) {
-					if (this.#hh - hh == 23 && mm <= this.#mm) {
-						return true;
-					}
-				}
-			} else if (mes == mes + 1) {
-				if (this.#mes - mes == 29 && this.#hh - hh == 23 && mm <= this.#mm) {
-					return true;
-				}
-			}
-		} else if (anno == anno + 1) {
-		}
-
-		return false;
-	} */
-
 	picarViaje(linea, dia, mes, anno, hh, mm) {
 		let valido = false;
 
@@ -102,9 +77,130 @@ class BonoDiezViajesConTrasbordo extends BonoDiezViajes {
 				valido = true;
 			}
 		}
+		if (valido) console.log("Es válido");
+		else console.log("No es válido");
+		return valido;
+	}
+}
+
+class BonoTarifaPlana extends Bonobus {
+	#caducidad;
+	constructor() {
+		super();
+	}
+	get caducidad() {
+		return this.#caducidad;
+	}
+	set caducidad(x) {
+		this.#caducidad = x;
+	}
+
+	picarViaje(dia, mes, anno, hh, mm) {
+		let valido = false;
+
+		let actual = new Date(anno, mes, dia, hh, mm);
+
+		if (caducidad === undefined) {
+			caducidad = new Date(anno, mes, dia, hh, mm);
+		} else {
+			if (caducidad >= actual) valido = true;
+		}
+
+		if (valido) console.log("Es válido");
+		else console.log("No es válido");
 
 		return valido;
 	}
 }
 
-class BonoTarifaPlana extends Bonobus {}
+class BonoTraifaPlanaUnDia extends BonoTarifaPlana {
+	constructor() {
+		super();
+	}
+
+	picarViaje(dia, mes, anno, hh, mm) {
+		let valido = false;
+
+		let actual = new Date(anno, mes, dia, hh, mm);
+
+		if (caducidad === undefined) {
+			caducidad = new Date(anno, mes, dia + 1, hh, mm);
+		} else {
+			if (caducidad >= actual) valido = true;
+		}
+
+		if (valido) console.log("Es válido");
+		else console.log("No es válido");
+
+		return valido;
+	}
+}
+
+class BonoTraifaPlanaTresDias extends BonoTarifaPlana {
+	constructor() {
+		super();
+	}
+
+	picarViaje(dia, mes, anno, hh, mm) {
+		let valido = false;
+
+		let actual = new Date(anno, mes, dia, hh, mm);
+
+		if (caducidad === undefined) {
+			caducidad = new Date(anno, mes, dia + 3, hh, mm);
+		} else {
+			if (caducidad >= actual) valido = true;
+		}
+
+		if (valido) console.log("Es válido");
+		else console.log("No es válido");
+
+		return valido;
+	}
+}
+
+class BonoTraifaPlanaUnMes extends BonoTarifaPlana {
+	constructor() {
+		super();
+	}
+
+	picarViaje(dia, mes, anno, hh, mm) {
+		let valido = false;
+
+		let actual = new Date(anno, mes, dia, hh, mm);
+
+		if (caducidad === undefined) {
+			caducidad = new Date(anno, mes + 1, dia, hh, mm);
+		} else {
+			if (caducidad >= actual) valido = true;
+		}
+
+		if (valido) console.log("Es válido");
+		else console.log("No es válido");
+
+		return valido;
+	}
+}
+
+class BonoTraifaPlanaUnAnno extends BonoTarifaPlana {
+	constructor() {
+		super();
+	}
+
+	picarViaje(dia, mes, anno, hh, mm) {
+		let valido = false;
+
+		let actual = new Date(anno, mes, dia, hh, mm);
+
+		if (caducidad === undefined) {
+			caducidad = new Date(anno + 1, mes, dia, hh, mm);
+		} else {
+			if (caducidad >= actual) valido = true;
+		}
+
+		if (valido) console.log("Es válido");
+		else console.log("No es válido");
+
+		return valido;
+	}
+}
