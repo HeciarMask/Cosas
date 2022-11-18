@@ -1,0 +1,24 @@
+.btn {
+	position: absolute;
+	background-color: lightblue;
+	overflow: hidden;
+}
+
+.top {
+	top: 0px;
+}
+.btn:hover .top {
+	top: 100px;
+}
+
+.bottom {
+	top: 100px;
+}
+.btn:hover .bottom {
+	top: 0px;
+}
+
+.content {
+	position: relative;
+	transition: top 0.3s;
+}

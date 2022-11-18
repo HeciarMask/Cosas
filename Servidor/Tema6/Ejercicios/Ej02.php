@@ -23,7 +23,7 @@ setcookie("nombres",$nombre,time()+86400);
         echo "<input type='text' name='nombre'";
         if (isset($_COOKIE['nombres'])){
             if($_COOKIE['nombres'] != "default"){
-                echo " value='".$_COOKIE['nombres']."'";
+                echo " value='".$nombre."'";
             }
         }
         
