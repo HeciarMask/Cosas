@@ -120,4 +120,33 @@ class Vivero {
 			return true;
 		} else return false;
 	}
+
+	tallajeArbol(iCodigo, iTallaje) {
+		res = "";
+
+		if (iCodigo == "" || iTallaje == "") {
+			res = "Faltan datos";
+		} else {
+			let encontrado = false;
+
+			encontrado = this.arboles.forEach(function (currentValue, iCodigo) {
+				if (currentValue.codigo == iCodigo) return true;
+			});
+
+			if (!encontrado) res = "Árbol no registrado";
+			else {
+				let tCorrecto = false;
+
+				tCorrecto = this.arboles.forEach(function (currentValue, iTallaje) {
+					if (currentValue.tallaje <= iTallaje) return true;
+				});
+
+				if (!tCorrecto) res = "Tallaje Inferior registrado.";
+				else {
+				}
+			}
+		}
+
+		alert(res);
+	}
 }
