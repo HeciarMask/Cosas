@@ -6,5 +6,5 @@
 	transition: all 0.5s;
 }
 .modal-close:hover {
-	transform: scale(8) translatey(50px) translatex(-50px);
+	transform: scale(8) translate(-50px, 50px);
 }
