@@ -1,0 +1,10 @@
+.modal-close {
+	font-size: 200%;
+	right: 15px;
+	top: 0;
+	position: absolute;
+	transition: all 0.5s;
+}
+.modal-close:hover {
+	transform: scale(8) translatey(50px) translatex(-50px);
+}

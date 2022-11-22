@@ -1,7 +1,8 @@
 <?php
+
+
 if (isset($_COOKIE['colorines']))$color=$_COOKIE['colorines'];
 else $color="white";
-
 if(isset($_POST['fondo']))$color=$_POST['fondo'];
 setcookie("colorines",$color,time()+86400);
 ?>

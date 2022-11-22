@@ -1,0 +1,31 @@
+﻿/* estado inicial */  
+#outerspace { 
+	position: relative; 
+	height: 400px; 
+	width:800px;
+	background: #0c0440 url('../imagenes/outerspace.jpg') repeat scroll left bottom; 
+	color: #fff; 
+} 
+
+#sol {
+	border-radius:50%;
+	width: 20px;
+	height: 20px;
+	background-color:yellow;
+}
+
+#outerspace #sol{
+	
+	
+}
+
+#outerspace:hover #sol{
+	background-color:red;
+	
+}
+
+
+#outerspace:hover {
+
+	background-position: -100% 0%;
+}

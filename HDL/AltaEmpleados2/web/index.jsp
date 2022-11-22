@@ -19,7 +19,6 @@
             <title>JSP Page</title>
         </head>
         <body>
-            <h1><h:outputText value="Hello World!"/></h1>
             <h:dataTable value="#{empleados.rsEmpleados}" border="1" var="fila">
                  <h:column>
                     <f:facet name="header">
