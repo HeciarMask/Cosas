@@ -1,31 +1,30 @@
-﻿/* estado inicial */  
-#outerspace { 
-	position: relative; 
-	height: 400px; 
-	width:800px;
-	background: #0c0440 url('../imagenes/outerspace.jpg') repeat scroll left bottom; 
-	color: #fff; 
-} 
+﻿/* estado inicial */
+#outerspace {
+	position: relative;
+	height: 400px;
+	width: 800px;
+	background: #0c0440 url("../imagenes/outerspace.jpg") repeat scroll left
+		bottom;
+	color: #fff;
+	transition: all 3s;
+}
 
 #sol {
-	border-radius:50%;
+	border-radius: 50%;
 	width: 20px;
 	height: 20px;
-	background-color:yellow;
+	background-color: yellow;
 }
 
-#outerspace #sol{
-	
-	
+#outerspace #sol {
+	transition: all 3s;
 }
 
-#outerspace:hover #sol{
-	background-color:red;
-	
+#outerspace:hover #sol {
+	transform: translate(780px, 380px);
+	background-color: red;
 }
-
 
 #outerspace:hover {
-
 	background-position: -100% 0%;
 }

@@ -9,7 +9,14 @@
 
 <body> 
 <?php
-
+session_start();
+require_once("funcionesBD.php");
+$conexion = new mysqli("localhost", "root", "", "tipob");
+$esOperario = comprobarUsuario("operarios", "dni", "password", $usuario, $password);
+if($esOperario == 0){
+  $_SESSION['conectado'] = "operario";
+  header("Location: espacioOperario.php");
+}
  
 //Recibimos las dos variables
 $usuario=$_POST["usuario"];

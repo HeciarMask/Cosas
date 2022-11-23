@@ -1,0 +1,1 @@
+<p><form  method=post action='sesiones1.php'><input type=submit name='Borrar' value='Borrar  sesión'></form></p><p><a href='sesiones1.php'>Volver</a></p>

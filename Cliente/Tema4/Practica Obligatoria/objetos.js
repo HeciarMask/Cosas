@@ -271,19 +271,86 @@ class Agencia {
 			oCliente.dniCliente != "" &&
 			oCliente.nombre != ""
 		) {
-			/* let nombre = String(formNombre.nombre.value);
-            let apellido1 = String(formNombre.apell1.value);
-            let apellido2 = String(formNombre.apell2.value);
+			let apellidos =
+				oCliente.Apellidos.slice(0, 2) +
+				oCliente.Apellidos.slice(
+					oCliente.Apellidos.indexOf(" ") + 1,
+					oCliente.Apellidos.indexOf(" ") + 4
+				);
+			let usuario = oCliente.nombre.slice(0, 1) + apellidos;
 
-            let nomCompleto = nombre + " " + apellido1 + " " + apellido2;
-
-            let nomJunto = nomCompleto.replace(/ /g, "");
-
-            let apellido1Aux = apellido1.replace(/ /g, "");
-            let apellido2Aux = apellido2.replace(/ /g, "");
-            let usuario = nombre.slice(0,1) + apellido1Aux.slice(0,3) + apellido2Aux.slice(0,3); */
+			if (this.clientes.includes(usuario)) {
+				res = "Este usuario ya está registrado.";
+			} else {
+				oCliente.usuario = usuario;
+				this.clientes.push(oCliente);
+				res = "Usuario creado correctamente.";
+			}
 		}
 
+		return res;
+	}
+
+	altaAlojamiento(oAlojamiento) {
+		res = "Error al realizar el alta de alojamiento";
+
+		let encontrado = this.alojamientos.forEach(function (
+			currentValue,
+			oAlojamiento
+		) {
+			if (currentValue.idAlojamiento == oAlojamiento.idAlojamiento) return true;
+		});
+
+		if (!encontrado) {
+			this.#alojamientos.push(oAlojamiento);
+			res = "Alta de alojamiento correcto";
+		}
+
+		return res;
+	}
+
+	altaReserva(oReserva) {
+		res = "Error al realizar el alta de reserva";
+
+		let encontrado = this.reservas.forEach(function (currentValue, oReserva) {
+			if (currentValue.idReserva == oReserva.idReserva) return true;
+		});
+
+		if (!encontrado) {
+			this.reservas.push(oReserva);
+			res = "Alta de reserva correcta";
+		}
+
+		return res;
+	}
+
+	bajaReserva(oReserva) {
+		res = "Error al realizar la baja de reserva";
+
+		let encontrado = this.reservas.forEach(function (currentValue, oReserva) {
+			if (currentValue.idReserva == oReserva.idReserva) {
+				this.reservas.pop(currentValue);
+				return true;
+			}
+		});
+
+		if (encontrado) {
+			res = "Baja de reserva realizada";
+		}
+
+		return res;
+	}
+
+	listadoClientes() {
+		res = "";
+
+		res += "<table>";
+
+		this.clientes.forEach(function (currentValue) {
+			res += currentValue.toHTMLRow;
+		});
+
+		res += "</table>";
 		return res;
 	}
 }

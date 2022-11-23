@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Agencia de Viajes</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Altas
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" onclick="gestionCustomPags('Alta-Cliente');">Alta
+                                        Cliente</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" onclick="gestionCustomPags('Alta-Alojamiento');">Alta
+                                        Alojamiento</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" onclick="gestionCustomPags('Alta-Reserva');">Alta
+                                        Reserva</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Baja Reserva</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Listados
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Listado Clientes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Listado Alojamientos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Listado Reservas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Listado Reservas Por Cliente</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Listado Habitaciones Con Desayuno</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row customPag Alta-Cliente" id="AltaCliente">
+            <form name="formAltaCliente">
+                <div class="col-12 mb-3">
+                    <label for="nombreCliente" class="form-label">Nombre Cliente</label>
+                    <input type="text" class="form-control" name="nombreCliente" id="nombreCliente"
+                        placeholder="Nombre">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="apellidosCliente" class="form-label">Apellidos Cliente</label>
+                    <input type="text" class="form-control" name="apellidosCliente" id="apellidosCliente"
+                        placeholder="Apellidos">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="dniCliente" class="form-label">DNI Cliente</label>
+                    <input type="text" class="form-control" name="dniCliente" id="dniCliente" placeholder="DNI">
+                </div>
+            </form>
+        </div>
+        <div class="row customPag Alta-Alojamiento" id="AltaAlojamiento">
+            <form name="formAltaAlojamiento">
+                <div class="col-12 mb-3">
+                    <label for="idAlojamiento" class="form-label">ID del Alojamiento</label>
+                    <input type="text" class="form-control" name="idAlojamiento" id="idAlojamiento" placeholder="ID">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="numPersonas" class="form-label">Número de Personas</label>
+                    <input type="text" class="form-control" name="numPersonas" id="numPersonas"
+                        placeholder="1, 2, 3, 4, ...">
+                </div>
+                <div class="col-12 mb-3">
+                    Tipo de Alojamiento:
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="alojamiento" id="habitacion"
+                            onchange="tipoAloj()">
+                        <label class="form-check-label" for="habitacion">
+                            Habitación
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="alojamiento" id="apartamento"
+                            onchange="tipoAloj()">
+                        <label class="form-check-label" for="Apartamento">
+                            Apartamento
+                        </label>
+                    </div>
+                </div>
+                <div id="habitacionPag" class="row customPag offset-1">
+                    <div class="form-check form-switch col-12 ms-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="desayuno">
+                        <label class="form-check-label" for="desayuno">Desayuno</label>
+                    </div>
+                </div>
+                <div id="apartamentoPag" class="row customPag offset-1">
+                    <div class="form-check form-switch col-12 mb-3 ms-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="desayuno">
+                        <label class="form-check-label" for="parking">Parking</label>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="numHabitaciones" class="form-label">Número de Habitaciones</label>
+                        <input type="text" class="form-control" name="numHabitaciones" id="numHabitaciones"
+                            placeholder="1, 2, 3, 4, ...">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row customPag Alta-Reserva" id="AltaReserva">
+            <div class="col-12 mb-3">
+                <label for="idReserva" class="form-label">ID de la Reserva</label>
+                <input type="text" class="form-control" name="idReserva" id="idReserva" placeholder="ID">
+            </div>
+            <div class="col-12 mb-3">
+                <label for="usuario" class="form-label">Usuario</label>
+                <input type="text" class="form-control" name="usuario" id="usuario" placeholder="usuario">
+            </div>
+            <div class="col-12 mb-3">
+                <label for="listaAlojamientos" class="form-label">Lista de Alojamientos</label>
+                <input type="text" class="form-control" name="listaAlojamientos" id="listaAlojamientos"
+                    placeholder="idAlojamiento1, idAlojamiento2, ...">
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="objetos.js"></script>
+    <script type="text/javascript" src="principal.js"></script>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
