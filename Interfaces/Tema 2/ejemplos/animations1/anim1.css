@@ -1,0 +1,22 @@
+.reloj {
+	height: 25vh;
+	width: 25vw;
+}
+
+@keyframes tiempo {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+#minutero {
+	transform-origin: center;
+	animation: tiempo 1s infinite linear;
+}
+#hora {
+	transform-origin: center;
+	animation: tiempo 60s infinite linear;
+}
