@@ -264,28 +264,22 @@ class Agencia {
 	}
 
 	altaCliente(oCliente) {
-		let res = "Error ar introducir los datos";
+		let res = 2;
 
-		if (
-			oCliente.Apellidos != "" &&
-			oCliente.dniCliente != "" &&
-			oCliente.nombre != ""
-		) {
-			let apellidos =
-				oCliente.Apellidos.slice(0, 2) +
-				oCliente.Apellidos.slice(
-					oCliente.Apellidos.indexOf(" ") + 1,
-					oCliente.Apellidos.indexOf(" ") + 4
-				);
-			let usuario = oCliente.nombre.slice(0, 1) + apellidos;
+		let apellidos =
+			oCliente.Apellidos.slice(0, 2) +
+			oCliente.Apellidos.slice(
+				oCliente.Apellidos.indexOf(" ") + 1,
+				oCliente.Apellidos.indexOf(" ") + 4
+			);
+		let usuario = oCliente.nombre.slice(0, 1) + apellidos + oCliente.dniCliente;
 
-			if (this.clientes.includes(usuario)) {
-				res = "Este usuario ya está registrado.";
-			} else {
-				oCliente.usuario = usuario;
-				this.clientes.push(oCliente);
-				res = "Usuario creado correctamente.";
-			}
+		if (this.clientes.includes(usuario)) {
+			res = 1;
+		} else {
+			oCliente.usuario = usuario.toLocaleLowerCase();
+			this.clientes.push(oCliente);
+			res = 0;
 		}
 
 		return res;

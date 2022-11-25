@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>Proyecto Cliente 1er Trimestre</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,7 +17,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Agencia de Viajes</a>
+                <a class="navbar-brand" href="#" onclick="ocultarTodo()">Agencia de Viajes</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +46,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Baja Reserva</a>
+                            <a class="nav-link" href="#" onclick="gestionCustomPags('Baja-Reserva');">Baja Reserva</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -82,6 +82,9 @@
                     <label for="nombreCliente" class="form-label">Nombre Cliente</label>
                     <input type="text" class="form-control" name="nombreCliente" id="nombreCliente"
                         placeholder="Nombre">
+                    <div class="invalid-tooltip">
+                        Introduzca Su nombre
+                    </div>
                 </div>
                 <div class="col-12 mb-3">
                     <label for="apellidosCliente" class="form-label">Apellidos Cliente</label>
@@ -89,10 +92,14 @@
                         placeholder="Apellidos">
                 </div>
                 <div class="col-12 mb-3">
-                    <label for="dniCliente" class="form-label">DNI Cliente</label>
+                    <label for="dniCliente" class="form-label">DNI Cliente(sin letra)</label>
                     <input type="text" class="form-control" name="dniCliente" id="dniCliente" placeholder="DNI">
                 </div>
+                <div class="col-12 mb-3">
+                    <button type="button" class="btn btn-primary" onclick="darAltaCliente()">Dar de Alta</button>
+                </div>
             </form>
+            <p id="errorAltaCliente"></p>
         </div>
         <div class="row customPag Alta-Alojamiento" id="AltaAlojamiento">
             <form name="formAltaAlojamiento">
@@ -139,6 +146,9 @@
                             placeholder="1, 2, 3, 4, ...">
                     </div>
                 </div>
+                <div class="col-12 mb-3">
+                    <button type="button" class="btn btn-primary">Dar de Alta</button>
+                </div>
             </form>
         </div>
         <div class="row customPag Alta-Reserva" id="AltaReserva">
@@ -154,6 +164,18 @@
                 <label for="listaAlojamientos" class="form-label">Lista de Alojamientos</label>
                 <input type="text" class="form-control" name="listaAlojamientos" id="listaAlojamientos"
                     placeholder="idAlojamiento1, idAlojamiento2, ...">
+            </div>
+            <div class="col-12 mb-3">
+                <button type="button" class="btn btn-primary">Dar de Alta</button>
+            </div>
+        </div>
+        <div class="row customPag Baja-Reserva" id="BajaReserva">
+            <div class="col-12 mb-3">
+                <label for="idReserva" class="form-label">ID de la Reserva</label>
+                <input type="text" class="form-control" name="idReserva" id="idReserva" placeholder="ID">
+            </div>
+            <div class="col-12 mb-3">
+                <button type="button" class="btn btn-primary">Dar de Baja</button>
             </div>
         </div>
     </div>

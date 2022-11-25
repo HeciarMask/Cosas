@@ -1,0 +1,33 @@
+.portadas {
+	margin-left: auto;
+	margin-right: auto;
+	height: 70%;
+	width: 70%;
+}
+
+.tiktok {
+	opacity: 0;
+	transition: all 1s;
+}
+.tiktok:hover {
+	opacity: 1;
+}
+
+.mosika {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bg-gradient-primary-to-secondary {
+	background-color: #2937f0;
+	transition: background-color 1s;
+}
+
+.bg-gradient-primary-to-secondary:hover {
+	background-color: #9f1ae2;
+}
+
+.customIcon {
+	height: 4rem;
+	width: 4rem;
+}

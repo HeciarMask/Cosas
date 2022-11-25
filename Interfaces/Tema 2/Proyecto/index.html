@@ -21,6 +21,7 @@
         rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/estiloCustom.css" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -56,18 +57,21 @@
                     <!-- Mashead text and app badges-->
                     <div class="mb-5 mb-lg-0 text-center text-lg-start">
                         <h1 class="display-1 lh-1 mb-3">Audio proporcionado por Invlog</h1>
-                        <p class="lead fw-normal text-muted mb-5"> Pov: Tu Primo Chico
+                        <p class="lead fw-normal text-muted mb-2 customMosika"> Pov: Tu Primo Chico
                             Tocando Tu Puto Casio<br>
-                            <audio controls="controls" preload="auto">
+                            <!--AUDIO CON AUTOPLAY Y CONTROLES(EL AUTOPLAY FUNCIONA CUANDO LE APETECE)
+                                CREDITOS A JOSE MANUEL(INVLOG) POR APORTAR LA MÚSICA-->
+                            <audio class="mosika" controls autoplay>
                                 <source src="assets/img/pov.mp3" type="audio/mpeg" />
                             </audio>
-                        </p>
+                            <!--PICTURE QUE CAMBIA DE IMAGEN SEGÚN EL TAMAÑO-->
+                            <picture>
+                                <source class="portadas" media="(min-width: 900px)" srcset="assets/img/portada1.jpg">
+                                <source class="portadas" media="(min-width: 600px)" srcset="assets/img/portada2.jpg">
 
-                        <div class="d-flex flex-column flex-lg-row align-items-center">
-                            <a class="me-lg-3 mb-4 mb-lg-0" href="#!"><img class="app-badge"
-                                    src="assets/img/google-play-badge.svg" alt="..." /></a>
-                            <a href="#!"><img class="app-badge" src="assets/img/app-store-badge.svg" alt="..." /></a>
-                        </div>
+                                <img class="portadas" src="assets/img/portada3.jpg">
+                            </picture>
+                        </p>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -94,11 +98,10 @@
                         <div class="device-wrapper">
                             <div class="device" data-device="iPhoneX" data-orientation="portrait" data-color="black">
                                 <div class="screen bg-black">
-                                    <!-- PUT CONTENTS HERE:-->
-                                    <!-- * * This can be a video, image, or just about anything else.-->
-                                    <!-- * * Set the max width of your media to 100% and the height to-->
-                                    <!-- * * 100% like the demo example below.-->
-                                    <video muted="muted" controls loop="" style="max-width: 100%; height: 100%">
+                                    <!--VIDEO MUTEADO, CON CONTROLES, SIN AUTOPLAY(HAY OTRO MÁS ABAJO)
+                                        TAMBIEN CUENTA COMO PRIMERA TRANSICIÓN-->
+                                    <video class="tiktok" muted="muted" controls loop=""
+                                        style="max-width: 100%; height: 100%">
                                         <source src="assets/img/breikdans.mp4" type="video/mp4" />
                                     </video>
                                 </div>
@@ -109,7 +112,7 @@
             </div>
         </div>
     </header>
-    <!-- Quote/testimonial aside-->
+    <!-- SEGUNDA TRANSICIÓN-->
     <aside class="text-center bg-gradient-primary-to-secondary">
         <div class="container px-5">
             <div class="row gx-5 justify-content-center">
@@ -131,8 +134,13 @@
                             <div class="col-md-6 mb-5">
                                 <!-- Feature item-->
                                 <div class="text-center">
-                                    <i class="bi-phone icon-feature text-gradient d-block mb-3"></i>
-                                    <h3 class="font-alt">Device Mockups</h3>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                        class="bi bi-phone customIcon mb-3" viewBox="0 0 16 16">
+                                        <path
+                                            d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
+                                        <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                                    </svg>
+                                    <h3 class="font-alt">Transformación 1</h3>
                                     <p class="text-muted mb-0">Ready to use HTML/CSS device mockups, no Photoshop
                                         required!</p>
                                 </div>
@@ -140,8 +148,14 @@
                             <div class="col-md-6 mb-5">
                                 <!-- Feature item-->
                                 <div class="text-center">
-                                    <i class="bi-camera icon-feature text-gradient d-block mb-3"></i>
-                                    <h3 class="font-alt">Flexible Use</h3>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-camera customIcon mb-3" viewBox="0 0 16 16">
+                                        <path
+                                            d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z" />
+                                        <path
+                                            d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
+                                    </svg>
+                                    <h3 class="font-alt">Transformación 2</h3>
                                     <p class="text-muted mb-0">Put an image, video, animation, or anything else in the
                                         screen!</p>
                                 </div>

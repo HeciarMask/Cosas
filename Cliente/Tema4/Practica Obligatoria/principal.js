@@ -39,3 +39,33 @@ function tipoAloj() {
 		document.getElementById("apartamentoPag").style.display = "block";
 	}
 }
+
+function darAltaCliente() {
+	/*
+		Devuelve 
+		4 si faltan datos.
+		3 si el dni es inválido.
+		2 error desconocido
+		1 si ya existe el usuario
+		0 se ha añadido el usuario correctamente
+	*/
+	let res;
+
+	let nombre = formAltaCliente.nombreCliente.value;
+	let apellidos = formAltaCliente.apellidosCliente.value;
+	let dni = formAltaCliente.dniCliente.value;
+
+	if (nombre == "" || apellidos == "" || dni == "") {
+		res = 4;
+	} else if (dni.length < 3) {
+		res = 3;
+	} else if (isNaN(Number.parseInt(dni)) == true) {
+		res = 3;
+	} else {
+		dni = Number.parseInt(dni);
+	}
+
+	let cliente = new Cliente(dni, nombre, apellidos);
+	res = agencia.altaCliente(cliente);
+	if (res != 0) document.getElementById("errorAltaCliente").innerHTML = res;
+}

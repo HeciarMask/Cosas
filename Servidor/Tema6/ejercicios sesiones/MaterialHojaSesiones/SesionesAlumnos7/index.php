@@ -27,16 +27,18 @@ echo "
     </table>
 <form>
 ";
-
-require_once("funcionesBD.php");
-$nombreColumna = "usuario";
-$nombreClave = "password";
-$nombreTabla = "usuarios";
-comprobarUsuario($nombreTabla,$nombreColumna,$nombreClave,$contenidoColumna,$contenidoClave)
 }else{
-    echo "
+    extract($_POST);
+    $connect = new mysqli("localhost","root", "", "usuarios");
+    require_once("funcionesBD.php");
+    $nombreColumna = "usuario";
+    $nombreClave = "password";
+    $nombreTabla = "usuarios";
+    $res = comprobarUsuario($nombreTabla,$nombreColumna,$nombreClave,$usuario,$passwd);
+
+    /* echo "
     <a href='enlace1.php'>Enlace 1</a><br>
     <a href='enlace2.php'>Enlace 2</a>
-    ";
+    "; */
 }
 ?>
