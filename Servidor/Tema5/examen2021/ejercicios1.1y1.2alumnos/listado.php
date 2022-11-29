@@ -17,7 +17,7 @@ $dwes=new mysqli("localhost","root","","ejercicio1");
 if(!empty($tipo)){
     $cadTipo = implode(' \', \'', $tipo);
 }else{
-    $listaCadena = new array();
+    $listaCadena = new Array();
     $sqlAux="SELECT DISTINCT tipo FROM propiedades";
     $resultadoAux=$dwes->query($sqlAux);
     while($filaAux=$resultadoAux->fetch_assoc()){

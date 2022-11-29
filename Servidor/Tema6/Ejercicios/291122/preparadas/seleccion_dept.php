@@ -16,6 +16,7 @@ cabecera('Control de PHP');
 	echo "<select name=\"departamento\">";
 
 	$conexion = new mysqli("localhost","root","","preparadas");
+	$conexion->set_charset("utf8");
 	$sqlPet = "SELECT DISTINCT departamento FROM trabajadores";
 	$resultado = $conexion->query($sqlPet);
 

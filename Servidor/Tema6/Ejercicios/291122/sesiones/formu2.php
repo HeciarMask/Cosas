@@ -1,4 +1,5 @@
 ﻿<?php
+session_start();
 
 echo  "<form action=proceso2.php method=\"POST\">
    <table>
