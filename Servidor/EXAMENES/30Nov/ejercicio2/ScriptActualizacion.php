@@ -13,7 +13,7 @@ foreach($alumnos as $año => $lista){
     }
 }
 
-/* header ("Location:formulario.php"); */
+header ("Location:formulario.php"); 
 ?> 
 
 
