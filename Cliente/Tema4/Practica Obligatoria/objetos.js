@@ -263,26 +263,54 @@ class Agencia {
 		this.#clientes = value;
 	}
 
-	altaCliente(oCliente) {
+	altaCliente(oCliente, agencia) {
 		let res = 2;
+		let encontrado = false;
 
-		let apellidos =
-			oCliente.Apellidos.slice(0, 2) +
-			oCliente.Apellidos.slice(
-				oCliente.Apellidos.indexOf(" ") + 1,
-				oCliente.Apellidos.indexOf(" ") + 4
-			);
-		let usuario = oCliente.nombre.slice(0, 1) + apellidos + oCliente.dniCliente;
+		try {
+			if (
+				oCliente.nombre == "" ||
+				oCliente.Apellidos == "" ||
+				oCliente.dniCliente == ""
+			) {
+				res = 4;
+				throw res;
+			}
+			let dni = oCliente.dniCliente.slice(0, -1);
+			dni = dni.slice(-3);
 
-		if (this.clientes.includes(usuario)) {
-			res = 1;
-		} else {
-			oCliente.usuario = usuario.toLocaleLowerCase();
-			this.clientes.push(oCliente);
-			res = 0;
+			let apellidos =
+				oCliente.Apellidos.slice(0, 2) +
+				oCliente.Apellidos.slice(
+					oCliente.Apellidos.indexOf(" ") + 1,
+					oCliente.Apellidos.indexOf(" ") + 4
+				);
+
+			if (dni.length < 3) {
+				res = 3;
+				throw res;
+			} else if (isNaN(Number.parseInt(dni)) == true) {
+				res = 3;
+				throw res;
+			}
+
+			let user = oCliente.nombre.slice(0, 1) + apellidos + dni;
+			user = user.toLocaleLowerCase();
+
+			for (let cliente of agencia.clientes) {
+				if (cliente.usuario == user) encontrado = true;
+			}
+
+			if (!encontrado) {
+				oCliente.usuario = user;
+				this.clientes.push(oCliente);
+				return 0;
+			} else {
+				return 1;
+			}
+		} catch (err) {
+			return res;
 		}
-
-		return res;
 	}
 
 	altaAlojamiento(oAlojamiento) {

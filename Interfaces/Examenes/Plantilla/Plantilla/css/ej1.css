@@ -1,0 +1,35 @@
+#ej1 {
+	background-image: url("../imagenes/nubes.jpg");
+	animation: fondo 10s infinite;
+}
+
+@keyframes fondo {
+	100% {
+		background-position: 500px;
+	}
+}
+
+#ironman {
+	position: relative;
+	transform-origin: center;
+	animation: acero 10s infinite;
+	animation-play-state: running;
+}
+
+@keyframes acero {
+	20% {
+		transform: rotate(135deg);
+	}
+	40% {
+		transform: translate(580px, 250px) rotate(135deg);
+	}
+	50% {
+		transform: translate(580px, 250px);
+	}
+	60% {
+		transform: translate(580px, 265px);
+	}
+	100% {
+		transform: translate(580px, -300px) scale(3);
+	}
+}

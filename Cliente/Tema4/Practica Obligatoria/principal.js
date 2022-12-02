@@ -41,6 +41,7 @@ function tipoAloj() {
 }
 
 function darAltaCliente() {
+	document.getElementById("errorAltaCliente").innerHTML = "";
 	/*
 		Devuelve 
 		4 si faltan datos.
@@ -50,22 +51,39 @@ function darAltaCliente() {
 		0 se ha añadido el usuario correctamente
 	*/
 	let res;
+	let cliente;
 
 	let nombre = formAltaCliente.nombreCliente.value;
 	let apellidos = formAltaCliente.apellidosCliente.value;
 	let dni = formAltaCliente.dniCliente.value;
 
-	if (nombre == "" || apellidos == "" || dni == "") {
-		res = 4;
-	} else if (dni.length < 3) {
-		res = 3;
-	} else if (isNaN(Number.parseInt(dni)) == true) {
-		res = 3;
-	} else {
-		dni = Number.parseInt(dni);
+	cliente = new Cliente(dni, nombre, apellidos);
+
+	res = agencia.altaCliente(cliente, agencia);
+
+	switch (res) {
+		case 0:
+			document.getElementById("errorAltaCliente").innerHTML +=
+				"Se ha completado el alta";
+			break;
+		case 1:
+			document.getElementById("errorAltaCliente").innerHTML +=
+				"Ya existe el usuario.";
+			break;
+		case 2:
+			document.getElementById("errorAltaCliente").innerHTML +=
+				"Fallo en los datos.";
+			break;
+		case 3:
+			document.getElementById("errorAltaCliente").innerHTML +=
+				"El dni es inválido.";
+			break;
+		case 4:
+			document.getElementById("errorAltaCliente").innerHTML += "Faltan datos.";
+			break;
 	}
 
-	let cliente = new Cliente(dni, nombre, apellidos);
-	res = agencia.altaCliente(cliente);
-	if (res != 0) document.getElementById("errorAltaCliente").innerHTML = res;
+	document.getElementById("nombreCliente").value = "";
+	document.getElementById("apellidosCliente").value = "";
+	document.getElementById("dniCliente").value = "";
 }
