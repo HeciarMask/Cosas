@@ -1,16 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <title>Proyecto Cliente 1er Trimestre</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -55,19 +54,19 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Listado Clientes</a>
+                                    <a class="nav-link" href="#" onclick="gestionCustomPags('Lista-Clientes');">Listado Clientes</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Listado Alojamientos</a>
+                                    <a class="nav-link" href="#" onclick="gestionCustomPags('Lista-Alojamientos');">Listado Alojamientos</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Listado Reservas</a>
+                                    <a class="nav-link" href="#" onclick="gestionCustomPags('Lista-Reserva-Fecha');">Listado Reservas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Listado Reservas Por Cliente</a>
+                                    <a class="nav-link" href="#" onclick="gestionCustomPags('Lista-Reserva-Cliente');">Listado Reservas Por Cliente</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Listado Habitaciones Con Desayuno</a>
+                                    <a class="nav-link" href="#" onclick="gestionCustomPags('Lista-Habitacion');">Listado Habitaciones Con Desayuno</a>
                                 </li>
                             </ul>
                         </li>
@@ -81,7 +80,7 @@
                 <div class="col-12 mb-3">
                     <label for="nombreCliente" class="form-label">Nombre Cliente</label>
                     <input type="text" class="form-control" name="nombreCliente" id="nombreCliente"
-                        placeholder="Nombre">
+                        placeholder="Nombre" />
                     <!-- 
                     <div class="invalid-tooltip">
                         Introduzca Su nombre
@@ -90,41 +89,42 @@
                 <div class="col-12 mb-3">
                     <label for="apellidosCliente" class="form-label">Apellidos Cliente</label>
                     <input type="text" class="form-control" name="apellidosCliente" id="apellidosCliente"
-                        placeholder="Apellidos">
+                        placeholder="Apellidos" />
                 </div>
                 <div class="col-12 mb-3">
                     <label for="dniCliente" class="form-label">DNI Cliente</label>
-                    <input type="text" class="form-control" name="dniCliente" id="dniCliente" placeholder="DNI">
+                    <input type="text" class="form-control" name="dniCliente" id="dniCliente" placeholder="DNI" />
                 </div>
                 <div class="col-12 mb-3">
-                    <button type="button" class="btn btn-primary" onclick="darAltaCliente()">Dar de Alta</button>
+                    <button type="button" class="btn btn-primary" onclick="darAltaCliente()">
+                        Dar de Alta
+                    </button>
                 </div>
             </form>
-            <p id="errorAltaCliente"></p>
         </div>
         <div class="row customPag Alta-Alojamiento" id="AltaAlojamiento">
             <form name="formAltaAlojamiento">
                 <div class="col-12 mb-3">
                     <label for="idAlojamiento" class="form-label">ID del Alojamiento</label>
-                    <input type="text" class="form-control" name="idAlojamiento" id="idAlojamiento" placeholder="ID">
+                    <input type="text" class="form-control" name="idAlojamiento" id="idAlojamiento" placeholder="ID" />
                 </div>
                 <div class="col-12 mb-3">
                     <label for="numPersonas" class="form-label">Número de Personas</label>
                     <input type="text" class="form-control" name="numPersonas" id="numPersonas"
-                        placeholder="1, 2, 3, 4, ...">
+                        placeholder="1, 2, 3, 4, ..." />
                 </div>
                 <div class="col-12 mb-3">
                     Tipo de Alojamiento:
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="alojamiento" id="habitacion"
-                            onchange="tipoAloj()">
+                        <input class="form-check-input" type="radio" name="aloj" id="habitacion"
+                            onchange="tipoAloj()" />
                         <label class="form-check-label" for="habitacion">
                             Habitación
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="alojamiento" id="apartamento"
-                            onchange="tipoAloj()">
+                        <input class="form-check-input" type="radio" name="aloj" id="apartamento"
+                            onchange="tipoAloj()" />
                         <label class="form-check-label" for="Apartamento">
                             Apartamento
                         </label>
@@ -132,53 +132,114 @@
                 </div>
                 <div id="habitacionPag" class="row customPag offset-1">
                     <div class="form-check form-switch col-12 ms-3">
-                        <input class="form-check-input" type="checkbox" role="switch" id="desayuno">
+                        <input class="form-check-input" type="checkbox" role="switch" id="desayuno" />
                         <label class="form-check-label" for="desayuno">Desayuno</label>
                     </div>
                 </div>
                 <div id="apartamentoPag" class="row customPag offset-1">
                     <div class="form-check form-switch col-12 mb-3 ms-3">
-                        <input class="form-check-input" type="checkbox" role="switch" id="desayuno">
+                        <input class="form-check-input" type="checkbox" role="switch" id="parking" />
                         <label class="form-check-label" for="parking">Parking</label>
                     </div>
                     <div class="col-12 mb-3">
                         <label for="numHabitaciones" class="form-label">Número de Habitaciones</label>
                         <input type="text" class="form-control" name="numHabitaciones" id="numHabitaciones"
-                            placeholder="1, 2, 3, 4, ...">
+                            placeholder="1, 2, 3, 4, ..." />
                     </div>
                 </div>
                 <div class="col-12 mb-3">
-                    <button type="button" class="btn btn-primary">Dar de Alta</button>
+                    <button type="button" class="btn btn-primary" onclick="darAltaAlojamiento()">
+                        Dar de Alta
+                    </button>
                 </div>
             </form>
         </div>
         <div class="row customPag Alta-Reserva" id="AltaReserva">
-            <div class="col-12 mb-3">
-                <label for="idReserva" class="form-label">ID de la Reserva</label>
-                <input type="text" class="form-control" name="idReserva" id="idReserva" placeholder="ID">
-            </div>
-            <div class="col-12 mb-3">
-                <label for="usuario" class="form-label">Usuario</label>
-                <input type="text" class="form-control" name="usuario" id="usuario" placeholder="usuario">
-            </div>
-            <div class="col-12 mb-3">
-                <label for="listaAlojamientos" class="form-label">Lista de Alojamientos</label>
-                <input type="text" class="form-control" name="listaAlojamientos" id="listaAlojamientos"
-                    placeholder="idAlojamiento1, idAlojamiento2, ...">
-            </div>
-            <div class="col-12 mb-3">
-                <button type="button" class="btn btn-primary">Dar de Alta</button>
-            </div>
+            <form name="formAltaReserva">
+                <div class="col-12 mb-3">
+                    <label for="idReserva" class="form-label">ID de la Reserva</label>
+                    <input type="text" class="form-control" name="idReserva" id="idReserva" placeholder="ID" />
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="usuario" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" name="usuario" id="usuario" placeholder="usuario" />
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="listaAlojamientos" class="form-label">Lista de Alojamientos</label>
+                    <input type="text" class="form-control" name="listaAlojamientos" id="listaAlojamientos"
+                        placeholder="idAlojamiento1, idAlojamiento2, ..." />
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="fInicio">Fecha de inicio:</label>
+                    <input type="date" name="fInicio" id="fInicio" />
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="fFin">Fecha de fin:</label>
+                    <input type="date" name="fFin" id="fFin" />
+                </div>
+
+                <div class="col-12 mb-3">
+                    <button type="button" class="btn btn-primary" onclick="darAltaReserva()">
+                        Dar de Alta
+                    </button>
+                </div>
+            </form>
         </div>
         <div class="row customPag Baja-Reserva" id="BajaReserva">
+            <form name="formBajaReserva">
+                <div class="col-12 mb-3">
+                    <label for="idReserva" class="form-label">ID de la Reserva</label>
+                    <input type="text" class="form-control" name="idReserva" id="idReserva" placeholder="ID" />
+                </div>
+                <div class="col-12 mb-3">
+                    <button type="button" class="btn btn-primary" onclick="darBajaReserva()">Dar de Baja</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="row customPag lista-Clientes" id="ListaClientes">
             <div class="col-12 mb-3">
-                <label for="idReserva" class="form-label">ID de la Reserva</label>
-                <input type="text" class="form-control" name="idReserva" id="idReserva" placeholder="ID">
-            </div>
-            <div class="col-12 mb-3">
-                <button type="button" class="btn btn-primary">Dar de Baja</button>
+                <p id="listadoClientes"></p>
             </div>
         </div>
+        <div class="row customPag lista-Alojamientos" id="ListaAlojamientos">
+            <div class="col-12 mb-3">
+                <p id="listadoAlojamientos"></p>
+            </div>
+        </div>
+        <div class="row customPag lista-Reserva-Fecha" id="ListaReservaFecha">
+            <div class="col-12 mb-3">
+                <form name="formListaReserva">
+                <div class="col-6 mb-3">
+                    <label for="fInicio">Fecha de inicio:</label>
+                    <input type="date" name="fInicio" id="fInicio" />
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="fFin">Fecha de fin:</label>
+                    <input type="date" name="fFin" id="fFin" />
+                </div></form>
+                <p id="listadoReservasFecha"></p>
+            </div>
+        </div>
+        <div class="row customPag lista-Reserva-Cliente" id="ListaReservaCliente">
+            <div class="col-12 mb-3">
+                <form name="formListaReservaCliente">
+                    <div class="col-12 mb-3">
+                        <label for="usuario" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" name="usuario" id="usuario"
+                            placeholder="usuario" />
+                    </div>
+                </form>
+                <p id="listadoReservasCliente"></p>
+            </div>
+        </div>
+        <div class="row customPag lista-Habitacion" id="ListaHabitacion">
+            <div class="col-12 mb-3">
+                <p id="listadoHabitacion"></p>
+            </div>
+        </div>
+
+        <p id="errorAltaCliente"></p>
     </div>
 
     <script type="text/javascript" src="objetos.js"></script>
@@ -186,12 +247,12 @@
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-        </script>
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-        </script>
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

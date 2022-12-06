@@ -12,8 +12,19 @@ extract($_POST);
 /* echo $anno; */
 $conexion = new mysqli("localhost", "root", "", "preparadasb");
 $cadSql = "SELECT id, nombre FROM alumnos WHERE id NOT IN";
-$cadSql .= "(SELECT id_alumno FROM alumnos_cursos)"; //WHERE año=\"".$anno."\" Si se coloca el filtro del año no funciona
+$cadSql .= "(SELECT id_alumno FROM alumnos_cursos WHERE año=\"".$anno."\" )"; //WHERE año=\"".$anno."\" Si se coloca el filtro del año no funciona
 $res = $conexion->query($cadSql);
+
+if ($conexion->connect_errno) {
+    printf("Conexión fallida: %s\n", $conexion->connect_error);
+    exit();
+}
+
+if($res = $conexion->query($cadSql)){
+    $row = $res->fetch_assoc();
+} else {
+   printf("Error: %s\n", $conexion->error);
+}
 
 while($fila = $res->fetch_assoc()){
     extract($fila);

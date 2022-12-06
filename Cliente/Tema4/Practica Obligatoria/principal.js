@@ -1,48 +1,66 @@
 let agencia = new Agencia();
+let ejem = new Cliente("11223344A", "AAAA", "BBBBB CCCCC");
+agencia.altaCliente(ejem, agencia);
 ocultarTodo();
 
 function ocultarTodo() {
-	let oCustomPags = document.getElementsByClassName("customPag");
+  let oCustomPags = document.getElementsByClassName("customPag");
 
-	for (let i = 0; i < oCustomPags.length; i++) {
-		oCustomPags[i].style.display = "none";
-	}
+  for (let i = 0; i < oCustomPags.length; i++) {
+    oCustomPags[i].style.display = "none";
+  }
 }
 
 function gestionCustomPags(sCustomPag) {
-	ocultarTodo();
+  ocultarTodo();
 
-	// Hacemos visible el formulario que llega como parámetro
-	switch (sCustomPag) {
-		case "Alta-Cliente":
-			document.getElementById("AltaCliente").style.display = "block";
-			break;
+  // Hacemos visible el formulario que llega como parámetro
+  switch (sCustomPag) {
+    case "Alta-Cliente":
+      document.getElementById("AltaCliente").style.display = "block";
+      break;
 
-		case "Alta-Alojamiento":
-			document.getElementById("AltaAlojamiento").style.display = "block";
-			break;
-		case "Alta-Reserva":
-			document.getElementById("AltaReserva").style.display = "block";
-			break;
-		case "Baja-Reserva":
-			document.getElementById("BajaReserva").style.display = "block";
-			break;
-	}
+    case "Alta-Alojamiento":
+      document.getElementById("AltaAlojamiento").style.display = "block";
+      break;
+    case "Alta-Reserva":
+      document.getElementById("AltaReserva").style.display = "block";
+      break;
+    case "Baja-Reserva":
+      document.getElementById("BajaReserva").style.display = "block";
+      break;
+    case "Lista-Clientes":
+      document.getElementById("BajaReserva").style.display = "block";
+      listarClientes();
+      break;
+    case "Lista-Alojamientos":
+      document.getElementById("BajaReserva").style.display = "block";
+      break;
+    case "Lista-Reserva-Fecha":
+      document.getElementById("BajaReserva").style.display = "block";
+      break;
+    case "Lista-Reserva-Cliente":
+      document.getElementById("BajaReserva").style.display = "block";
+      break;
+    case "Lista-Habitacion":
+      document.getElementById("BajaReserva").style.display = "block";
+      break;
+  }
 }
 
 function tipoAloj() {
-	if (document.getElementById("habitacion").checked) {
-		document.getElementById("apartamentoPag").style.display = "none";
-		document.getElementById("habitacionPag").style.display = "block";
-	} else if (document.getElementById("apartamento").checked) {
-		document.getElementById("habitacionPag").style.display = "none";
-		document.getElementById("apartamentoPag").style.display = "block";
-	}
+  if (document.getElementById("habitacion").checked) {
+    document.getElementById("apartamentoPag").style.display = "none";
+    document.getElementById("habitacionPag").style.display = "block";
+  } else if (document.getElementById("apartamento").checked) {
+    document.getElementById("habitacionPag").style.display = "none";
+    document.getElementById("apartamentoPag").style.display = "block";
+  }
 }
 
 function darAltaCliente() {
-	document.getElementById("errorAltaCliente").innerHTML = "";
-	/*
+  document.getElementById("errorAltaCliente").innerHTML = "";
+  /*
 		Devuelve 
 		4 si faltan datos.
 		3 si el dni es inválido.
@@ -50,40 +68,126 @@ function darAltaCliente() {
 		1 si ya existe el usuario
 		0 se ha añadido el usuario correctamente
 	*/
-	let res;
-	let cliente;
+  let res;
+  let cliente;
 
-	let nombre = formAltaCliente.nombreCliente.value;
-	let apellidos = formAltaCliente.apellidosCliente.value;
-	let dni = formAltaCliente.dniCliente.value;
+  let nombre = formAltaCliente.nombreCliente.value;
+  let apellidos = formAltaCliente.apellidosCliente.value;
+  let dni = formAltaCliente.dniCliente.value;
 
-	cliente = new Cliente(dni, nombre, apellidos);
+  cliente = new Cliente(dni, nombre, apellidos);
 
-	res = agencia.altaCliente(cliente, agencia);
+  res = agencia.altaCliente(cliente, agencia);
 
-	switch (res) {
-		case 0:
-			document.getElementById("errorAltaCliente").innerHTML +=
-				"Se ha completado el alta";
-			break;
-		case 1:
-			document.getElementById("errorAltaCliente").innerHTML +=
-				"Ya existe el usuario.";
-			break;
-		case 2:
-			document.getElementById("errorAltaCliente").innerHTML +=
-				"Fallo en los datos.";
-			break;
-		case 3:
-			document.getElementById("errorAltaCliente").innerHTML +=
-				"El dni es inválido.";
-			break;
-		case 4:
-			document.getElementById("errorAltaCliente").innerHTML += "Faltan datos.";
-			break;
-	}
+  switch (res) {
+    case 0:
+      document.getElementById("errorAltaCliente").innerHTML +=
+        "Se ha completado el alta";
+      break;
+    case 1:
+      document.getElementById("errorAltaCliente").innerHTML +=
+        "Ya existe el usuario.";
+      break;
+    case 2:
+      document.getElementById("errorAltaCliente").innerHTML +=
+        "Fallo en los datos.";
+      break;
+    case 3:
+      document.getElementById("errorAltaCliente").innerHTML +=
+        "El dni es inválido.";
+      break;
+    case 4:
+      document.getElementById("errorAltaCliente").innerHTML += "Faltan datos.";
+      break;
+  }
 
-	document.getElementById("nombreCliente").value = "";
-	document.getElementById("apellidosCliente").value = "";
-	document.getElementById("dniCliente").value = "";
+  document.getElementById("nombreCliente").value = "";
+  document.getElementById("apellidosCliente").value = "";
+  document.getElementById("dniCliente").value = "";
 }
+
+function darAltaAlojamiento() {
+  document.getElementById("errorAltaCliente").innerHTML = "";
+  let res;
+  let idAloj = formAltaAlojamiento.idAlojamiento.value;
+  let numPers = formAltaAlojamiento.numPersonas.value;
+  let desayuno = false;
+  let parking = false;
+  let aloj;
+  if (formAltaAlojamiento.aloj.value == "on") {
+    if (document.getElementById("habitacion").checked) {
+      if (document.getElementById("desayuno").checked) desayuno = true;
+
+      aloj = new Habitacion(idAloj, numPers, desayuno);
+    } else {
+      if (document.getElementById("parking").checked) parking = true;
+
+      let numHab = formAltaAlojamiento.numHabitaciones.value;
+
+      aloj = new Apartamento(idAloj, numPers, parking, numHab);
+    }
+
+    res = agencia.altaAlojamiento(aloj, agencia);
+
+    document.getElementById("errorAltaCliente").innerHTML = res;
+  } else {
+    document.getElementById("errorAltaCliente").innerHTML =
+      "Seleccione un tipo de alojamiento.";
+  }
+}
+
+function darAltaReserva() {
+  document.getElementById("errorAltaCliente").innerHTML = "";
+  let res;
+  let idRes = formAltaReserva.idReserva.value;
+  let usuario = formAltaReserva.usuario.value;
+  let fInicio = formAltaReserva.fInicio.value;
+  let fFin = formAltaReserva.fFin.value;
+  let reserva;
+  if (formAltaReserva.listaAlojamientos.value != "") {
+    let cadena = formAltaReserva.listaAlojamientos.value.replace(/ /g, "");
+    let alojs = cadena.split(",");
+    reserva = new Reserva(idRes, usuario, alojs, fInicio, fFin);
+    res = agencia.altaReserva(reserva, agencia);
+  } else {
+    res = "No ha introducido ningún alojamiento.";
+  }
+  document.getElementById("errorAltaCliente").innerHTML = res;
+}
+
+function darBajaReserva() {
+  document.getElementById("errorAltaCliente").innerHTML = "";
+  let idRes = formBajaReserva.idReserva.value;
+  let res = agencia.bajaReserva(idRes, agencia);
+
+  document.getElementById("errorAltaCliente").innerHTML = res;
+}
+
+function listarClientes() {
+  let cadena = agencia.listadoClientes();
+  document.getElementById("listadoClientes").innerHTML = cadena;
+}
+
+function listarAlojamientos() {
+  let cadena = agencia.listadoAlojamientos();
+  document.getElementById("listadoAlojamientos").innerHTML = cadena;
+}
+
+function listarReservasFecha() {
+  let fInicio = formListaReserva.fInicio.value;
+  let fFin = formListasReserva.fFin.value;
+  let cadena = agencia.listadoReservasFecha(fInicio, fFin);
+  document.getElementById("listadoReservasFecha").innerHTML = cadena;
+}
+
+function listarReservasCliente() {
+  let cliente = formListaReservaCliente.usuario.value;
+  let cadena = agencia.listadoReservasCliente(cliente);
+  document.getElementById("listadoReservasCliente").innerHTML = cadena;
+}
+
+function listarHabitacion() {
+  let cadena = agencia.listadoHabitacion();
+  document.getElementById("listadoHabitacion").innerHTML = cadena;
+}
+

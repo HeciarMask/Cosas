@@ -218,161 +218,239 @@ class Reserva {
 }
 
 class Agencia {
-	#clientes;
-	#reservas;
-	#alojamientos;
-	#pilaIds;
-	#numMaxReservas;
+  #clientes;
+  #reservas;
+  #alojamientos;
+  #pilaIds;
+  #numMaxReservas;
 
-	constructor() {
-		this.#clientes = [];
-		this.#reservas = [];
-		this.#alojamientos = [];
-		this.#pilaIds = [];
-		this.#numMaxReservas = 0;
-	}
+  constructor() {
+    this.#clientes = [];
+    this.#reservas = [];
+    this.#alojamientos = [];
+    this.#pilaIds = [];
+    this.#numMaxReservas = 0;
+  }
 
-	get numMaxReservas() {
-		return this.#numMaxReservas;
-	}
-	set numMaxReservas(value) {
-		this.#numMaxReservas = value;
-	}
-	get pilaIds() {
-		return this.#pilaIds;
-	}
-	set pilaIds(value) {
-		this.#pilaIds = value;
-	}
-	get alojamientos() {
-		return this.#alojamientos;
-	}
-	set alojamientos(value) {
-		this.#alojamientos = value;
-	}
-	get reservas() {
-		return this.#reservas;
-	}
-	set reservas(value) {
-		this.#reservas = value;
-	}
-	get clientes() {
-		return this.#clientes;
-	}
-	set clientes(value) {
-		this.#clientes = value;
-	}
+  get numMaxReservas() {
+    return this.#numMaxReservas;
+  }
+  set numMaxReservas(value) {
+    this.#numMaxReservas = value;
+  }
+  get pilaIds() {
+    return this.#pilaIds;
+  }
+  set pilaIds(value) {
+    this.#pilaIds = value;
+  }
+  get alojamientos() {
+    return this.#alojamientos;
+  }
+  set alojamientos(value) {
+    this.#alojamientos = value;
+  }
+  get reservas() {
+    return this.#reservas;
+  }
+  set reservas(value) {
+    this.#reservas = value;
+  }
+  get clientes() {
+    return this.#clientes;
+  }
+  set clientes(value) {
+    this.#clientes = value;
+  }
 
-	altaCliente(oCliente, agencia) {
-		let res = 2;
-		let encontrado = false;
+  altaCliente(oCliente, agencia) {
+    let res = 2;
+    let encontrado = false;
 
-		try {
-			if (
-				oCliente.nombre == "" ||
-				oCliente.Apellidos == "" ||
-				oCliente.dniCliente == ""
-			) {
-				res = 4;
-				throw res;
-			}
-			let dni = oCliente.dniCliente.slice(0, -1);
-			dni = dni.slice(-3);
+    try {
+      if (
+        oCliente.nombre == "" ||
+        oCliente.Apellidos == "" ||
+        oCliente.dniCliente == ""
+      ) {
+        res = 4;
+        throw res;
+      }
+      let dni = oCliente.dniCliente.slice(0, -1);
+      dni = dni.slice(-3);
 
-			let apellidos =
-				oCliente.Apellidos.slice(0, 2) +
-				oCliente.Apellidos.slice(
-					oCliente.Apellidos.indexOf(" ") + 1,
-					oCliente.Apellidos.indexOf(" ") + 4
-				);
+      let apellidos =
+        oCliente.Apellidos.slice(0, 3) +
+        oCliente.Apellidos.slice(
+          oCliente.Apellidos.indexOf(" ") + 1,
+          oCliente.Apellidos.indexOf(" ") + 4
+        );
 
-			if (dni.length < 3) {
-				res = 3;
-				throw res;
-			} else if (isNaN(Number.parseInt(dni)) == true) {
-				res = 3;
-				throw res;
-			}
+      if (dni.length < 3) {
+        res = 3;
+        throw res;
+      } else if (isNaN(Number.parseInt(dni)) == true) {
+        res = 3;
+        throw res;
+      }
 
-			let user = oCliente.nombre.slice(0, 1) + apellidos + dni;
-			user = user.toLocaleLowerCase();
+      let user = oCliente.nombre.slice(0, 1) + apellidos + dni;
+      user = user.toLocaleLowerCase();
 
-			for (let cliente of agencia.clientes) {
-				if (cliente.usuario == user) encontrado = true;
-			}
+      for (let cliente of agencia.clientes) {
+        if (cliente.usuario == user) encontrado = true;
+      }
 
-			if (!encontrado) {
-				oCliente.usuario = user;
-				this.clientes.push(oCliente);
-				return 0;
-			} else {
-				return 1;
-			}
-		} catch (err) {
-			return res;
-		}
-	}
+      if (!encontrado) {
+        oCliente.usuario = user;
+        this.clientes.push(oCliente);
+        return 0;
+      } else {
+        return 1;
+      }
+    } catch (err) {
+      return res;
+    }
+  }
 
-	altaAlojamiento(oAlojamiento) {
-		res = "Error al realizar el alta de alojamiento";
+  altaAlojamiento(oAlojamiento, agencia) {
+    let res = "Error al realizar el alta de alojamiento";
 
-		let encontrado = this.alojamientos.forEach(function (
-			currentValue,
-			oAlojamiento
-		) {
-			if (currentValue.idAlojamiento == oAlojamiento.idAlojamiento) return true;
-		});
+    let encontrado = false;
 
-		if (!encontrado) {
-			this.#alojamientos.push(oAlojamiento);
-			res = "Alta de alojamiento correcto";
-		}
+    for (let aloj of agencia.alojamientos) {
+      if (aloj.idAlojamiento == oAlojamiento.idAlojamiento) {
+        encontrado = true;
+      }
+    }
 
-		return res;
-	}
+    if (!encontrado && oAlojamiento.numPersonas > 0) {
+      agencia.alojamientos.push(oAlojamiento);
+      res = "Alta de alojamiento correcto";
+    }
 
-	altaReserva(oReserva) {
-		res = "Error al realizar el alta de reserva";
+    return res;
+  }
 
-		let encontrado = this.reservas.forEach(function (currentValue, oReserva) {
-			if (currentValue.idReserva == oReserva.idReserva) return true;
-		});
+  altaReserva(oReserva, agencia) {
+    let res = "Error al realizar el alta de reserva";
+    let encontrado = false;
+    let fallo = false;
 
-		if (!encontrado) {
-			this.reservas.push(oReserva);
-			res = "Alta de reserva correcta";
-		}
+    for (let reserva of agencia.reservas) {
+      if (reserva.idReserva == oReserva.idReserva) {
+        encontrado = true;
+      }
+    }
 
-		return res;
-	}
+    for (let reserva of agencia.reservas) {
+      if (
+        reserva.alojamientos.some((x) => {
+          for (let aux of oReserva.alojamientos) {
+            if (aux.idAlojamiento == x.idAlojamiento) return false;
+          }
+        })
+      ) {
+        if (
+          (oReserva.fechaInicio <= reserva.fechaInicio &&
+            oReserva.fechaFin >= reserva.fechaInicio) ||
+          (oReserva.fechaInicio >= reserva.fechaInicio &&
+            oReserva.fechaInicio <= reserva.fechaFin)
+        ) {
+          fallo = true;
+        }
+      }
+    }
 
-	bajaReserva(oReserva) {
-		res = "Error al realizar la baja de reserva";
+    if (!encontrado && !fallo) {
+      this.reservas.push(oReserva);
+      res = "Alta de reserva correcta";
+    }
 
-		let encontrado = this.reservas.forEach(function (currentValue, oReserva) {
-			if (currentValue.idReserva == oReserva.idReserva) {
-				this.reservas.pop(currentValue);
-				return true;
-			}
-		});
+    return res;
+  }
 
-		if (encontrado) {
-			res = "Baja de reserva realizada";
-		}
+  bajaReserva(idReserva, agencia) {
+    res = "Error al realizar la baja de reserva";
 
-		return res;
-	}
+    let encontrado = agencia.reservas.forEach(function (
+      currentValue,
+      oReserva
+    ) {
+      if (currentValue.idReserva == idReserva) {
+        aagencia.reservas.pop(currentValue);
+        return true;
+      }
+    });
 
-	listadoClientes() {
-		res = "";
+    if (encontrado) {
+      res = "Baja de reserva realizada";
+    }
 
-		res += "<table>";
+    return res;
+  }
 
-		this.clientes.forEach(function (currentValue) {
-			res += currentValue.toHTMLRow;
-		});
+  listadoClientes() {
+    res = "";
 
-		res += "</table>";
-		return res;
-	}
+    res += "<table>";
+
+    this.clientes.forEach(function (currentValue) {
+      res += currentValue.toHTMLRow;
+    });
+
+    res += "</table>";
+    return res;
+  }
+
+  listadoAlojamientos() {
+    res = "";
+
+    res += "<table>";
+
+    this.alojamientos.forEach(function (currentValue) {
+      res += currentValue.toHTMLRow;
+    });
+
+    res += "</table>";
+    return res;
+  }
+
+  listadoReservasFecha(fInicio, fFin) {
+    res = "";
+
+    res += "<table>";
+    for (let reserva of agencia.reservas) {
+      if (fInicio >= reserva.fechaInicio && fFin <= reserva.fechaInicio) {
+        res += reserva.toHTMLRow;
+      }
+    }
+    res += "</table>";
+    return res;
+  }
+
+  listadoReservaCliente(user) {
+    res = "";
+
+    res += "<table>";
+
+    this.reservas.forEach(function (x) {
+      if (x.cliente.usuario == user) res += x.toHTMLRow;
+    });
+
+    res += "</table>";
+    return res;
+  }
+  listadoHabitacion() {
+    res = "";
+
+    res += "<table>";
+
+    this.alojamientos.forEach(function (x) {
+      if (x == user) res += x.toHTMLRow;
+    });
+
+    res += "</table>";
+    return res;
+  }
 }
