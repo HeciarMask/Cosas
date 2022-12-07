@@ -1,4 +1,6 @@
 import java.sql.*;
+import java.util.ArrayList;
+import javax.faces.model.SelectItem;
 public class MySQL_Util {
     //Driver para mysql
     static String sdriver="com.mysql.jdbc.Driver";
@@ -32,4 +34,22 @@ public class MySQL_Util {
         return rset;
  
  }
+     public static ArrayList  Llenar_Lista(Connection conexion,String sConsulta){
+    ArrayList lista=new ArrayList();
+        try{
+        Statement instruccion=conexion.createStatement();
+        ResultSet rsDept=instruccion.executeQuery(sConsulta);
+        while (rsDept.next()){
+            lista.add(new SelectItem(rsDept.getString("id"),
+                    rsDept.getString("nombre")));
+        }
+       
+    }
+    catch (Exception ex){
+        lista=null;
+    }
+
+    return lista;
+
+}
 }
