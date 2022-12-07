@@ -16,10 +16,15 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>JSP Page</title>
+            <title>Proyecto 2</title>
         </head>
         <body>
-            <h1><h:outputText value="Hello World!"/></h1>
+            <h:form>
+                <h:outputText value="Seleccione tipo de Comida:"/>
+                <h:selectOneMenu value="#{Datos.txtComida }">
+                   <f:selectItems value="#{Datos.listacomida}"/>                   
+                </h:selectOneMenu>
+            </h:form>
         </body>
     </html>
 </f:view>

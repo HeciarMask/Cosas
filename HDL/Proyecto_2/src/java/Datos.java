@@ -4,16 +4,35 @@
  * and open the template in the editor.
  */
 
-/**
- *
- * @author alumno
- */
-public class Datos {
+import java.sql.*;
+import java.util.ArrayList;
 
-    /**
-     * Creates a new instance of Datos
-     */
+public class Datos {
+    
+    public static Connection conn;
+    private String txtComida;
+    
     public Datos() {
+       conn=MySQL_Util.Conectar("localhost", "root", "", "tipo5");
     }
+
+    public ArrayList getListacomida(){
+    ArrayList listacomida = new ArrayList();
+    
+    String cadsql="SELECT nombre FROM comidas";
+    listacomida = MySQL_Util.Llenar_Lista(conn, cadsql);
+    
+    return listacomida;
+    }
+    
+    public String getTxtComida() {
+        return txtComida;
+    }
+
+    public void setTxtComida(String txtComida) {
+        this.txtComida = txtComida;
+    }
+    
+     
     
 }

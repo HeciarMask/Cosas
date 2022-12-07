@@ -47,7 +47,6 @@ public class MySQL_Util {
     }
     catch (Exception ex){
         lista=null;
-        System.out.println("Error");
     }
 
     return lista;
