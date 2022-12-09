@@ -1,8 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 20-nov-2020, 8:23:22
-    Author     : Juan
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -22,7 +17,7 @@
             <h:form>
                 <h:outputText value="Seleccione tipo de Comida:"/>
                 <h:selectOneMenu value="#{Datos.txtComida }">
-                   <f:selectItems value="#{Datos.listacomida}"/>                   
+                   <f:selectItems value="#{Datos.getListaComida()}"/>                   
                 </h:selectOneMenu>
             </h:form>
         </body>
