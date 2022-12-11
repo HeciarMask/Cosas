@@ -225,6 +225,9 @@
                         <label for="fFin">Fecha de fin:</label>
                         <input type="date" name="fFin" id="fFin" />
                     </div>
+                    <div class="col-12 mb-3">
+                        <button type="button" class="btn btn-primary" onclick="listarReservasFecha()">Listar Reservas por Fecha</button>
+                    </div>
                 </form>
                 <p id="listadoReservasFecha"></p>
             </div>
@@ -235,6 +238,9 @@
                     <div class="col-12 mb-3">
                         <label for="usuario" class="form-label">Usuario</label>
                         <input type="text" class="form-control" name="usuario" id="usuario" placeholder="usuario" />
+                    </div>
+                    <div class="col-12 mb-3">
+                        <button type="button" class="btn btn-primary" onclick="listarReservasCliente()">Listar Reservas por Cliente</button>
                     </div>
                 </form>
                 <p id="listadoReservasCliente"></p>

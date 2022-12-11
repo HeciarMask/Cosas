@@ -37,11 +37,9 @@ function gestionCustomPags(sCustomPag) {
 			break;
 		case "Lista-Reserva-Fecha":
 			document.getElementById("ListaReservaFecha").style.display = "block";
-			listarReservasFecha();
 			break;
 		case "Lista-Reserva-Cliente":
 			document.getElementById("ListaReservaCliente").style.display = "block";
-			listarReservasCliente();
 			break;
 		case "Lista-Habitacion":
 			document.getElementById("ListaHabitacion").style.display = "block";
@@ -176,26 +174,45 @@ function listarAlojamientos() {
 }
 
 function listarReservasFecha() {
-	let fInicio = formListaReserva.fInicio.value;
-	let fFin = formListasReserva.fFin.value;
-	let cadena = agencia.listadoReservasFecha(fInicio, fFin);
-	document.getElementById("listadoReservasFecha").innerHTML = cadena;
+  let fInicio = formListaReserva.fInicio.value;
+  let fFin = formListaReserva.fFin.value;
+  let cadena = agencia.listadoReservasFecha(fInicio, fFin);
+  document.getElementById("listadoReservasFecha").innerHTML = cadena;
 }
 
 function listarReservasCliente() {
-	let cliente = formListaReservaCliente.usuario.value;
-	let cadena = agencia.listadoReservasCliente(cliente);
-	document.getElementById("listadoReservasCliente").innerHTML = cadena;
+  let cliente = formListaReservaCliente.usuario.value;
+  let cadena = agencia.listadoReservasCliente(cliente, agencia);
+  document.getElementById("listadoReservasCliente").innerHTML = cadena;
 }
 
 function listarHabitacion() {
-	let cadena = agencia.listadoHabitacion();
-	document.getElementById("listadoHabitacion").innerHTML = cadena;
+  let cadena = agencia.listadoHabitacion();
+  document.getElementById("listadoHabitacion").innerHTML = cadena;
 }
 
 function datosIniciales() {
-	let agencia = new Agencia();
-	let ejem = new Cliente("11223344A", "AAAA", "BBBBB CCCCC");
-	agencia.altaCliente(ejem, agencia);
-	return agencia;
+  let agencia = new Agencia();
+  let cli1 = new Cliente("11111111A", "AAAA", "BBBBB CCCCC");
+  agencia.altaCliente(cli1, agencia);
+  let cli2 = new Cliente("22222222B", "BBBB", "CCCCC DDDDD");
+  agencia.altaCliente(cli2, agencia);
+  let cli3 = new Cliente("33333333C", "CCCC", "DDDDD EEEEE");
+  agencia.altaCliente(cli3, agencia);
+  let aloj1 = new Alojamiento("1111", 11);
+  agencia.altaAlojamiento(aloj1, agencia);
+  let aloj2 = new Alojamiento("2222", 22);
+  agencia.altaAlojamiento(aloj2, agencia);
+  let aloj3 = new Alojamiento("3333", 33);
+  agencia.altaAlojamiento(aloj3, agencia);
+  let res1 = new Reserva(
+    "1111",
+    "abbbccc111",
+    new Array(aloj1, aloj2),
+    "2022-12-01",
+    "2022-12-10"
+  );
+  agencia.altaReserva(res1, agencia);
+
+  return agencia;
 }
