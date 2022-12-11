@@ -469,7 +469,7 @@ class Agencia {
     for (let aloj of agencia.alojamientos) {
       if (aloj instanceof Habitacion && aloj.desayuno == true) {
         this.alojamientos.forEach(function (x) {
-          if (x == user) res += x.toHTMLRow;
+          if (x == user) res += x.toHTMLRow();
         });
       }
     }
