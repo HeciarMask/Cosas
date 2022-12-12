@@ -19,7 +19,31 @@
             <title>JSP Page</title>
         </head>
         <body>
-            <h1><h:outputText value="Hello World!"/></h1>
+            <h3><h:outputText value="Listado de Locales"/></h3>
+          
+            <h:dataTable border="1" value="#{datosBD.listaLocales}" var="fila">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nombre"/>
+                    </f:facet>
+                    <h:outputText value="#{fila.nombre}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Direccion"/>
+                    </f:facet>
+                    <h:outputText value="#{fila.direccion}" />
+                </h:column>
+                <h:column>
+                  <f:facet name="header">
+                        <h:outputText value="Carac Ppal"/>
+                    </f:facet>
+                    <h:outputText value="#{fila.cNombre}" />
+                </h:column>
+             </h:dataTable>
+             <h:form>
+                 <p><h:commandButton value="Otra Consulta" action="otra"/></p>
+            </h:form>
         </body>
     </html>
 </f:view>

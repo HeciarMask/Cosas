@@ -16,9 +16,10 @@
         <body>
             <h:form>
                 <h:outputText value="Seleccione tipo de Comida:"/>
-                <h:selectOneMenu value="#{Datos.txtComida }">
-                   <f:selectItems value="#{Datos.getListaComida()}"/>                   
-                </h:selectOneMenu>
+                <h:selectOneMenu value="#{datosBD.txtComida }">
+                   <f:selectItems value="#{datosBD.listaComida}"/>                   
+                </h:selectOneMenu><br>
+                <h:commandButton value="Consultar" action="consultar"/>
             </h:form>
         </body>
     </html>
