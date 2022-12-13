@@ -38,7 +38,7 @@
                   <f:facet name="header">
                         <h:outputText value="Carac Ppal"/>
                     </f:facet>
-                    <h:outputText value="#{fila.cNombre}" />
+                    <h:outputText value="#{fila.nombre_carac}" />
                 </h:column>
              </h:dataTable>
              <h:form>
