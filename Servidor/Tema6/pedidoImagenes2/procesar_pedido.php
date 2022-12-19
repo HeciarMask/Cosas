@@ -13,14 +13,14 @@
 	</head>
 	<body>
 	<?php 
-	require 'cabecera.php';		
+	require 'cabecera.php';
 
 	
 	$resul = insertar_pedido($_SESSION['carrito'], $_SESSION['usuario']["codRes"]);
+	
 	if($resul === FALSE){
 		$_SESSION["realizado"]= "No se ha podido realizar el pedido<br>";			
-	}
-	else{
+	}else{
 	$_SESSION["realizado"]="Pedido nº".$resul." almacenado correctamente";}
 	$_SESSION['carrito'] = [];
 	header("Location:categorias.php");
