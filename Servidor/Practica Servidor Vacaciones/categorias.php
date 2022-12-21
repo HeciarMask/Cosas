@@ -11,10 +11,10 @@
 		<title>Lista de categorías</title>
 	</head>
 	<body>
-		<?php require 'cabecera.php';?>
-		<h1>Lista de categorías</h1>		
-		<!--lista de vínculos con la forma 
-		productos.php?categoria=1-->
+		<?php 
+			require 'cabecera.php';
+		?>
+		<h1>Lista de categorías</h1>
 		<?php
 		$categorias = cargar_categorias();
 		if($categorias===false){
@@ -23,8 +23,8 @@
 			echo "<ul>"; //abrir la lista
 			while ($cat=mysqli_fetch_assoc($categorias)){				
 				/*$cat['nombre] $cat['codCat']*/
-				$url = "productos.php?categoria=".$cat['codCat'];
-				echo "<li><a href='$url'>".$cat['nombre']."</a></li>";
+				$url = "productos.php?categoria=".$cat['CodCat'];
+				echo "<li><a href='$url'>".$cat['Nombre']."</a></li>";
 			}
 			echo "</ul>";
 		}

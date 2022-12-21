@@ -1,6 +1,7 @@
 <?php
 require_once 'bd.php';
 
+
 if (isset($_POST["usuario"]) ){  
 	
 	$usu = comprobar_usuario($_POST['usuario'], $_POST['clave']);
@@ -9,10 +10,13 @@ if (isset($_POST["usuario"]) ){
 		$usuario = $_POST['usuario'];
 	}else{
 		session_start();
-		// $usu tiene campos correo y codRes
-		$_SESSION['usuario'] = $usu;
+		$_SESSION['usuario'] = $usu['NUM_CLIENTE'];
+		$_SESSION['correo'] = $usu['EMAIL'];
 		$_SESSION['carrito'] = [];
-		header("Location: categorias.php");
+		//Si el NUM_CLIENTE es igual a "1" quiere decir que esta haciendo login el administrador
+		if($_SESSION['NUM_CLIENTE'] == 1)	header("Location: admin.php");
+		else	header("Location: categorias.php");
+		
 		return;
 	}	
 }
@@ -30,13 +34,13 @@ if (isset($_POST["usuario"]) ){
 		<?php if(isset($err) and $err == true){
 			echo "<p> Revise usuario y contraseña</p>";
 		}?>
-		<form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "POST">
+		<form action = "index.php" method = "POST">
 			<label for = "usuario">Usuario</label> 
 			<input value = "<?php if(isset($usuario))echo $usuario;?>"
 			id = "usuario" name = "usuario" type = "text">		
 			<label for = "clave">Clave</label> 
 			<input id = "clave" name = "clave" type = "password">					
-			<input type = "submit">
+			<input type = "submit" value="Enviar">
 		</form>
 	</body>
 </html>

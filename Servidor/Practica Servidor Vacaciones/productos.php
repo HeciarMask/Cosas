@@ -19,8 +19,8 @@
 			echo "<p class='error'>Error al conectar con la base datos</p>";
 			exit;
 		}
-		echo "<h1>". $cat['nombre']. "</h1>";
-		echo "<p>". $cat['descripcion']."</p>";		
+		echo "<h1>". $cat['Nombre']. "</h1>";
+		echo "<p>". $cat['Descripcion']."</p>";		
 		echo "<table border=1>"; //abrir la tabla
 		echo "<tr><th>Articulo</th><th>Nombre</th><th>Descripción</th><th>Comprar</th></tr>";
 		while($producto=mysqli_fetch_assoc($productos)){
