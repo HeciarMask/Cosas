@@ -44,8 +44,8 @@ function cargar_categoria($codCat){
 function cargar_productos_categoria($codCat){
 	$bd=mysqli_connect("localhost","root","","pedidosejemplo");
 	$bd->set_charset("utf8");
-	$sql = "SELECT * FROM productos WHERE CodCat  = $codCat";	
-	$resul = mysqli_query($bd,$sql);
+	$sql = "SELECT * FROM productos WHERE CodCat  = $codCat";
+	$resul = $bd->query($sql);
 	if (!$resul) {
 		return FALSE;
 	}
@@ -61,7 +61,7 @@ function cargar_productos($codigosProductos){
 	$bd=mysqli_connect("localhost","root","","pedidosejemplo");
 	$bd->set_charset("utf8");
 	$texto_in = implode(",", $codigosProductos);
-	$ins = "SELECT * FROM productos WHERE codProd IN($texto_in)";
+	$ins = "SELECT * FROM productos WHERE CodProd IN($texto_in)";
 	$resul = mysqli_query($bd,$ins);	
 	if (!$resul) {
 		return FALSE;
@@ -81,14 +81,21 @@ function insertar_pedido($carrito, $cliente){
 	}
 	// coger el id del nuevo pedido para las filas detalle
 	$pedido = mysqli_insert_id($bd);
+
 	// insertar las filas en pedidoproductos
 	foreach($carrito as $codProd=>$unidades){
-		$sql = "insert into pedidosproductos(CodPed, CodProd, Unidades) 
-		             values( $pedido, $codProd, $unidades)";	
+		//Recogemos el precio de nuestro producto
+		$sql= "SELECT precio FROM productos WHERE CodProd = $codProd";
+		$resul = $bd->query($sql);
+		$unFila = $resul->fetch_assoc();
+		$precio = $unFila["precio"];
+
+		$sql = "INSERT INTO lineas(NUM_PEDIDO, COD_PRODUCTO, PRECIO, CANTIDAD) 
+		             VALUES( $pedido, $codProd, $precio, $unidades)";	
 				 
-		 $resul = mysqli_query($bd,$sql);	
-		
+		 $resul = mysqli_query($bd,$sql);
 	}
+	//ALTER TABLE pedidos AUTO_INCREMENT = 1
 	
 	return $pedido;
 }
@@ -99,12 +106,10 @@ function cargar_foto($codProducto){
 	$sql = "SELECT * FROM fotos WHERE num_ident=$codProducto";
 	$resultado = $bd->query($sql);
 
-	$fichero = "images/";
-
-	if($unicaFila = $resultado -> fetch_array())
-		$fichero .= $unicaFila["imagen"];
+	if($unicaFila = $resultado -> fetch_assoc())
+		$fichero = $unicaFila["num_ident"];
 	else
-		$fichero .= "sinfoto.gif";
+		$fichero = 0;
 	
 	return $fichero;
 }

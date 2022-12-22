@@ -16,14 +16,14 @@
 	require 'cabecera.php';
 	function crear_correo($carrito, $pedido, $correo){
 		$tema = "nº Pedido $pedido<br>";
-		$texto = "Restaurante $correo <br> Productos:<br>";
+		$texto = "Cliente $correo <br> Productos:<br>";
 		
 		$headers = array();
 		$headers[] = 'MIME-Version: 1.0';
 		$headers[] = 'Content-type: text/html; charset="iso-8859-1"' ;
 		$headers[] ='Content-Transfer-Encoding: 7bit' ;
 		$headers[] = 'From: ' . $from_address;
-		$texto = "<h3>Pedido nº $pedido del Restaurante: $correo</h3>";
+		$texto = "<h3>Pedido nº $pedido del Cliente: $correo</h3>";
 		$productos = cargar_productos(array_keys($carrito));
 		
 		while($fila = mysqli_fetch_assoc($productos)){
@@ -35,7 +35,7 @@
 	}
 
 	
-	$resul = insertar_pedido($_SESSION['carrito'], $_SESSION['usuario']["codRes"]);
+	$resul = insertar_pedido($_SESSION['carrito'], $_SESSION['usuario']);
 	
 	if($resul === FALSE){
 		$_SESSION["realizado"]= "No se ha podido realizar el pedido<br>";			
