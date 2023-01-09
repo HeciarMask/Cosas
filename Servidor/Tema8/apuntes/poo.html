@@ -1,0 +1,523 @@
+﻿<html>
+<head>
+<style>
+code { 
+  font-family: monospace;
+font-size: 14px; 
+font-weight: 190; 
+color: #070719;
+
+}
+</style>
+</head>
+<body> 
+ <p>La programación orientada a objetos (<strong>Object Oriented Programming OOP</strong>) es un <strong>modelo de lenguaje de programación</strong> organizado por <strong>objetos</strong> constituidos por <strong>datos y funciones</strong>, entre los cuales se pueden crear relaciones como herencia, cohesión, abstracción, polimorfismo o encapsulamiento. Esto permite que haya una gran flexibilidad y se puedan crear <strong>objetos</strong> que pueden heredarse y transmitirse sin necesidad de ser modificados continuamente.</p>
+<p><strong>Indice de contenido</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Clases y Objetos</td>
+<td>6. Propiedades y métodos estáticos</td>
+</tr>
+<tr>
+<td>2. Interacciones entre objetos</td>
+<td>7. Traits</td>
+</tr>
+<tr>
+<td>3. Public, protected y private</td>
+<td>8. Type hinting</td>
+</tr>
+<tr>
+<td>4. Paamayim Nekudotayim</td>
+<td>9. Métodos mágicos</td>
+</tr>
+<tr>
+<td>5. Constantes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>1. Clases y objetos</h3>
+<p>Una <strong>clase</strong> define los datos y la lógica de un objeto. La lógica se divide en funciones (<strong>métodos</strong>) y variables (<strong>propiedades</strong>).</p>
+<p>Para definir una propiedad:</p>
+<pre><code>class Coche {
+    public $color;
+}</code></pre>
+<p>Para definir un método:</p>
+<pre><code>class Coche {
+    public function getColor()
+    {
+        // Contenido de la función
+    }
+}</code></pre>
+<p>Para <strong>crear un objeto</strong> hay que <strong>instanciar una clase</strong>: </p>
+<pre><code>class Coche {
+ // Contenido de la clase
+}
+
+$miCoche = new Coche(); // Objeto</code></pre>
+<p>La <strong>clase</strong> es como una <strong>plantilla</strong> que define características y funciones. El <strong>objeto</strong> agrupa los datos de la clase y permite utilizarlos desde una unidad.</p>
+<p>Podemos definir las características de un coche de la siguiente forma:</p>
+<pre><code>class Coche {
+    public $color;
+    public $potencia;
+    public $marca;
+}
+
+$miCoche = new Coche();
+$miCoche-&gt;color = 'rojo';
+$miCoche-&gt;potencia = 120;
+$miCoche-&gt;marca = 'audi';</code></pre>
+<p>De momento sólo hemos definido <strong>propiedades</strong> del objeto. Si queremos mostrar alguna característica ahora:</p>
+<pre><code>//...
+echo 'Color del coche: ' . $miCoche-&gt;color; // Muestra Color del coche: rojo</code></pre>
+<p>Ahora vamos a definir un <strong>método que devuelve una propiedad</strong>:</p>
+<pre><code>class Coche {
+    //...
+
+    public function getColor()
+    {
+        return $this-&gt;color;
+    }
+}
+//...</code></pre>
+<p>El método <em><strong>getColor()</strong></em> nos permite devolver el color del objeto instanciado. La variable <em><strong>$this</strong></em> se puede utilizar en cualquier método, y hace referencia al objeto que hemos instanciado, en este caso $miCoche. Podemos obtener el mismo resultado que antes para mostrar el color del coche pero ahora utilizando un <strong>método</strong> para mostrar la <strong>propiedad </strong>color:</p>
+<pre><code>//...
+echo 'Color del coche: ' . $miCoche-&gt;getColor();</code></pre>
+<p>Las <strong>propiedades</strong> pueden tener <strong>valores por defecto</strong>:</p>
+<pre><code>class Coche {
+    public $color = 'rojo';
+//...
+}</code></pre>
+<p>De esta forma siempre que se instancie un objeto de la clase <strong>Coche</strong>, éste será de color rojo a no ser que se modifique después. Ahora creamos también el objeto <em>$otroCoche</em> y le ponemos otras características:</p>
+<pre><code>class Coche {
+
+    public $color = 'rojo';
+    public $potencia;
+    public $marca;
+
+    public function getColor()
+    {
+        return $this-&gt;color;
+    }
+}
+
+$miCoche = new Coche();
+$miCoche-&gt;color = 'verde';
+$miCoche-&gt;potencia = 120;
+$miCoche-&gt;marca = 'audi';
+
+$otroCoche = new Coche();
+$otroCoche-&gt;color = 'azul';
+$otroCoche-&gt;potencia = 100;
+$otroCoche-&gt;marca = 'bmw';
+</code></pre>
+<p>Creamos ahora dos &quot;<em>getters</em>&quot; para la potencia y la marca:</p>
+<pre><code>class Coche {
+
+    public $color = 'rojo';
+    public $potencia;
+    public $marca;
+
+    public function getColor()
+    {
+        return $this-&gt;color;
+    }
+    public function getPotencia()
+    {
+        return $this-&gt;potencia;
+    }
+    public function getMarca()
+    {
+        return $this-&gt;marca;
+    }
+}</code></pre>
+<p>Y creamos una función (fuera de la clase) que devuelve las caracteristicas totales de un objeto coche:</p>
+<pre><code>function printCaracteristicas($cocheConcreto)
+    {
+        echo 'Color: '. $cocheConcreto-&gt;getColor();
+        echo "\n";
+        echo 'Potencia: '. $cocheConcreto-&gt;getPotencia();
+        echo "\n";
+        echo 'Marca: '. $cocheConcreto-&gt;getMarca();
+    }
+
+$miCoche = new Coche();
+$miCoche-&gt;color = 'verde';
+$miCoche-&gt;potencia = 120;
+$miCoche-&gt;marca = 'audi';
+
+$otroCoche = new Coche();
+$otroCoche-&gt;color = 'azul';
+$otroCoche-&gt;potencia = 100;
+$otroCoche-&gt;marca = 'bmw';
+
+printCaracteristicas($miCoche);
+echo "\n";
+printCaracteristicas($otroCoche);
+</code></pre>
+<p>La función <em>printCaracteristicas()</em> requiere un argumento, <em>$cocheConcreto</em>, que es una instancia de la clase Coche que mostrará las características del propio objeto.</p>
+<h3>2. Interacciones entre objetos</h3>
+<p>Supongamos ahora que queremos comparar y mostrar <strong>qué coche es más rápido</strong> dependiendo de su potencia. Añadimos un nuevo <strong>método</strong> a la clase <strong>Coche</strong>:</p>
+<pre><code>class Coche {
+    //...
+
+    public function elCocheElegidoEsMasRapido($cocheElegido)
+    {
+        return $cocheElegido-&gt;potencia &gt; $this-&gt;potencia;
+    }
+}
+//...</code></pre>
+<p>Tenemos dos <strong>objetos</strong> <em>$miCoche</em> y <em>$otroCoche</em>. La condición que mostrará que coche es más rápido:</p>
+<pre><code>//...
+if ($miCoche-&gt;elCocheElegidoEsMasRapido($otroCoche)) {
+    echo 'El ' . $otroCoche-&gt;marca . ' es más rápido';
+} else {
+    echo 'El ' . $miCoche-&gt;marca . ' es más rápido';
+}
+
+$miCoche-&gt;elCocheElegidoEsMasRapido($otroCoche);
+// En este caso el Audi ($miCoche) es más rápido que el BMW ($otroCoche). Ver ejemploCoche1.php</code></pre>
+<p>Podemos <strong>comparar la igualdad entre dos objetos</strong>, con los operadores de <strong>comparación</strong> (==) y de <strong>identidad</strong> (===):</p>
+<ul>
+<li>Dos objetos serán <strong>iguales</strong> si tienen los <strong>mismos atributos y valores</strong>, siendo instancias de la misma clase. En ejemplo anterior, los atributos de los dos objetos deberían tener los mismos valores, por ejemplo: verde, 100, audi.</li>
+<li>Dos objetos serán <strong>idénticos</strong> si además hacen referencia a la <strong>misma instancia de la misma clase</strong>. </li>
+</ul>
+<h3>3. Public, protected y private</h3>
+<p>Anteriormente hemos definido todas las propiedades y métodos como <em><strong>public</strong></em>. Esto significa que pueden ser accedidos y alterados desde cualquier parte fuera de la clase. En el ejemplo anterior hemos podido definir <em>$miCoche-&gt;potencia</em> sin ningún problema, y podríamos aplicarle cualquier valor (un número, un string...).</p>
+<p>Cuando se define una propiedad como <em><strong>private</strong></em>, se indica que ésta no puede verse o modificarse a no ser que sea desde la propia clase. Si utilizamos <em>$miCoche-&gt;potencia</em> para verla o definirla, nos dará error. Si queremos definirla, se utiliza un <em><strong>setter</strong></em>, un <strong>método public</strong> para definir una <strong>propiedad private</strong>:</p>
+<pre><code>class Coche {
+
+    //...
+
+    public function setPotencia($potencia)
+    {
+        $this-&gt;potencia = $potencia;
+    }
+    //...
+}</code></pre>
+<p>Así podemos definir desde fuera de la clase el valor de la propiedad potencia:</p>
+<pre><code>//...
+$miCoche-&gt;setPotencia(120);</code></pre>
+<p>También deberemos de tener un <em><strong>getter</strong></em> para poder acceder al valor que tiene establecido la propiedad:</p>
+<pre><code>    //...
+    public function getPotencia()
+    {
+        return $this-&gt;potencia;
+    }
+    //...</code></pre>
+<p>Con esto conseguimos, entre otras cosas, que puedan definirse <strong>valores limitados</strong>. En este caso, la propiedad <em>$potencia</em> queremos que pueda ser sólo un <strong>número</strong>. Para ello, modificamos el <em><strong>setter</strong></em> anterior:</p>
+<pre><code>    //...
+    public function setPotencia($potencia)
+    {
+        if(!is_numeric($potencia)){
+            throw new \Exception('Potencia no válida: '. $potencia);
+        }
+        // Si $potencia no es un número, devolverá un error
+        $this-&gt;potencia = $potencia;
+    }
+    //...</code></pre>
+	
+	
+<p>Para entender las propiedades y métodos bajo la <strong>palabra reservada protected</strong>, vamos a explicar primero las relaciones entre clases mediante la <strong>herencia</strong>.</p>
+<p>Una clase puede <strong>heredar métodos y propiedades</strong> de otra clase, y éstos se pueden sobreescribir empleando el mismo nombre que en la clase madre. Las clases sólo pueden heredar de una única clase (no es posible <strong>herencia múltiple</strong>), pero sí que pueden heredarse unas a otras (sí es posible <strong>herencia multinivel</strong>). La herencia se realiza mediante la palabra <em><strong>extends</strong></em>.</p>
+<p>Supongamos ahora la clase <strong>Coche</strong> con <strong>3 tipos de propiedades</strong> y <strong>CocheDeLujo</strong> como heredera:</p>
+<pre><code>class Coche {
+    private $color = 'red';
+    protected $potencia = 120;
+    public $marca = 'audi';
+}
+class CocheDeLujo extends Coche {
+
+    // La función displayColor devolverá un error porque es private
+    public function displayColor()
+    {
+        return $this-&gt;color;
+    }
+    // La función displayPotencia devolverá 120, ya que hereda el valor
+    public function displayPotencia()
+    {
+        return $this-&gt;potencia;
+    }
+    // La función displayMarca devolverá audi, ya que también hereda el valor
+    public function displayMarca()
+    {
+        return $this-&gt;marca;
+    }
+}
+Ver ejemploCoche2.php
+</code></pre>
+<p>La clase <strong>CocheDeLujo</strong> podrá emplear y modificar las propiedades y métodos <strong>protected</strong> y <strong>public</strong> de la madre, pero no las <strong>private</strong>. Además, podrá añadir cualquier propiedad o <strong>métodos complementarios</strong>. Creamos varios métodos en la clase Coche, incluído <em>printCaracteristicas()</em>:</p>
+<pre><code>class Coche {
+    protected $color;
+    public function setColor($color)
+    {
+        $this-&gt;color = $color;
+    }
+    public function getColor()
+    {
+        return $this-&gt;color;
+    }
+    public function printCaracteristicas()
+    {
+        echo 'Color: '. $this-&gt;color;
+    }
+}</code></pre>
+<p>Añadimos otros métodos en CocheDeLujo, y modificamos la herencia de <em>printCaracteristicas()</em>:</p>
+<pre><code>class CocheDeLujo extends Coche {
+    protected $extras;
+    public function setExtras($extras)
+    {
+        $this-&gt;extras = $extras;
+    }
+    public function getExtras()
+    {
+        return $this-&gt;extras;
+    }
+    public function printCaracteristicas()
+    {
+        echo 'Color: '. $this-&gt;color;
+        echo '&lt;hr/&gt;';
+        echo 'Extras: ' . $this-&gt;extras;
+    }
+}
+
+$miCoche = new CocheDeLujo();
+$miCoche-&gt;setColor('negro');
+$miCoche-&gt;setExtras('Tapicería de cuero');
+
+
+$miCoche-&gt;printCaracteristicas(); // Devuelve Color : negro Extras: Tapicería de cuero</code></pre>
+<p>El objeto <em>$miCoche</em>, que es una instancia de la clase <strong>CocheDeLujo</strong>, puede determinar la nueva propiedad <em>$extras</em> además de las anteriores. El método que se ha heredado se ha modificado para añadir la nueva característica. </p>
+<p><strong>Accesos que permiten las palabras reservadas public, protected y private en métodos y propiedades:</strong></p>
+<p>Private:</p>
+<ul>
+<li>Desde la misma clase que declara</li>
+</ul>
+<p>Protected:</p>
+<ul>
+<li>Desde la misma clase que declara</li>
+<li>Desde las clases que heredan esta clase</li>
+</ul>
+<p>Public:</p>
+<ul>
+<li>Desde la misma clase que declara</li>
+<li>Desde las clases que heredan esta clase</li>
+<li>Desde cualquier elemento fuera de la clase</li>
+</ul>
+<p>Es posible <strong>impedir que un método pueda sobreescribirse</strong> mediante la palabra <strong>final</strong>:</p>
+<pre><code>class Coche {
+    final public function getColor()
+    {
+        echo "Rojo";
+    }
+}
+class CocheDeLujo extends Coche {
+    public function getColor()
+    {
+        echo "Azul";
+    }
+} // Dará un error fatal, getColor() no puede sobreescribirse</code></pre>
+<p>También se puede <strong>impedir que la clase pueda heredarse</strong> mediante la misma palabra:</p>
+<pre><code>final class Coche {
+    public function getColor()
+    {
+        echo "Rojo";
+    }
+}
+class CocheDeLujo extends Coche {
+    // Error fatal, clase no heredable
+}</code></pre>
+<h3>4. Paamayim Nekudotayim</h3>
+<p>Se le llama <strong>Paamayim Nekudotayim</strong>, operador de resolución de ámbito o doble dos puntos &quot;::&quot; (<em><strong>double colon</strong></em>) al operador que permite acceder a <strong>constantes</strong> y a <strong>métodos estáticos</strong> además de poder <strong>sobreescribir propiedades o métodos de una clase</strong>. En los dos siguientes apartados se explican las <strong>constantes</strong> y los <strong>métodos estáticos</strong>.</p>
+<h3>5. Constantes</h3>
+<p>Las <strong>constantes</strong> son <strong>valores invariables</strong>. Se definen mediante la palabra <em><strong>const</strong></em> y se obtienen utilizando el operador <strong>double colon</strong>: _$objeto::CONSTANTE _o <em>NombreClase::CONSTANTE</em>. No van precedidas del símbolo $ y se escriben en mayúscula:</p>
+<pre><code>class Coche {
+    const RUEDAS = 4;
+}
+// Obtener el valor mediante el nombre de la clase:
+echo Coche::RUEDAS . "\n";
+// Obtener el valor mediante el objeto:
+$miCoche = new Coche();
+echo $miCoche::RUEDAS . "\n";</code></pre>
+<h3>6. Propiedades y métodos estáticos</h3>
+<p>Las <strong>propiedades y métodos estáticos</strong> permiten que sean accesibles sin la necesidad de instanciar la clase. Es importante saber que no se puede acceder a una <strong>propiedad static</strong> con un <strong>objeto instanciado</strong>, aunque sí a un <strong>método static</strong>.</p>
+<p>No es posible usar la <strong>pseudo-variable $this</strong>, ya que los métodos estáticos pueden ejecutarse sin tener una instancia del objeto, y <em>$this</em> hace referencia al objeto creado.</p>
+<pre><code>class Coche {
+    public static $color = 'rojo';
+
+    public function mostrarColor()
+    {
+        return self::$color;
+    }
+}
+
+print Coche::$color . "\n"; // Muestra "rojo"
+
+// Creando el objeto miCoche:
+$miCoche = new Coche();
+print $miCoche-&gt;mostrarColor() . "\n"; // Muestra "rojo"
+print $miCoche-&gt;color . "\n"; // Error, propiedad color no definida
+print $miCoche::$color . "\n"; // Muestra "rojo"</code></pre>
+<p>En este ejemplo hemos visto que <strong>no</strong> se puede obtener la <strong>propiedad</strong> _$color _desde la instancia del objeto. En el siguiente ejemplo se puede obtener un <strong>método</strong> instanciando la clase o no:</p>
+<pre><code>class Coche {
+    public static function mostrarColor()
+    {
+        echo 'Rojo';
+    }
+}
+Coche::mostrarColor(); // Muestra Rojo
+$miCoche = new Coche;
+$miCoche-&gt;mostrarColor(); // Muestra Rojo</code></pre>
+<h3>7. Traits</h3>
+<p>Los <strong>traits</strong> son como <strong>clases</strong> que agrupan funcionalidades diseñadas para ser reutilizadas en otras clases y así evitar las limitaciones de la <strong>herencia simple</strong>. A diferencia de las clases, <strong>no se pueden instanciar</strong>, tan sólo permiten utilizar sus funciones específicas en otras clases. Los <strong>traits</strong> permiten relaciones horizontales entre clases evitando así la verticalidad.</p>
+<p>En el siguiente ejemplo se utiliza un <strong>trait</strong> para mostrar el modelo de coche. En la clase <strong>Ventas</strong> se incluye <em>use Modelo</em>, este <strong>trait</strong> tiene una función <em>getModelo()</em> que presupone que en la clase donde se vaya a utilizar existe un método <em>getMarca()</em> de la clase <strong>Coche</strong>. Los métodos de la clase <strong>Ventas</strong> sobreescriben los métodos del <strong>trait</strong>, y éstos a su vez sobreescriben la clase <strong>Coche</strong>:</p>
+<pre><code>class Coche {
+    public function getMarca() {
+        echo 'Renault ';
+    }
+}
+trait Modelo {
+    public function getModelo() {
+        parent::getMarca();
+        echo 'Clio';
+    }
+}
+class Ventas extends Coche {
+    use Modelo;
+}
+
+$o = new Ventas();
+$o-&gt;getMarca(); // Podemos obtener este método de la clase Coche
+$o-&gt;getModelo(); // Podemos obtener este método del trait Modelo</code></pre>
+<p>Se pueden emplear <strong>múltiples traits</strong> añadiéndolos a la clase:</p>
+<pre><code>class Ventas extends Coche {
+    use Model, Serie, Versión;
+    //...
+}</code></pre>
+<p>O incluso <strong>emplear múltiples traits en otro trait</strong> para luego usarlo en la clase:</p>
+<pre><code>trait Coche {
+    public function getMarca() {
+        echo 'Renault ';
+    }
+}
+trait Modelo {
+    public function getModelo() {
+        echo 'Clio';
+    }
+}
+trait CocheModelo {
+    use Coche, Modelo;
+}
+
+class Venta {
+    use CocheModelo;
+}
+
+$o = new Venta();
+$o-&gt;getMarca();
+$o-&gt;getModelo();</code></pre>
+<p>Los <strong>traits también pueden incluir propiedades y métodos estáticos.</strong></p>
+<h3>8. Type hinting</h3>
+<p>El <strong>Type hinting</strong>, o la <strong>implicación de tipos</strong>, permite determinar el tipo de <strong>parámetro</strong> que un <strong>método</strong> va a devolver: <strong>objeto</strong>, <strong>array</strong>, <strong>interfaz</strong> o <strong>callable</strong>. No añade ningún tipo de funcionalidad, pero es muy útil por ejemplo para saber si cometes algún error al añadir argumentos con valores incorrectos.</p>
+<p>En el siguiente ejemplo al argumento de la función <em>listadoCochesEnVenta(Venta $venta)</em> se le exige que sea una instancia de la clase <strong>Venta</strong>. Si se pasara cualquier otro argumento, daría error:</p>
+<pre><code>class Venta {
+    public $coche = 'Audi';
+}
+
+class Coche {
+    public function listadoCochesEnVenta(Venta $venta)
+    {
+            echo $venta-&gt;coche;
+    }
+}
+$venta = new Venta;
+$coche = new Coche;
+$coche-&gt;listadoCochesEnVenta($venta); // Devuelve Audi
+</code></pre>
+<p>Si se pusiera, por ejemplo <em>$coche-&gt;listadoCochesEnVenta('Audi')</em> daría error, ya que no es una clase instanciada.</p>
+<p>En el siguiente ejemplo, vamos a <strong>exigir un array</strong>:</p>
+<pre><code>class Coche {
+    public function listadoCochesEnVenta(Array $listado)
+    {
+        foreach ($listado as $coche){
+            echo $coche . "\n";
+        }
+    }
+}
+$listaCoches = ['Audi', 'BMW'];
+
+$coche = new Coche;
+$coche-&gt;listadoCochesEnVenta($listaCoches); // Devuelve el listado Audi BMW</code></pre>
+<p>Si el argumento de <em>listadoCochesEnVenta()</em> no fuera un array, también daría error</p>
+<h3>9. Métodos mágicos</h3>
+<p>Los <strong>métodos mágicos</strong> permiten reaccionar a <strong>eventos</strong> que le puedan ocurrir a un objeto instanciado. Se inician con una doble barra baja, y son: <strong>__construct()</strong>, <strong>__destruct()</strong>, <strong>call(), </strong>callStatic(), <strong>__get()</strong>, <strong>__set()</strong>, <strong>__isset()</strong>, <strong>__unset()</strong>, <strong>sleep(), </strong>wakeup(), <strong>__toString()</strong>, <strong>invoke(), </strong>set_state(), <strong>clone() y </strong>debugInfo(). Tan se introducen algunos de ellos:</p>
+<p>El más utilizado es el <strong>constructor __construct()</strong>, que se ejecuta cuando el objeto se crea, pudiendo inyectar <strong>parámetros</strong> y <strong>dependecias</strong> requeridos para crear el objeto.</p>
+<pre><code>class Coche {
+    public $color;
+
+    public function __construct($color)
+    {
+        $this-&gt;color = $color;
+    }
+}
+
+$miCoche = new Coche('Rojo');
+echo $miCoche-&gt;color; // Devuelve Rojo</code></pre>
+<p>Los constructores también se heredan. Si una clase hija define un constructor propio, para heredar el de la madre es necesario indicarlo con _<strong>parent::__construct()</strong>_:</p>
+<pre><code>class Coche {
+    public $color;
+
+    public function __construct($color)
+    {
+        $this-&gt;color = $color;
+    }
+}
+class CocheDeLujo extends Coche {
+    public $extras;
+
+    public function __construct($color, $extras)
+    {
+        parent::__construct($color);
+        $this-&gt;extras = $extras;
+    }
+}
+
+$miCoche = new CocheDeLujo('Rojo', 'TV');
+echo $miCoche-&gt;color; // Devuelve Rojo
+echo $miCoche-&gt;extras; // Devuelve TV</code></pre>
+<p>El método <strong>__destruct()</strong> hace lo contrario, se ejecuta cuando un objeto se destruye, aunque apenas se utiliza. </p>
+<p>Los métodos mágicos <strong>__get()</strong> y <strong>__set()</strong> actúan como <strong>getters</strong> y <strong>setters</strong> para propiedades que no tienen <strong>visibilidad public</strong>.</p>
+<p>El método <strong>__isset() </strong>actúa como la <strong>función</strong> isset()<strong> normal, como cuando se trabaja con arrays o variables. Este método mágico permite comprobar la existencia de una </strong>propiedad no pública<strong>. El método </strong>__unset()<strong> también actúa como la </strong>función unset()** normal pero para propiedades no públicas.</p>
+<p>El método mágico <strong>__toString()</strong> permite <strong>devolver el objeto en forma de string</strong>:</p>
+<pre><code>class Post {
+    public $title;
+
+    public function setTitle($title)
+    {
+        $this-&gt;title = $title;
+    }
+    public function __toString()
+    {
+        return $this-&gt;title;
+    }
+}
+
+$post = new Post;
+$post-&gt;setTitle('Este es mi primer artículo');
+echo $post; // Devuelve Este es mi primer artículo</code></pre>
+ <P> <font size=18>EJEMPLOS</FONT></P><ol>
+  <li><b>Ejemplo de Tabla HTML: </b><a href=tabla_html.php>tabla_html.php</a></li> 
+ 
+ <li>Una página web es común que contenga una cabecera, un cuerpo y un pié de página. Estas tres secciones podemos perfectamente identificarlas como clases. También podemos identificar otra clase pagina. Ahora bien como podemos relacionar estas cuatro clases (pagina, cabecera, cuerpo, pie), como podemos imaginar la cabecera, cuerpo y pie son partes de la pagina. Luego podemos plantear una clase pagina que contenga tres atributos de tipo objeto.  <br><b>Ejemplo: Colaboración entre clases: </b><a href=colaboracion.php></b>Colabracion.php</a></li>
+<li><b>Ejemplo simple de herencia: </b><a href=herencia.php>herencia.php</a></li> 
+  
+    </body>
+
+</html>
