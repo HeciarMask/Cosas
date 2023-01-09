@@ -28,6 +28,11 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `categoria`
 --
 
+DROP DATABASE IF EXISTS pedidosejemplo;
+CREATE DATABASE pedidosejemplo;
+USE pedidosejemplo;
+
+
 CREATE TABLE `categoria` (
   `CodCat` int(11) NOT NULL,
   `Nombre` varchar(45) NOT NULL,
