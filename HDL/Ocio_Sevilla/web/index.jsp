@@ -20,6 +20,7 @@
         </head>
         <body>
             <h3><h:outputText value="Bares deSevilla" /></h3>
+            <h:form>
             <h:dataTable value="#{g_ocio.rsOcio}" var="fila" border="1">
                 <h:column>
                     <f:facet name="header">
@@ -45,7 +46,20 @@
                     </f:facet>
                     <h:outputText value="#{fila.ZONA}" />
                 </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Formas de pago" />
+                    </f:facet>
+                    <h:dataTable value="#{g_ocio.rsFPago}" var="item">
+                        <h:column>
+                            <h:outputText value="#{item.NOMBRE}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:column>
             </h:dataTable>
+                <h:commandButton value="Añadir Local" action="a_local"/>
+            </h:form>
+            
         </body>
     </html>
 </f:view>

@@ -52,4 +52,12 @@ public class MySQL_Util {
     return lista;
 
 }
+     
+    public static String Ej_ConsultaAccion(Connection conn, String cadena){
+        
+        
+        return null;
+    }
+     
 }
+
