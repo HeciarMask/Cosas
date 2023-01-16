@@ -34,6 +34,19 @@ public class MySQL_Util {
         return rset;
  
  }
+  public  static Integer  Ej_ConsultaAccion(Connection conexion,String sConsulta){
+
+ Integer numero;
+     try{
+        Statement stmt=conexion.createStatement();
+        numero =stmt.executeUpdate(sConsulta);
+        }
+        catch (SQLException ex){
+            return ex.getErrorCode();
+        }
+        return numero;
+ 
+ }
      public static ArrayList  Llenar_Lista(Connection conexion,String sConsulta){
     ArrayList lista=new ArrayList();
         try{
@@ -52,12 +65,4 @@ public class MySQL_Util {
     return lista;
 
 }
-     
-    public static String Ej_ConsultaAccion(Connection conn, String cadena){
-        
-        
-        return null;
-    }
-     
 }
-
