@@ -1,17 +1,10 @@
-const btnSubmit = dformulario.btnAceptar;
+formulario.addEventListener("submit", validador);
 
-btnSubmit.addEventListener("submit", validador);
-
-btnAceptar.addEventListener("submit", (event) => {
-	event.preventDefault();
-	alert("submitting");
-});
+// DETIENE EL SUBMIT CUANDO EL INPUT ESTÁ VACÍO
 
 function validador(event) {
-	event.preventDefault();
-	if (txtTexto.length == 0) {
-		event.stopPropagation();
+	if (formulario.txtTexto.value.length == 0) {
+		event.preventDefault();
 		alert("cuidao");
 	}
-	alert(txtTexto.value);
 }
