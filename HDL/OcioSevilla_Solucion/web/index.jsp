@@ -21,7 +21,7 @@
         <body>
             <h3><h:outputText value="Bares de Sevilla"/></h3>
             <h:form>
-                <h:dataTable value="#{g_ocio.rsOcio}" var="fila" border="1">
+                <h:dataTable value="#{g_ocio.rsOcio}" var="fila" binding="#{g_ocio.tabla}" border="1">
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="ID"/>
@@ -56,10 +56,24 @@
                             </h:column> 
                         </h:dataTable>
                     </h:column>
+                     <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Borrar"/>
+                        </f:facet>
+                         <h:commandButton value="X"
+                                          onclick="return confirm('¿Desea borrar el local?')"
+                                          action="#{g_ocio.seleccionLista_Del}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Modificar"/>
+                        </f:facet>
+                         <h:commandButton value="X" action="#{g_ocio.seleccionLista_Mod}"/>
+                    </h:column>
                 </h:dataTable>
                 <h:commandButton value="Añadir Local" action="a_local"/>
             </h:form>
-            <!--<h:outputText value="#{locales.mensaje}"/>-->
+            <h:outputText value="#{g_ocio.comprobar}"/>
         </body>
     </html>
 </f:view>
