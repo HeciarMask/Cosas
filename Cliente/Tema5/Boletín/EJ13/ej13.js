@@ -1,4 +1,4 @@
-formulario.addEventListener("submit", validador);
+/* formulario.addEventListener("submit", validador);
 
 function validador(event) {
 	const elementos = formulario.childNodes;
@@ -12,3 +12,4 @@ function estanVacios(node) {
 		console.log("encontraste el Input");
 	}
 }
+ */
