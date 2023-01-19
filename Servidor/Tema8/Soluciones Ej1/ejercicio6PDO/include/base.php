@@ -3,24 +3,19 @@ require_once('articulo.php');
 class miclase{
 	protected static function conexion()
 	{
-	/* $miconexion=new mysqli("localhost","root","","sesiones");
-		$miconexion->set_charset("utf8"); */
-        $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
-        $miconexion = new PDO('mysql:host=localhost;dbname=sesiones', 'root', '', $opciones);
-		return $miconexion;
+	 $miconexion= new PDO('mysql:host=localhost;dbname=sesiones;charset=utf8','root','');
+	 return $miconexion;
 	}
 	 protected static function ejecutaSelect($sql) {
         $conexion=self::conexion();
         $resultado=$conexion->query($sql);
         return $resultado;
     }
-
-    protected static function ejecutaDML($sql) {
+	protected static function ejecutaDML($sql) {
         $conexion=self::conexion();
         $resultado=$conexion->exec($sql);
         return $resultado;
     }
-
 	public static function obtieneArticulos() {
         $cadenaSql="SELECT * FROM articulos";
         $losArticulos=array();
@@ -64,4 +59,3 @@ class miclase{
 		return $fila["tipo"];
     }
 	}
-?>

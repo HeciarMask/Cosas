@@ -1,10 +1,13 @@
+
 <?php
+/* require_once("calle.php");
+require_once ("vivienda.php");
 require_once('articulo.php');
-class miclase{
-	protected static function conexion()
+class Base{
+	protected static function miConexion()
 	{
-	/* $miconexion=new mysqli("localhost","root","","sesiones");
-		$miconexion->set_charset("utf8"); */
+	// $miconexion=new mysqli("localhost","root","","sesiones");
+	//	$miconexion->set_charset("utf8"); 
         $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
         $miconexion = new PDO('mysql:host=localhost;dbname=sesiones', 'root', '', $opciones);
 		return $miconexion;
@@ -63,5 +66,60 @@ class miclase{
 		$fila=$rset->fetch(PDO::FETCH_ASSOC);
 		return $fila["tipo"];
     }
-	}
+	} */
 ?>
+<?php 
+require_once("calle.php");
+	require_once ("vivienda.php");
+class Base{
+	
+    protected static function miConexion(){
+        $miconexion=new mysqli("localhost","root","","catastro");
+		$miconexion->set_charset("utf8");
+		return $miconexion;
+    }
+	protected static function ejecutaSelect($sql){
+		$conexion=self::miConexion();
+        $resultado=$conexion->query($sql);
+        return $resultado;
+	}
+	public function obtieneCalles()
+	{
+		//Array de calles para el combo
+		$arrayCalles = array();
+		$consultaCalles= "SELECT DISTINCT calle, nombre_zona FROM vivienda";
+		$resultado = self::ejecutaSelect($consultaCalles);
+
+		while($fila = $resultado->fetch_assoc()){
+			$arrayCalles[] = new Calle($fila);
+		}
+
+		return $arrayCalles;
+	}
+	public function obtieneTipos()
+	{
+		//array asociativo con los tipos de vivienda como índice y valor Unifamiliar o Bloque
+		$arrayTipos = array();
+		$consultaTipos = "SELECT DISTINCT tipo_vivienda FROM vivienda";
+		$resultado = self::ejecutaSelect($constultaTipos);
+		while($row = $resultado->fetch_assoc()){
+			$indice=$row["tipo_vivienda"];
+			switch($indice){
+				case "B":
+					$valor = "Bloque";
+					break;
+				case "C":
+					$valor = "Unifamiliar";
+					break;
+			}
+			$arrayTipos[$indice] = ($valor);
+		}
+		return $arrayTipos;
+	}
+	public static function ObtieneViviendas($calle,$tipo)
+	{
+		//Array de viviendas(resultado de la consulta)
+	}
+	
+} 
+?> 

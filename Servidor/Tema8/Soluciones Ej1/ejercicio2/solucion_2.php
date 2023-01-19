@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>Pruebas</title>
+</head>
+<body>
+<?php
+include("celda.php");
+include("tabla.php");
+$tabla1=new Tabla(3,2);
+$tabla1->cargar(1,1,"A1","#356AA0","#FFFF88");
+$tabla1->cargar(1,2,"A2","#EEEEEE","#AAAAAA");
+$tabla1->cargar(2,1,"B1","#FFFF88","#EEEEEE");
+$tabla1->cargar(2,2,"B2","#356AA0","#AAAEEE");
+$tabla1->cargar(3,1,"C1","#EEEEEE","#AAAAAA");
+$tabla1->cargar(3,2,"C2","#356AA0","#AAAEEE");
+$tabla1->graficar();
+?>
+</body>
+</html>
