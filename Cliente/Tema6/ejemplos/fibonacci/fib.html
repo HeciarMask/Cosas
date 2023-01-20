@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci</title>
+</head>
+
+<body>
+    <p id="salida">
+
+        <script>
+            function fib(n) {
+                if (n == 0 || n == 1) return n;
+                else {
+                    return fib(n - 1) + fib(n - 2);
+                }
+            }
+
+            document.getElementById("salida").innerHTML = fib(43);
+        </script>
+</body>
+
+</html>
