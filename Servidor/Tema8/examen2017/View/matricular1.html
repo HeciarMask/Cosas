@@ -5,10 +5,10 @@ cabecera('Control de PHP');
 ?>
 
 <body>
-    <form action="test.php" method="POST">
-        <h4>Actividad</h4>
-        <p><SELECT name="actividad">
-                <?php
+	<form action="test.php" method="POST">
+		<h4>Actividad</h4>
+		<p><SELECT name="actividad">
+				<?php
 	foreach ($lasActividades as $unaActividad){
 		$guarda=$unaActividad->getcodigo();
 		$muestra="Zona ".$unaActividad-> getdescripcion();
@@ -18,15 +18,15 @@ cabecera('Control de PHP');
 	}
 
 	?>
-            </select></p>
-        Seleccione Curso de vivienda<br>
-        <?php
+			</select></p>
+		Seleccione Curso de vivienda<br>
+		<?php
 		foreach($losCursos as $unCurso){
-			echo "<input type='radio' name='curso' value='".$unCurso."'>".$unCurso->getcurso()."<br>";
+			echo "<input type='radio' name='curso' value='".$unCurso->getcurso()."'>". $unCurso->getcurso() ."</input><br>";
 		}
 	?>
-        <input type='submit' value='Consultar' name='envio'>
-    </form>
+		<input type='submit' value='Inscribir Alumno' name='envio'>
+	</form>
 </body>
 
 </html>
