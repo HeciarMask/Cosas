@@ -27,7 +27,7 @@
 			$cod = $producto['CodProd'];
 			$nom = $producto['Nombre'];
 			$des = $producto['Descripcion'];
-			$unidades = $_SESSION['carrito'][$cod];								
+			$unidades = $_SESSION['carrito'][$cod]["unidades"];								
 			
 			//print_r($producto);				
 			echo "<tr><td>$nom</td><td>$des</td><td>$unidades</td>

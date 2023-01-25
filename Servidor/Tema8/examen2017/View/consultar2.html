@@ -1,0 +1,29 @@
+<html>
+<?php
+include('funciones.php');
+cabecera('Control de PHP');
+$i=0;
+$total=0;
+while ($i<count($losAlumnos)){
+	$anterior=$losAlumnos[$i]->getcurso();
+	$subTotal=0;
+	echo "<p>$anterior</p>";
+	while 
+	($i<count($losAlumnos) && $anterior==$losAlumnos[$i]->getcurso())
+	{
+		echo  $losAlumnos[$i]->getnombre()."<br>";
+		$i++;
+		$subTotal++;
+	}	
+	echo "<p>Total curso; ".$subTotal."<br></p>";
+	$total=$total+$subTotal;
+}		
+echo "total: $total"		;
+	
+		
+
+  
+ ?>
+ 	
+</body>
+</html>

@@ -39,8 +39,11 @@
 	
 	if($resul === FALSE){
 		$_SESSION["realizado"]= "No se ha podido realizar el pedido<br>";			
+	}else if($resul == "agotado"){
+		$_SESSION["realizado"]= "Algún producto de los seleccionados no tiene stock suficiente<br>";
 	}else{
-	$_SESSION["realizado"]="Pedido nº".$resul." almacenado correctamente";}
+		$_SESSION["realizado"]="Pedido nº".$resul." almacenado correctamente";
+	}
 	$_SESSION['carrito'] = [];
 	header("Location:categorias.php");
 

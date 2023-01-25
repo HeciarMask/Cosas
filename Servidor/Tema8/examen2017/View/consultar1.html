@@ -1,0 +1,19 @@
+<html>
+<?php
+include('funciones.php');
+cabecera('Control de PHP');
+?>	
+<form action="consultar2.php" method="POST">
+	<h4>Actividad</h4>
+<p>
+	<?php
+	foreach ($lasActividades as $unaActividad){
+		$guarda=$unaActividad->getcodigo();
+		$muestra=$unaActividad-> getdescripcion();
+		echo "<input type='radio' name='actividad' value='".$guarda."'>".$muestra."<br>";
+	}
+	?>
+
+	<input type='submit' value='Inscribir Alumnos' name='envio'></form>
+</body>
+</html>

@@ -6,7 +6,8 @@
 ?>
 
  <a href="categorias.php">Seguir Comprando</a>
- <a href="carrito.php">Ver carrito</a> 
+ <a href="carrito.php">Ver carrito</a>
+ <a href="pedidos.php">Ver Pedidos</a>
  <a href="logout.php">Cerrar sesión</a>
   <?php
 	if (isset($_SESSION["realizado"])){

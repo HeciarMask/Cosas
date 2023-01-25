@@ -2,31 +2,25 @@
 <?php
 include('funciones.php');
 cabecera('Control de PHP');
-?>
-
-<body>
-	<form action="test.php" method="POST">
-		<h4>Actividad</h4>
-		<p><SELECT name="actividad">
-				<?php
+?>	
+<form action="matricular2.php" method="POST">
+	<h4>Actividad</h4>
+<p><SELECT name="actividad">
+	<?php
 	foreach ($lasActividades as $unaActividad){
 		$guarda=$unaActividad->getcodigo();
-		$muestra="Zona ".$unaActividad-> getdescripcion();
+		$muestra=$unaActividad-> getdescripcion();
 		echo "<option value='".$guarda."'>".$muestra."</option>";
-
-
 	}
-
 	?>
-			</select></p>
-		Seleccione Curso de vivienda<br>
-		<?php
-		foreach($losCursos as $unCurso){
-			echo "<input type='radio' name='curso' value='".$unCurso->getcurso()."'>". $unCurso->getcurso() ."</input><br>";
-		}
-	?>
-		<input type='submit' value='Inscribir Alumno' name='envio'>
-	</form>
+</select></p>
+    Seleccione curso<br>
+    <?php 
+    foreach ($losCursos as $unCurso){
+    	echo "<input type='radio' name='curso'
+    	value='".$unCurso->getcurso()."'>".$unCurso->getcurso()."<br>";
+    }
+    ?>
+	<input type='submit' value='Inscribir Alumnos' name='envio'></form>
 </body>
-
 </html>
