@@ -17,14 +17,14 @@ http://www.w3.org/TR/html4/loose.dtd">
         echo '<table border="1">';
 	    echo '<tr><th>Nombre: </th><th>Tipo: </th><th>Departamento </th><th>Localidad: </th><th>Horario: </th></tr>';
         //echo $empleados;
-        foreach($empleados as $indice=>$empleado){
+        foreach($empleados as $empleado){
             echo "
                 <tr>
-                    <td>".$empleados[$indice]["nombre"]."</td>
-                    <td>".$empleados[$indice]["tipo"]."</td>
-                    <td>".$empleados[$indice]["coddepart"]."</td>
-                    <td>".$empleados[$indice]["localidad"]."</td>
-                    <td>".$empleados[$indice]["horario"]."</td>
+                    <td>".$empleado->getNombre()."</td>
+                    <td>".$empleado->getTipo()."</td>
+                    <td><a href='../Controller/ver_departamento.php?nombre=".$empleado->getnomdepart()."'>".$empleado->getnomdepart()."</a></td>
+                    <td>".$empleado->getLocalidad()."</td>
+                    <td>".$empleado->getHorario()."</td>
                 </tr>
             ";
         }

@@ -10,19 +10,23 @@ http://www.w3.org/TR/html4/loose.dtd">
     <body>
 	<h3 >Datos del departamento</h3>
 <?php
-
+$nomDep = $_GET["nombre"];
+$departamento = miclase::obtenerdepto($nomDep);
+/* echo "<pre>";
+print_r($departamento);
+echo "</pre>"; */
  echo '<table >';    
  echo '<tr>';
- echo "<td>Número: </td><td>"."codigo"."</td>";
+ echo "<td>Número: </td><td>".$departamento->getcoddep()."</td>";
  echo '</tr>';
  echo '<tr>';
- echo "<td>Nombre: </td><td>"."nombre"."</td>";
+ echo "<td>Nombre: </td><td>".$departamento->getnombre()."</td>";
  echo '</tr>';
  echo '<tr>';
- echo "<td>Clase: </td><td>"."clase"."</td>";
+ echo "<td>Clase: </td><td>".$departamento->getclase()."</td>";
  echo '</tr>';
  echo '<tr>';
- echo "<td>Presupuesto: </td><td>"."presupuesto"."</td>";
+ echo "<td>Presupuesto: </td><td>".$departamento->getpresupuesto()."</td>";
  echo '</tr>';
  echo '</table>';
 echo "<a href='..\Controller\consultar_empleados.php'>Otra consulta</a>";

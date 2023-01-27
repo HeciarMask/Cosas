@@ -71,8 +71,8 @@ class miclase {
             $wHor = "'%%'";
 
         $sql= "SELECT numemple, empleados.nombre, tipo, coddepart, localidad, horario, departamentos.nombre nomdepart FROM empleados";
-        $SQL .= " INNER JOIN departamentos ON empleados.coddepart = departamentos.coddep";
-        $SQL .= " WHERE localidad LIKE $wLoc AND horario LIKE $wHor";
+        $sql .= " INNER JOIN departamentos ON empleados.coddepart = departamentos.coddep";
+        $sql .= " WHERE localidad LIKE $wLoc AND horario LIKE $wHor";
 
         $tabla = array();
 
@@ -82,14 +82,19 @@ class miclase {
             $tabla[] = new Empleado($fila);
         } 
 
-
         return $tabla;
-
     }
- public static function obtenerdepto($numero) {
-//Devuelve un objeto Departamento que se muestra en ver_departamento.php
-      
-		
+    
+    public static function obtenerdepto($numero) {
+        //Devuelve un objeto Departamento que se muestra en ver_departamento.php
+		$sql = "SELECT * FROM departamentos WHERE nombre = '".$numero."'";
+        $conexion=self::conexion();
+        $res=$conexion->query($sql);
+
+        $fila = $res->fetch(PDO::FETCH_ASSOC);
+        $dep = new Departamento($fila);
+
+        return $dep;
     }
 
     
