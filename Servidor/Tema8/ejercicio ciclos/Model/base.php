@@ -63,25 +63,48 @@ class Base
 
 		return $alumnos;
 	}
+	public static function obtenerComboAlumnos()
+	{
+		//devuelve array de alumnos
+		$alumnos = array();
+
+		$sql = "SELECT ID id, NOMBRE nombre FROM alumnos";
+		$res = self::ejecutaConsulta($sql);
+		while ($fila = $res->fetch(PDO::FETCH_ASSOC)) {
+			$alumnos[] = new Alumno($fila);
+		}
+
+		return $alumnos;
+	}
+
 	public static function obtenerModulo($idModulo)
 	{
 		//devuelve un objeto modulo con id= al recibido
 
 	}
-	public static function obtenerComboAlumnos()
-	{
-		//devuelve array de alumnos
-	}
 	public static function obtenerComboModulos()
 	{
-
 		//devuelve array asociativo en el que el indice es el id del modulo y el valor el nombre
+		$modulos = array();
+
+		$sql = "SELECT ID_MODULO id, NOMBRE nombre, DURACION duracion FROM modulos";
+		$res = self::ejecutaConsulta($sql);
+		while ($fila = $res->fetch(PDO::FETCH_ASSOC)) {
+			$modulos[] = new Modulo($fila);
+		}
+
+		return $modulos;
 	}
 
 	public static function existe($alumno, $modulo)
 	{
 		//devuelve true si el alumno está matriculado en el módulo
-
+		$sql = "SELECT * FROM cursa WHERE ID_ALUMNO = '" . $alumno . "' AND ID_MODULO='" . $modulo . "' ";
+		$res = self::ejecutaConsulta($sql);
+		if ($fila = $res->fetch(PDO::FETCH_ASSOC)) {
+			return true;
+		}
+		return false;
 	}
 
 	public static function actualiza($alumno, $modulo)

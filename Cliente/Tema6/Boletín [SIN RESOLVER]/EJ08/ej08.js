@@ -21,17 +21,15 @@ function selector(event) {
 }
 
 function quitarEstilos() {
-	console.log(object);
+	const estilos = document.getElementById("estilo");
+	estilos.setAttribute("href", "");
 }
 
-function atributoStyle() {
-	console.log(object);
-}
+function atributoStyle() {}
 
-function asignandoClases() {
-	console.log(object);
-}
+function asignandoClases() {}
 
 function estilosPagina() {
-	console.log(object);
+	const estilos = document.getElementById("estilo");
+	estilos.setAttribute("href", "ej08.css");
 }

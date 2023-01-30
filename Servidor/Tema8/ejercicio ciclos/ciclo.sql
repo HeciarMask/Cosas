@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-02-2021 a las 13:53:34
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Tiempo de generación: 30-01-2023 a las 14:55:34
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,9 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ciclo`
 --
-drop database if exists ciclo;
-create database ciclo;
-use ciclo;
 
 -- --------------------------------------------------------
 
@@ -68,33 +65,34 @@ CREATE TABLE `calificacion` (
 
 CREATE TABLE `cursa` (
   `ID_ALUMNO` int(5) NOT NULL,
-  `ID_MODULO` int(3) NOT NULL
+  `ID_MODULO` int(3) NOT NULL,
+  `VECES_MATRICULADO` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cursa`
 --
 
-INSERT INTO `cursa` (`ID_ALUMNO`, `ID_MODULO`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(2, 4),
-(2, 5),
-(3, 1),
-(3, 2),
-(3, 3),
-(3, 4),
-(3, 6),
-(4, 4),
-(4, 5),
-(4, 6),
-(5, 2),
-(5, 3),
-(5, 4),
-(6, 1),
-(6, 2),
-(6, 3);
+INSERT INTO `cursa` (`ID_ALUMNO`, `ID_MODULO`, `VECES_MATRICULADO`) VALUES
+(1, 1, 0),
+(1, 2, 0),
+(1, 3, 0),
+(2, 4, 0),
+(2, 5, 0),
+(3, 1, 0),
+(3, 2, 0),
+(3, 3, 0),
+(3, 4, 0),
+(3, 6, 0),
+(4, 4, 0),
+(4, 5, 0),
+(4, 6, 0),
+(5, 2, 0),
+(5, 3, 0),
+(5, 4, 0),
+(6, 1, 0),
+(6, 2, 0),
+(6, 3, 0);
 
 -- --------------------------------------------------------
 
