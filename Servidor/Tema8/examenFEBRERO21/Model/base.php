@@ -42,14 +42,30 @@ class ClaseExamen
 	{
 		//obtiene un array escalar en el que. para cada elemento, el indice es el id del idioma y 
 		//el valor el nombre, a partir de los datos de la tabla idiomas
+		$idiomas = array();
 
+		$sql = "SELECT * FROM idiomas";
+		$res = self::ejecutaConsulta($sql);
+		while ($fila = $res->fetch(PDO::FETCH_ASSOC)) {
+			$idiomas[$fila["id"]] = $fila["nombre"];
+		}
+
+		return $idiomas;
 	}
 
 	public static function obtieneCandidatos()
 	{
 		//obtiene un array de objetos candidato para el listado, el  array $idiomas de candidiatos.php 
 		//contiene nombres de idiomas
+		$candidatos = array();
 
+		$sql = "SELECT * FROM candidatos";
+		$res = self::ejecutaConsulta($sql);
+		while ($fila = $res->fetch(PDO::FETCH_ASSOC)) {
+			$sql = "SELECT "; //sin terminar
+		}
+
+		return $candidatos;
 	}
 	public static function compruebaCandidato($dni)
 	{
