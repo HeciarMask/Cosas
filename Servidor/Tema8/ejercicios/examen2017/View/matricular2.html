@@ -1,0 +1,21 @@
+<html>
+<?php
+include('funciones.php');
+cabecera('Control de PHP');
+?>	
+<form action="scriptinsercion.php" method="POST">
+	<h4>Seleccione alumnos para <?=$nombreActividad?></h4>
+<p><?php
+	foreach ($losAlumnos as $unAlumno){
+		echo $unAlumno->getnombre();
+		
+	
+		echo "<input type='checkbox' name='nombres[".$unAlumno->getclave()."]'
+    	value='".$unAlumno->getnombre()."'><br>";
+
+    }   
+ ?>
+ 	<input type='hidden' name='actividad' value='<?=$codigoActividad?>'>
+	<input type='submit' value='Inscribir Alumnos' name='envio'></form>
+</body>
+</html>
