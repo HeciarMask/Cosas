@@ -8,6 +8,7 @@ import javax.faces.component.html.HtmlDataTable;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  *
  * @author Juan
@@ -23,21 +24,19 @@ public class datos {
     private String txtApellidos;
     private Persona nuevoAlumno, seleccionada;
     private HtmlDataTable tabla;
-    private int index;
-
     public datos() {
-        personajes = new ArrayList<Persona>();
-        this.personajes.add(new Persona(1, "Johnny", "Guitar"));
-        this.personajes.add(new Persona(2, "Orson", "Welles"));
-        this.personajes.add(new Persona(3, "Mohamed", "Safi"));
-        this.personajes.add(new Persona(4, "Huang", "Lee"));
-        this.personajes.add(new Persona(5, "Forrest", "Gump"));
+         personajes=new ArrayList<Persona>();
+         this.personajes.add(new Persona(1,"Johnny","Guitar"));
+         this.personajes.add(new Persona(2,"Orson","Welles"));
+         this.personajes.add(new Persona(3,"Mohamed","Safi"));
+         this.personajes.add(new Persona(4,"Huang","Lee"));
+         this.personajes.add(new Persona(5,"Forrest","Gump"));
     }
 
     /**
      * @return the personajes
      */
-    public List<Persona> getPersonajes() {
+    public List<Persona> getPersonajes() {              
         return personajes;
     }
 
@@ -89,36 +88,24 @@ public class datos {
     public void setTxtApellidos(String txtApellidos) {
         this.txtApellidos = txtApellidos;
     }
-
-    public void altaLista() {
-        nuevoAlumno = new Persona(Integer.parseInt(this.txtId), this.txtNombre, this.txtApellidos);
-        this.personajes.add(nuevoAlumno);
-
+    public void cargarLista(){
+    nuevoAlumno=new Persona(Integer.parseInt(this.txtId),this.txtNombre,this.txtApellidos);
+    this.personajes.add(nuevoAlumno);
+    
     }
-
-    public void seleccionLista() {
-        seleccionada = (Persona) tabla.getRowData();
-        index = tabla.getRowIndex();
-        this.txtId = seleccionada.getId() + "";
-        this.txtNombre = seleccionada.getNombre();
-        this.txtApellidos = seleccionada.getApellidos();
+    public void seleccionLista(){
+    seleccionada=(Persona) tabla.getRowData();
+    this.txtId=seleccionada.getId()+"";
+    this.txtNombre=seleccionada.getNombre();
+    this.txtApellidos=seleccionada.getApellidos();
     }
-
-    public void borrarLista() {
-        this.personajes.remove(this.seleccionada);
-        this.txtId = "";
-        this.txtNombre = "";
-        this.txtApellidos = "";
-
+    public void borrarLista(){
+    this.personajes.remove(this.seleccionada);
+    this.txtId="";
+    this.txtNombre="";
+    this.txtApellidos="";
+    
     }
-
-    public void modificarLista() {
-        this.seleccionada.setId(Integer.parseInt(txtId));
-        this.seleccionada.setNombre(txtNombre);
-        this.seleccionada.setApellidos(txtApellidos);
-        this.personajes.set(index, seleccionada);
-    }
-
     /**
      * @return the tabla
      */

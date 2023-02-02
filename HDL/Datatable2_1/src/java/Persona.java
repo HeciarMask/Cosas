@@ -9,22 +9,19 @@
  * @author Juan
  */
 public class Persona {
-
     private int id;
     private String nombre;
     private String apellidos;
-
-    public Persona() {
-        this.id = 0;
-        this.nombre = "";
-        this.apellidos = "";
-    }
-
-    public Persona(int id, String nombre, String apellidos) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-    }
+ public Persona(){
+  this.id=0;
+  this.nombre="";
+  this.apellidos="";
+ }   
+ public Persona(int id,String nombre,String apellidos){
+     this.id=id;
+     this.nombre=nombre;
+     this.apellidos=apellidos;
+ }
 
     /**
      * @return the id

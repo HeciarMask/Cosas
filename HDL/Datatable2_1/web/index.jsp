@@ -56,11 +56,9 @@
                     <h:inputText value="#{datos.txtNombre}"/>
                      <h:outputText value="Apellidos"/>
                      <h:inputText value="#{datos.txtApellidos}"/>
-                     
-                </h:panelGrid>
-                     <h:commandButton value="Añadir" action="#{datos.altaLista}"  />
+                     <h:commandButton value="Enviar" action="#{datos.cargarLista}"  />
                      <h:commandButton value="Borrar" action="#{datos.borrarLista}"  />
-                     <h:commandButton value="Modificar" action="#{datos.modificarLista}"  />
+                </h:panelGrid>
             </h:form>
         </body>
     </html>

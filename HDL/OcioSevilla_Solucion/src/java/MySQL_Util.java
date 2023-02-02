@@ -84,5 +84,11 @@ public class MySQL_Util {
             return -1;
         }
     }
+    
+    public String[] Llenar_Seleccionados(Connection conn, String sconsulta){
+                
+        
+        return null;
+    }
 
 }
