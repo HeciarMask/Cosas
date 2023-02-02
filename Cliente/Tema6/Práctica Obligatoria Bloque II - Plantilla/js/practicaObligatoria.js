@@ -1,7 +1,47 @@
 /*
- Sugerencia de categorias y productos
+Cuando se inicia la aplicación todas las mesas estarán libres, se habrán cargado
+todos los productos que se ofrecen en el catálogo y se pondrá la mesa 1 como
+actual.
+*/
 
-categorias = ["Bebidas", "Tostadas", "Bollería"];
+let catalogo = new Catalogo();
+let divCuenta = document.getElementById("cuenta");
+let gestor = new Gestor();
+comienzo();
+
+function comienzo() {
+  let cuentas = new Array();
+
+  let mesas = document.getElementsByClassName("mesa");
+  for (let mesa of mesas) {
+    mesa.setAttribute("class", "mesa libre");
+  }
+
+  for (let i = 1; i <= 9; i++) {
+    cuentas[i] = new Cuenta(i, true);
+  }
+  gestor.cuentas = cuentas;
+
+  anadirProdCat();
+  crearCuenta();
+  cambiaCuenta(1);
+}
+
+function crearCuenta() {
+  let salto = document.createTextNode("\n");
+  let h1 = document.createElement("h1");
+  h1.textContent = "Cuenta";
+
+  divCuenta.append(h1);
+  divCuenta.append(salto);
+}
+
+function cambiaCuenta(numMesa) {
+  gestor.mesaActual = numMesa;
+}
+
+function anadirProdCat() {
+  categorias = ["Bebidas", "Tostadas", "Bollería"];
 
   catalogo.addProducto(1, "Café con leche", 0.95, 0);
   catalogo.addProducto(2, "Té", 1.05, 0);
@@ -19,4 +59,4 @@ categorias = ["Bebidas", "Tostadas", "Bollería"];
   catalogo.addProducto(14, "Napolitana de chocolate", 1.45, 2);
   catalogo.addProducto(15, "Caracola de crema", 1.65, 2);
   catalogo.addProducto(16, "Caña de chocolate", 1.35, 2);
- */
+}
