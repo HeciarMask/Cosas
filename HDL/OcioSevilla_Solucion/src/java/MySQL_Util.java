@@ -85,8 +85,11 @@ public class MySQL_Util {
         }
     }
     
-    public String[] Llenar_Seleccionados(Connection conn, String sconsulta){
-                
+    //Metodo que recibe una instruccion select y devuelve un array de string con los id
+    //(en nuestro caso de las formas de pago del local) para que salgan marcados en el combo
+    
+    public String[] Llenar_Seleccionados(Connection conn, String sconsulta, String sNombre){
+        
         
         return null;
     }

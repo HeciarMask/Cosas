@@ -1,6 +1,6 @@
 <%-- 
     Document   : a_local
-    Created on : 11-ene-2023, 14:12:30
+    Created on : 11-ene-2023, 14:12:21
     Author     : alumno
 --%>
 
@@ -19,23 +19,23 @@
             <title>JSP Page</title>
         </head>
         <body>
-            <h1><h:outputText value="Añadir un nuevo Local"/></h1>
+            <h3><h:outputText value="Añadir un nuevo Local"/></h3>
             <h:form>
             <h:panelGrid columns="2">
-                <h:outputText value="Nombre: "/>
+                <h:outputText value="Nombre:"/>
                 <h:inputText value="#{locales.nombre}"/>
-                <h:outputText value="Zona: "/>
+                <h:outputText value="Zona"/>
                 <h:selectOneMenu value="#{locales.zona}">
-                    <f:selectItems value="#{locales.listaZonas}" />
+                    <f:selectItems value="#{locales.listaZonas}"/>
                 </h:selectOneMenu>
-                <h:outputText value="Direccion: "/>
+                <h:outputText value="Dirección"/>
                 <h:inputText value="#{locales.direccion}"/>
-                <h:outputText value="Formas de pago: "/>
+                <h:outputText value="Formas de pago"/>
                 <h:selectManyListbox value="#{locales.formas_pago}">
-                    <f:selectItems value="#{locales.listaFPago}" />
+                    <f:selectItems value="#{locales.listaFPago}"/>
                 </h:selectManyListbox>
             </h:panelGrid>
-            <h:commandButton value="Añadir" action="#{locales.guardar_L}"/>            
+                <h:commandButton value="Añadir" action="#{locales.guardar_L}"/>
             </h:form>
         </body>
     </html>
