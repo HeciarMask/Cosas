@@ -42,7 +42,6 @@ function cargar_categoria($codCat)
 	}
 	//si hay 1 
 	return mysqli_fetch_assoc($resul);
-
 }
 function cargar_productos_categoria($codCat)
 {
@@ -65,8 +64,8 @@ function cargar_productos($codigosProductos)
 {
 	$bd = mysqli_connect("localhost", "root", "", "pedidosejemplo");
 	$bd->set_charset("utf8");
-	$texto_in = implode(",", $codigosProductos);
-	$ins = "SELECT * FROM productos WHERE CodProd IN($texto_in)";
+	$texto_in = implode("','", $codigosProductos);
+	$ins = "SELECT * FROM productos WHERE CodProd IN ('" . $texto_in . "')";
 	$resul = mysqli_query($bd, $ins);
 	if (!$resul) {
 		return FALSE;
@@ -156,7 +155,7 @@ function recibePedidos($usuario)
 		$sql = "SELECT COD_PRODUCTO, NUM_LINEA, PRECIO, CANTIDAD FROM lineas WHERE NUM_PEDIDO = " . $fila1["NUM_PEDIDO"];
 		$res2 = $bd->query($sql);
 		while ($fila2 = $res2->fetch_assoc()) {
-			$sql = "SELECT Nombre FROM productos WHERE Cod_Prod = " . $fila2["COD_PRODUCTO"];
+			$sql = "SELECT Nombre FROM productos WHERE CodProd = '" . $fila2["COD_PRODUCTO"] . "'";
 			$res3 = $bd->query($sql);
 			$unaFila = $res3->fetch_assoc();
 
