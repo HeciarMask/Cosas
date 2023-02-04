@@ -174,3 +174,45 @@ function recibePedidos($usuario)
 	}
 	return $tabla;
 }
+
+function cargarClientes()
+{
+	$bd = mysqli_connect("localhost", "root", "", "pedidosejemplo");
+	$bd->set_charset("utf8");
+	$ins = "SELECT NUM_CLIENTE, NOMBRE FROM clientes";
+	$resul = mysqli_query($bd, $ins);
+	if (!$resul) {
+		return FALSE;
+	}
+	if (mysqli_num_rows($resul) == 0) {
+		return FALSE;
+	}
+	//si hay 1 o más
+	return $resul;
+}
+
+function pideCliente($idCli)
+{
+	$bd = mysqli_connect("localhost", "root", "", "pedidosejemplo");
+	$bd->set_charset("utf8");
+
+	$sql = "SELECT NOMBRE nombre FROM clientes WHERE NUM_CLIENTE = " . $idCli . "";
+	$res = mysqli_query($bd, $sql);
+	$fila = $res->fetch_assoc();
+
+	$cliente = $fila["nombre"];
+
+	return $cliente;
+}
+
+function insertar($sql)
+{
+	$bd = mysqli_connect("localhost", "root", "", "pedidosejemplo");
+	$bd->set_charset("utf8");
+	$res = $bd->query($sql);
+	if ($res === TRUE) {
+		return $bd->insert_id;
+	}
+
+	return $res;
+}
