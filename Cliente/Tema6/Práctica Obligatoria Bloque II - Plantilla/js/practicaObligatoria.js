@@ -6,7 +6,7 @@ actual.
 
 let catalogo = new Catalogo();
 let divCuenta = document.getElementById("cuenta");
-let cuentaSeleccionada;
+let cuentaSeleccionada; //Objeto Cuenta
 let productoSeleccionado; //Objeto producto
 let listaCategorias;
 let gestor = new Gestor();
@@ -15,6 +15,7 @@ comienzo();
 document.getElementById("mesas").addEventListener("click", cambiarMesa);
 document.frmControles.addEventListener("change", cambioProducto);
 document.getElementById("teclado").addEventListener("click", teclaPulsada);
+document.getElementById("cuenta").addEventListener("click", cambioUnidades);
 
 function comienzo() {
   let cuentas = new Array();
@@ -93,7 +94,6 @@ function cambioProducto(event) {
       }
     }
   }
-  console.log(productoSeleccionado);
 }
 
 function cambiarMesa(event) {
@@ -133,7 +133,7 @@ function cambiaCuenta(numMesa) {
   divCuenta.append(salto.cloneNode());
   if (!cuentaSeleccionada.pagada) {
     let sCuenta = document.createElement("h2");
-    sCuenta.textContent = "Total: " + suma + "€";
+    sCuenta.textContent = "Total: " + Math.round(suma * 100) / 100 + "€";
 
     divCuenta.append(sCuenta);
     divCuenta.append(salto.cloneNode());
@@ -142,7 +142,7 @@ function cambiaCuenta(numMesa) {
     botonPagar.setAttribute("type", "button");
     botonPagar.setAttribute("value", "PAGAR Y LIBERAR LA MESA");
     botonPagar.setAttribute("class", "boton");
-    botonPagar.setAttribute("name", "pagar");
+    botonPagar.setAttribute("id", "pagar");
 
     divCuenta.append(botonPagar);
     divCuenta.append(salto.cloneNode());
@@ -179,8 +179,8 @@ function cambiaCuenta(numMesa) {
       let td = document.createElement("td");
       let suma = document.createElement("input");
       suma.setAttribute("type", "button");
-      suma.setAttribute("name", "suma");
       suma.setAttribute("class", "boton");
+      suma.setAttribute("name", "suma");
       let resta = suma.cloneNode();
       suma.setAttribute("value", "+");
       resta.setAttribute("value", "-");
@@ -203,7 +203,7 @@ function cambiaCuenta(numMesa) {
       fila.append(td);
       td = td.cloneNode();
       td.textContent =
-        Math.round(prod.precioUnidad * linea.unidades * 100) / 100;
+        Math.round(prod.precioUnidad * linea.unidades * 100) / 100 + "€";
       fila.append(td);
     }
   }
@@ -238,6 +238,25 @@ function teclaPulsada(event) {
   }
 }
 
+function cambioUnidades(event) {
+  let selec = event.target;
+  let linea;
+  if (selec.getAttribute("name") == "suma") {
+    let id = selec.parentElement.parentElement.cells[2].textContent;
+    for (let lin of cuentaSeleccionada.lineasDeCuentas) {
+      if (lin.idProducto == id) linea = lin;
+    }
+
+    if (selec.value == "+") linea.unidades++;
+    else if (selec.value == "-") {
+      linea.unidades--;
+      if (linea.unidades == 0) cuentaSeleccionada.lineasDeCuentas.pop(linea);
+    }
+    //No se si esta feo refrescar el DOM entero de la cuenta pero no me voy a comer la cabeza
+    cambiaCuenta(gestor.mesaActual);
+  } else if (selec.getAttribute("id") == "pagar") pagamosCuenta();
+}
+
 function anadirProdCat() {
   listaCategorias = ["Bebidas", "Tostadas", "Bollería"];
 
@@ -257,4 +276,17 @@ function anadirProdCat() {
   catalogo.addProducto(14, "Napolitana de chocolate", 1.45, 2);
   catalogo.addProducto(15, "Caracola de crema", 1.65, 2);
   catalogo.addProducto(16, "Caña de chocolate", 1.35, 2);
+}
+
+function pagamosCuenta() {
+  cuentaSeleccionada.pagada = true;
+  cuentaSeleccionada.lineasDeCuentas = new Array();
+
+  let mesas = document.getElementsByClassName("mesa");
+  for (let mesa of mesas) {
+    if (mesa.textContent == gestor.mesaActual)
+      mesa.setAttribute("class", "mesa libre");
+  }
+
+  cambiaCuenta(gestor.mesaActual);
 }

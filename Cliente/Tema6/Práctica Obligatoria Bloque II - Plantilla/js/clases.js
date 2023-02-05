@@ -96,9 +96,7 @@ class Cuenta {
     return this.#lineasDeCuentas;
   }
   set lineasDeCuentas(value) {
-    console.log(value);
     this.#lineasDeCuentas = value;
-    console.log(this.lineasDeCuentas);
   }
   get mesa() {
     return this.#mesa;
