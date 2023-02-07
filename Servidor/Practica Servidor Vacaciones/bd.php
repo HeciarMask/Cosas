@@ -216,3 +216,17 @@ function insertar($sql)
 
 	return $res;
 }
+
+function recibeCorreo($num)
+{
+	$bd = mysqli_connect("localhost", "root", "", "pedidosejemplo");
+	$bd->set_charset("utf8");
+
+	$sql = "SELECT EMAIL email FROM clientes WHERE NUM_CLIENTE = " . $num . "";
+	$res = mysqli_query($bd, $sql);
+	$fila = $res->fetch_assoc();
+
+	$cliente = $fila["email"];
+
+	return $cliente;
+}
