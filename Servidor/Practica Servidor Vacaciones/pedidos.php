@@ -26,6 +26,7 @@ comprobar_sesion();
 				<th>Precio</th>
 				<th>Fecha</th>
 				<th>Cantidad</th>
+				<th>Correo</th>
 			</tr>
 	";
 
@@ -44,7 +45,7 @@ comprobar_sesion();
 				";
 			}
 		}
-
+		echo "<td><a href='procesaMail.php?usuario=" . $_SESSION["usuario"] . "&pedido=" . $numPed . "'>Ver</a></td>";
 		echo "</tr>";
 	}
 	echo "</table>";
