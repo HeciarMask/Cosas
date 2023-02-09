@@ -15,8 +15,7 @@ class ContactoController extends Controller
     public function index()
     {
         $contactos = Contacto::all();
-
-        return view('contactos.lista', ['contactos' => $contactos]);
+        return view('contactos.lista', array('miscontactos' => $contactos));
     }
 
     /**

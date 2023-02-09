@@ -22,3 +22,7 @@ Route::get(
     "/contactos",
     [ContactoController::class, 'index']
 );
+
+Route::get("/entrada", function () {
+    return view('formulario.entrada');
+});

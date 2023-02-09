@@ -35,4 +35,6 @@ class ContactoSeeder extends Seeder
 
         Contacto::factory(20)->create();
     }
+
+
 }
