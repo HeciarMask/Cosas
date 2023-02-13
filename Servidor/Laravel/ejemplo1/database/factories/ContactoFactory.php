@@ -13,11 +13,11 @@ class ContactoFactory extends Factory
      */
     public function definition()
     {
-        return [
-            'nombre' => $this->faker->firstName(),
-            'apellido' => $this->faker->lastName(),
-            'telefono' => $this->faker->phoneNumber(),
-            'direccion' => $this->faker->address()
+        return ['nombre'=>$this->faker->firstName(),
+            'apellido'=>$this->faker->lastName(),
+            'telefono'=>$this->faker->phoneNumber(),
+            'direccion'=>$this->faker->address()
+            //
         ];
     }
 }

@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 
 <head>
-    <title>Mis contactos</title>
+    <title>Listado de Contactos</title>
 </head>
 
 <body>
-    <h2>Mis contactos</h2>
-    <table border='solid'>
+    <h3>Mis Contactos</h3>
+    <h4><a href="/contactos/crear">Crear un nuevo contacto</a></h4>
+    <table border='1'>
         <tr>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Telefono</th>
-            <th>Direccion</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
         </tr>
-        @foreach($contactos as $unContacto)
+        @foreach ($miscontactos as $unContacto)
         <tr>
             <td>{{$unContacto->nombre}}</td>
             <td>{{$unContacto->apellido}}</td>
-            <td>{{$unContacto->telefono}}</td>
             <td>{{$unContacto->direccion}}</td>
+            <td>{{$unContacto->telefono}}</td>
+            <td>
+                <a href="/contactos/ver/{{$unContacto->id}}">Ver</a>
+                <a href="/contactos/editar/{{$unContacto->id}}">Editar</a>
+                <a href="/contactos/borrar/{{$unContacto->id}}">Eliminar</a>
+            </td>
         </tr>
+
         @endforeach
     </table>
 </body>
+
 </html>

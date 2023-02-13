@@ -14,25 +14,27 @@ class ContactoSeeder extends Seeder
      */
     public function run()
     {
-        /* $contacto1 = new Contacto();
-        $contacto1->nombre = "Jaime";
-        $contacto1->apellido = "Pedrera";
-        $contacto1->telefono = "123456789";
-        $contacto1->direccion = "Calle Bolonia";
+        /*
+        $contacto1=new Contacto();
+        $contacto1->nombre='Jaime';
+        $contacto1->apellido='Pedrera';
+        $contacto1->direccion='Calle';
+        $contacto1->telefono='94534331';
         $contacto1->save();
-        $contacto2 = new Contacto();
-        $contacto2->nombre = "Daniel";
-        $contacto2->apellido = "Cortes";
-        $contacto2->telefono = "854697245";
-        $contacto2->direccion = "Calle Petanca";
+        $contacto2=new Contacto();
+        $contacto2->nombre='Daniel';
+        $contacto2->apellido='Cortes';
+        $contacto2->direccion='Calle 3';
+        $contacto2->telefono='92234331';
         $contacto2->save();
-        $contacto3 = new Contacto();
-        $contacto3->nombre = "Pablo";
-        $contacto3->apellido = "Salteras";
-        $contacto3->telefono = "856749582";
-        $contacto3->direccion = "Calle Ramona";
-        $contacto3->save(); */
+        $contacto3=new Contacto();
+        $contacto3->nombre='Lola';
+        $contacto3->apellido='Mesa';
+        $contacto3->direccion='Calle 3';
+        $contacto3->telefono='94534331';
+        $contacto3->save();
+        */
+        Contacto::factory(30)->create();
 
-        Contacto::factory(20)->create();
     }
 }
