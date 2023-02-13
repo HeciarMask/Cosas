@@ -1,0 +1,29 @@
+{
+  "alumnos": [
+    {
+      "apellidos": "De Vega Rodríguez",
+      "edad": 21,
+      "nombre": "Pablo"
+    },
+    {
+      "apellidos": "Pérez Márquez",
+      "edad": 22,
+      "nombre": "Mercedes"
+    },
+    {
+      "apellidos": "Salmerón Núñez",
+      "edad": 24,
+      "nombre": "Luis"
+    },
+    {
+      "apellidos": "García Sánchez",
+      "edad": 20,
+      "nombre": "Leticia"
+    },
+    {
+      "apellidos": "Martín Morales",
+      "edad": 25,
+      "nombre": "Marta"
+    }
+  ]
+}
