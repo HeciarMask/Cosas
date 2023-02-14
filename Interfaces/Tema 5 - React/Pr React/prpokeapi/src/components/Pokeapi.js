@@ -5,28 +5,51 @@ class Pokeapi extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			tipo: "",
 			info: "",
-			salida: "",
+			salida: [],
 			activado: false,
 		};
+		this.mostrar = React.createRef();
+		this.lista = [];
+		this.contador = 0;
 	}
 
 	buscarPoke() {
 		fetch("https://pokeapi.co/api/v2/pokemon/" + this.state.info)
-			.then((response) => response.json())
+			.then((response) => {
+				if (response.ok) {
+					return response.json();
+				}
+				throw new Error("Something went wrong");
+			})
 			.then((response) => this.escribeSalida(response))
 			.catch(this.incorrecto);
 	}
 
 	incorrecto() {
-		alert("Datos no válidos");
 		this.setState({activado: false});
+		alert("Error");
 	}
 
 	escribeSalida(datos) {
 		this.setState({activado: true});
-		this.setState({salida: datos});
+		let aux = [];
+
+		aux["id"] = datos.id;
+		aux["name"] = datos.name;
+		aux["height"] = datos.height;
+		aux["sprite1"] = datos.sprites["front_default"];
+		aux["sprite2"] = datos.sprites["back_default"];
+
+		this.lista[this.contador] = aux;
+		this.contador++;
+
+		this.setState({salida: this.lista});
+	}
+
+	borrarLista() {
+		this.lista = [];
+		this.setState({salida: this.lista, info: ""});
 	}
 
 	handleTipoChange(event) {
@@ -41,16 +64,6 @@ class Pokeapi extends React.Component {
 		return (
 			<div>
 				<form name="formulario">
-					<label htmlFor="tipoDato">Seleccione tipo de busqueda: </label>
-					<select
-						name="tipoDato"
-						value={this.state.tipo}
-						id="tipoDato"
-						onChange={(event) => this.handleTipoChange(event)}
-					>
-						<option value={"id"}>ID</option>
-						<option value={"nombre"}>Nombre</option>
-					</select>
 					<br />
 					<label htmlFor="txtPkm">Introduzca la búsqueda: </label>
 					<input
@@ -65,6 +78,13 @@ class Pokeapi extends React.Component {
 						name="buscar"
 						value="Buscar"
 						onClick={() => this.buscarPoke()}
+					/>
+
+					<input
+						type="button"
+						name="borrar"
+						value="Borrar"
+						onClick={() => this.borrarLista()}
 					/>
 				</form>
 				<Tableando activado={this.state.activado} datos={this.state.salida} />
