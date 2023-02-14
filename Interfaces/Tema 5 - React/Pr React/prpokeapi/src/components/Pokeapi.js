@@ -1,5 +1,9 @@
 import React from "react";
 import Tableando from "./Tableando";
+import {TextField} from "@mui/material";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Box from "@mui/material/Box";
 
 class Pokeapi extends React.Component {
 	constructor(props) {
@@ -7,14 +11,12 @@ class Pokeapi extends React.Component {
 		this.state = {
 			info: "",
 			salida: [],
-			activado: false,
 		};
-		this.mostrar = React.createRef();
 		this.lista = [];
 	}
 
-	buscarPoke() {
-		fetch("https://pokeapi.co/api/v2/pokemon/" + this.state.info)
+	buscarPoke(event) {
+		fetch("https://pokeapi.co/api/v2/pokemon/" + this.state.info.toLowerCase())
 			.then((response) => {
 				if (response.ok) {
 					return response.json();
@@ -23,6 +25,9 @@ class Pokeapi extends React.Component {
 			})
 			.then((response) => this.escribeSalida(response))
 			.catch(this.incorrecto);
+
+		event.preventDefault();
+		this.setState({salida: this.lista, info: ""});
 	}
 
 	incorrecto() {
@@ -30,7 +35,6 @@ class Pokeapi extends React.Component {
 	}
 
 	escribeSalida(datos) {
-		this.setState({activado: true});
 		let aux = [];
 
 		aux["id"] = datos.id;
@@ -48,10 +52,6 @@ class Pokeapi extends React.Component {
 		this.setState({salida: this.lista, info: ""});
 	}
 
-	handleTipoChange(event) {
-		this.setState({tipo: event.target.value});
-	}
-
 	handleInfoChange(event) {
 		this.setState({info: event.target.value});
 	}
@@ -61,29 +61,38 @@ class Pokeapi extends React.Component {
 			<div>
 				<form name="formulario">
 					<br />
-					<label htmlFor="txtPkm">Introduzca la búsqueda: </label>
-					<input
-						name="txtPkm"
-						id="txtPkm"
-						type="text"
+
+					<TextField
+						id="outlined-basic"
+						variant="outlined"
+						label="Nombre de pokemon"
 						value={this.state.info}
 						onChange={(event) => this.handleInfoChange(event)}
 					/>
-					<input
-						type="button"
-						name="buscar"
-						value="Buscar"
-						onClick={() => this.buscarPoke()}
-					/>
-
-					<input
-						type="button"
-						name="borrar"
-						value="Borrar"
-						onClick={() => this.borrarLista()}
-					/>
+					<br />
+					<Box
+						sx={{
+							display: "flex",
+							flexDirection: "column",
+							alignItems: "center",
+							"& > *": {
+								m: 1,
+							},
+						}}
+					>
+						<ButtonGroup variant="contained" aria-label="outlined button group">
+							<Button type="submit" onClick={(event) => this.buscarPoke(event)}>
+								Buscar
+							</Button>
+							<Button onClick={() => this.borrarLista()}>Borrar</Button>
+						</ButtonGroup>
+					</Box>
 				</form>
-				<Tableando activado={this.state.activado} datos={this.state.salida} />
+				<Tableando
+					style={{margin: "auto", display: "flex", justifycontent: "center"}}
+					activado={this.state.activado}
+					datos={this.state.salida}
+				/>
 			</div>
 		);
 	}
