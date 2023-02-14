@@ -11,7 +11,6 @@ class Pokeapi extends React.Component {
 		};
 		this.mostrar = React.createRef();
 		this.lista = [];
-		this.contador = 0;
 	}
 
 	buscarPoke() {
@@ -41,9 +40,7 @@ class Pokeapi extends React.Component {
 		aux["sprite1"] = datos.sprites["front_default"];
 		aux["sprite2"] = datos.sprites["back_default"];
 
-		this.lista[this.contador] = aux;
-		this.contador++;
-
+		this.lista.unshift(aux);
 		this.setState({salida: this.lista});
 	}
 
