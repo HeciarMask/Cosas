@@ -26,7 +26,6 @@ class Pokeapi extends React.Component {
 	}
 
 	incorrecto() {
-		this.setState({activado: false});
 		alert("Error");
 	}
 
