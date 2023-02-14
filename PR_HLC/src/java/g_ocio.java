@@ -12,7 +12,7 @@ public class g_ocio {
     private String comprobar;
     public static String idLocal;
     //para las búsquedas
-    String sConsulta="select * from locales_zonas";
+    String sConsulta="select * from encuesta_preferido";
     String sWhere=" WHERE true";
     String sOrden=" ORDER BY id";
     private String snombre_Busc;
@@ -24,7 +24,7 @@ public class g_ocio {
    
     
     public g_ocio() {
-        Conn=MySQL_Util.Conectar("localhost", "root", "", "ocio");
+        Conn=MySQL_Util.Conectar("localhost", "root", "", "tipo6");
     }
 
     /**
@@ -38,11 +38,11 @@ public class g_ocio {
     public String seleccionLista_Del(){
         String sId_borrar=ObtenerID();
     //Borrar en la tabla locales_formas_pago
-    String borrarHijos="DELETE FROM locales_formas_pago ";
-    borrarHijos+=" WHERE ID_LOCAL="+sId_borrar;
+    String borrarHijos="DELETE FROM postres_persona ";
+    borrarHijos+=" WHERE id_encuesta="+sId_borrar;
     MySQL_Util.Ej_ConsultaAccion(Conn, borrarHijos);
     //borrar en la tabla locales
-    String borrarPadre="DELETE FROM locales WHERE ID="+sId_borrar;
+    String borrarPadre="DELETE FROM encuesta WHERE ="+sId_borrar;
     MySQL_Util.Ej_ConsultaAccion(Conn, borrarPadre);
     return "index";
     }
@@ -73,8 +73,8 @@ public class g_ocio {
     public ResultSet getRsFPago() {
         String sqlPago;
         try{
-        sqlPago="SELECT fp.NOMBRE FROM formas_pago fp INNER JOIN locales_formas_pago lfp ON fp.ID=lfp.ID_FORMA_PAGO ";
-        sqlPago+=" WHERE lfp.ID_LOCAL="+rsOcio.getString("ID") ;
+        sqlPago="SELECT pb.nombre FROM postres_base pb INNER JOIN postres_persona pp ON pb.id_postre=pp..id_postre ";
+        sqlPago+=" WHERE pp.id_encuesta="+rsOcio.getString("ID") ;
         rsFPago=MySQL_Util.Sel_Consulta(Conn, sqlPago);
         }
         catch (SQLException ex){
@@ -164,7 +164,7 @@ public class g_ocio {
      * @return the sinfo_Sel
      */
     public String getSinfo_Sel() {
-        String sDevuelve= "Número de locales encontrados:";
+        String sDevuelve= "Número de encuestas encontradas:";
         int numero=MySQL_Util.Numero_Registros(rsOcio);
         sinfo_Sel=sDevuelve+numero;
         return sinfo_Sel;
@@ -177,12 +177,12 @@ public class g_ocio {
         this.sinfo_Sel = sinfo_Sel;
     }
     public ArrayList getListaZonas(){
-        String cadena="SELECT id,nombre FROM zonas order by nombre";
+        String cadena="SELECT id_preferido id,nombre_pref nombre FROM preferido order by nombre";
         String sPrimeraOpcion="Indiferente";
         return MySQL_Util.Llenar_Lista_Busquedas(g_ocio.Conn, cadena,sPrimeraOpcion);
     }
     public ArrayList getListaFPago(){
-        String cadena="SELECT id,nombre FROM formas_pago";
+        String cadena="SELECT id_postre id,nombre FROM postres_base";
         return MySQL_Util.Llenar_Lista(g_ocio.Conn, cadena);
     }
     public void buscar_local(ActionEvent event){
@@ -190,13 +190,13 @@ public class g_ocio {
             sWhere+=" AND nombre LIKE '%"+snombre_Busc+"%'";
         }
         if (sdireccion_Busc.trim().length()>0){
-            sWhere+=" AND direccion LIKE '%"+sdireccion_Busc+"%'";
+            sWhere+=" AND edad LIKE '%"+sdireccion_Busc+"%'";
         }
         if (!szona_Busc.equals("-1")){
-            sWhere+="  AND idzona="+szona_Busc;
+            sWhere+="  AND id_postre="+szona_Busc;
         }
         if (sfpago_Busc.length>0)   {
-            sWhere+=" AND id in (select ID_LOCAL FROM locales_formas_pago where ID_FORMA_PAGO in"+MySQL_Util.implode(sfpago_Busc)+")";
+            sWhere+=" AND id in (select id_encuesta FROM postres_persona where id_postre in"+MySQL_Util.implode(sfpago_Busc)+")";
         
         }
     }
@@ -209,9 +209,9 @@ public class g_ocio {
     }
      public String gestion_Zonas() {
 
-        g_tablas_aux.stabla = "zonas";
+        g_tablas_aux.stabla = "preferido";
 
-        g_tablas_aux.stitulo = "Gestión de Zonas:";
+        g_tablas_aux.stitulo = "Gestión de Preferidos:";
 
 return "g_tablas_aux";
 
@@ -219,9 +219,9 @@ return "g_tablas_aux";
 
 public String gestion_FormasPago() {
 
-        g_tablas_aux.stabla = "formas_pago";
+        g_tablas_aux.stabla = "postres_base";
 
-        g_tablas_aux.stitulo = "Gestión de Formas de Pago:";
+        g_tablas_aux.stitulo = "Gestión de Postres:";
 
 return "g_tablas_aux";
     

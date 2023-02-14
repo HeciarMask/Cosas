@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Z:/PR_HLC/src/java/locales.java</file>
+            <file>file:/Z:/PR_HLC/src/java/MySQL_Util.java</file>
+            <file>file:/Z:/PR_HLC/web/index.jsp</file>
+            <file>file:/Z:/PR_HLC/src/java/g_tablas_aux.java</file>
+            <file>file:/Z:/PR_HLC/web/a_local.jsp</file>
+            <file>file:/Z:/PR_HLC/src/java/g_ocio.java</file>
+            <file>file:/Z:/PR_HLC/web/g_tablas_aux.jsp</file>
+            <file>file:/Z:/PR_HLC/web/m_local.jsp</file>
+        </group>
     </open-files>
 </project-private>

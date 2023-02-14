@@ -30,7 +30,7 @@
     </h:column>
     <h:column>
         <f:facet name="header">
-            <h:outputText value="Nombre"/>
+            <h:outputText value="Nombres"/>
         </f:facet>
         <h:outputText value="#{g_tablas_aux.iterar_Nombre}"/>
         <h:inputText id="mod" size="45" binding="#{g_tablas_aux.nombre_mod}" 

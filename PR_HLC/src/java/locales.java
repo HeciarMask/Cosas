@@ -25,11 +25,11 @@ public class locales {
         
     }
 public void recoge_datos(String pIdLocal){
-nombre=MySQL_Util.ObtenerDato("locales", "id", pIdLocal, "nombre");
-direccion=MySQL_Util.ObtenerDato("locales", "id", pIdLocal, "direccion");
+nombre=MySQL_Util.ObtenerDato("encuesta", "id_encuesta", pIdLocal, "nombre");
+direccion=MySQL_Util.ObtenerDato("encuesta", "id", pIdLocal, "direccion");
 zona=MySQL_Util.ObtenerDato("locales", "id", pIdLocal, "zona");
 //Obtener las formas de pago del local
-String cadsql="SELECT id_forma_pago FROM locales_formas_pago";
+String cadsql="SELECT id_postre FROM postres_base";
 cadsql+=" WHERE ID_LOCAL="+pIdLocal;
 formas_pago=MySQL_Util.Llenar_Seleccionados(g_ocio.Conn,cadsql,"ID_FORMA_PAGO");
 }
@@ -89,11 +89,11 @@ formas_pago=MySQL_Util.Llenar_Seleccionados(g_ocio.Conn,cadsql,"ID_FORMA_PAGO");
         this.formas_pago = formas_pago;
     }
     public ArrayList getListaZonas(){
-        String cadena="SELECT id,nombre FROM zonas order by nombre";
+        String cadena="SELECT id_preferido id,nombre_pref nombre FROM preferido order by nombre";
         return MySQL_Util.Llenar_Lista(g_ocio.Conn, cadena);
     }
     public ArrayList getListaFPago(){
-        String cadena="SELECT id,nombre FROM formas_pago";
+        String cadena="SELECT id_postre id, nombre FROM postres_base";
         return MySQL_Util.Llenar_Lista(g_ocio.Conn, cadena);
     }
     public String guardar_L(){

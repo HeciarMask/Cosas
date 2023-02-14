@@ -45,11 +45,6 @@ return ((Map<String, Object>) tabla.getRowData()).get("ID").toString();
 public ResultSet getRsTabla() {
 String sc = "Select ID, NOMBRE From " + stabla;
 rsTabla = MySQL_Util.Sel_Consulta(g_ocio.Conn, sc);
-
-
-
-
-
 return rsTabla;
 }
 
