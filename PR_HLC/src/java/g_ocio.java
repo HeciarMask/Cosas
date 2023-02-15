@@ -1,8 +1,10 @@
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Map;
 import javafx.event.ActionEvent;
 import javax.faces.component.html.HtmlDataTable;
+
 public class g_ocio {
 
     public static Connection Conn;
@@ -12,54 +14,58 @@ public class g_ocio {
     private String comprobar;
     public static String idLocal;
     //para las búsquedas
-    String sConsulta="select * from encuesta_preferido";
-    String sWhere=" WHERE true";
-    String sOrden=" ORDER BY id";
+    String sConsulta = "select * from encuesta";
+    String sWhere = " WHERE true";
+    String sOrden = " ORDER BY id_encuesta";
     private String snombre_Busc;
     private String szona_Busc;
     private String[] sfpago_Busc;
     private String sdireccion_Busc;
     ///resultado de la búsqueda
     private String sinfo_Sel;
-   
-    
+
     public g_ocio() {
-        Conn=MySQL_Util.Conectar("localhost", "root", "", "tipo6");
+        Conn = MySQL_Util.Conectar("localhost", "root", "", "tipo6");
     }
 
     /**
      * @return the rsOcio
      */
     public ResultSet getRsOcio() {
-        String cadenaSql=sConsulta+sWhere+sOrden;
-        rsOcio=MySQL_Util.Sel_Consulta(Conn, cadenaSql);
+        String cadenaSql = sConsulta + sWhere + sOrden;
+        rsOcio = MySQL_Util.Sel_Consulta(Conn, cadenaSql);
         return rsOcio;
     }
-    public String seleccionLista_Del(){
-        String sId_borrar=ObtenerID();
-    //Borrar en la tabla locales_formas_pago
-    String borrarHijos="DELETE FROM postres_persona ";
-    borrarHijos+=" WHERE id_encuesta="+sId_borrar;
-    MySQL_Util.Ej_ConsultaAccion(Conn, borrarHijos);
-    //borrar en la tabla locales
-    String borrarPadre="DELETE FROM encuesta WHERE ="+sId_borrar;
-    MySQL_Util.Ej_ConsultaAccion(Conn, borrarPadre);
-    return "index";
+
+    public String seleccionLista_Del() {
+        String sId_borrar = ObtenerID();
+        //Borrar en la tabla locales_formas_pago
+        String borrarHijos = "DELETE FROM postres_persona ";
+        borrarHijos += " WHERE id_encuesta=" + sId_borrar;
+        MySQL_Util.Ej_ConsultaAccion(Conn, borrarHijos);
+        //borrar en la tabla locales
+        String borrarPadre = "DELETE FROM encuesta WHERE id_encuesta =" + sId_borrar;
+        MySQL_Util.Ej_ConsultaAccion(Conn, borrarPadre);
+        return "index";
     }
-    public String obtenerDatosLocal(){
-     idLocal=ObtenerID();   
-    return "m_local";
+
+    public String obtenerDatosLocal() {
+        idLocal = ObtenerID();
+        return "m_local";
     }
-    public String nuevoLocal(){
-        idLocal="";
+
+    public String nuevoLocal() {
+        idLocal = "";
         return "a_local";
     }
-    public String ObtenerID(){
-     Map <String,Object> fila;   
-     fila= (Map <String,Object>)tabla.getRowData();
-     String devuelve=fila.get("ID").toString();
-     return devuelve;
+
+    public String ObtenerID() {
+        Map<String, Object> fila;
+        fila = (Map<String, Object>) tabla.getRowData();
+        String devuelve = fila.get("id_encuesta").toString();
+        return devuelve;
     }
+
     /**
      * @param rsOcio the rsOcio to set
      */
@@ -72,12 +78,11 @@ public class g_ocio {
      */
     public ResultSet getRsFPago() {
         String sqlPago;
-        try{
-        sqlPago="SELECT pb.nombre FROM postres_base pb INNER JOIN postres_persona pp ON pb.id_postre=pp..id_postre ";
-        sqlPago+=" WHERE pp.id_encuesta="+rsOcio.getString("ID") ;
-        rsFPago=MySQL_Util.Sel_Consulta(Conn, sqlPago);
-        }
-        catch (SQLException ex){
+        try {
+            sqlPago = "SELECT pb.nombre FROM postres_base pb INNER JOIN postres_persona pp ON pb.id_postre=pp.id_postre ";
+            sqlPago += " WHERE pp.id_encuesta=" + rsOcio.getString("id_encuesta");
+            rsFPago = MySQL_Util.Sel_Consulta(Conn, sqlPago);
+        } catch (SQLException ex) {
             return null;
         }
         return rsFPago;
@@ -164,9 +169,9 @@ public class g_ocio {
      * @return the sinfo_Sel
      */
     public String getSinfo_Sel() {
-        String sDevuelve= "Número de encuestas encontradas:";
-        int numero=MySQL_Util.Numero_Registros(rsOcio);
-        sinfo_Sel=sDevuelve+numero;
+        String sDevuelve = "Número de encuestas encontradas:";
+        int numero = MySQL_Util.Numero_Registros(rsOcio);
+        sinfo_Sel = sDevuelve + numero;
         return sinfo_Sel;
     }
 
@@ -176,55 +181,60 @@ public class g_ocio {
     public void setSinfo_Sel(String sinfo_Sel) {
         this.sinfo_Sel = sinfo_Sel;
     }
-    public ArrayList getListaZonas(){
-        String cadena="SELECT id_preferido id,nombre_pref nombre FROM preferido order by nombre";
-        String sPrimeraOpcion="Indiferente";
-        return MySQL_Util.Llenar_Lista_Busquedas(g_ocio.Conn, cadena,sPrimeraOpcion);
+
+    public ArrayList getListaZonas() {
+        String cadena = "SELECT id_preferido id,nombre_pref nombre FROM preferido";
+        String sPrimeraOpcion = "Indiferente";
+        return MySQL_Util.Llenar_Lista_Busquedas(g_ocio.Conn, cadena, sPrimeraOpcion);
     }
-    public ArrayList getListaFPago(){
-        String cadena="SELECT id_postre id,nombre FROM postres_base";
+
+    public ArrayList getListaFPago() {
+        String cadena = "SELECT id_postre id,nombre FROM postres_base";
         return MySQL_Util.Llenar_Lista(g_ocio.Conn, cadena);
     }
-    public void buscar_local(ActionEvent event){
-        if (snombre_Busc.trim().length()>0){
-            sWhere+=" AND nombre LIKE '%"+snombre_Busc+"%'";
+
+    public void buscar_local(ActionEvent event) {
+        if (snombre_Busc.trim().length() > 0) {
+            sWhere += " AND nombre LIKE '%" + snombre_Busc + "%'";
         }
-        if (sdireccion_Busc.trim().length()>0){
-            sWhere+=" AND edad LIKE '%"+sdireccion_Busc+"%'";
+        if (sdireccion_Busc.trim().length() > 0) {
+            sWhere += " AND edad LIKE '%" + sdireccion_Busc + "%'";
         }
-        if (!szona_Busc.equals("-1")){
-            sWhere+="  AND id_postre="+szona_Busc;
+        if (!szona_Busc.equals("-1")) {
+            sWhere += "  AND id_preferido = " + szona_Busc;
         }
-        if (sfpago_Busc.length>0)   {
-            sWhere+=" AND id in (select id_encuesta FROM postres_persona where id_postre in"+MySQL_Util.implode(sfpago_Busc)+")";
-        
+        if (sfpago_Busc.length > 0) {
+            sWhere += " AND id_encuesta in (select id_encuesta FROM postres_persona where id_postre in" + MySQL_Util.implode(sfpago_Busc) + ")";
+
         }
     }
-    public void limpiar_buscar_local(ActionEvent event){
-        snombre_Busc="";
-        sdireccion_Busc="";
-        szona_Busc="-1";
-        sfpago_Busc=null;
-        sWhere=" WHERE true";
+
+    public void limpiar_buscar_local(ActionEvent event) {
+        snombre_Busc = "";
+        sdireccion_Busc = "";
+        szona_Busc = "-1";
+        sfpago_Busc = null;
+        sWhere = " WHERE true";
     }
-     public String gestion_Zonas() {
+
+    public String gestion_Zonas() {
 
         g_tablas_aux.stabla = "preferido";
 
         g_tablas_aux.stitulo = "Gestión de Preferidos:";
 
-return "g_tablas_aux";
+        return "g_tablas_aux";
 
-}
+    }
 
-public String gestion_FormasPago() {
+    public String gestion_FormasPago() {
 
         g_tablas_aux.stabla = "postres_base";
 
         g_tablas_aux.stitulo = "Gestión de Postres:";
 
-return "g_tablas_aux";
-    
-}
-    
+        return "g_tablas_aux";
+
+    }
+
 }

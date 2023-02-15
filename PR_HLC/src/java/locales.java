@@ -26,12 +26,12 @@ public class locales {
     }
 public void recoge_datos(String pIdLocal){
 nombre=MySQL_Util.ObtenerDato("encuesta", "id_encuesta", pIdLocal, "nombre");
-direccion=MySQL_Util.ObtenerDato("encuesta", "id", pIdLocal, "direccion");
-zona=MySQL_Util.ObtenerDato("locales", "id", pIdLocal, "zona");
+direccion=MySQL_Util.ObtenerDato("encuesta", "id_encuesta", pIdLocal, "edad");
+zona=MySQL_Util.ObtenerDato("encuesta", "id_encuesta", pIdLocal, "id_preferido");
 //Obtener las formas de pago del local
-String cadsql="SELECT id_postre FROM postres_base";
-cadsql+=" WHERE ID_LOCAL="+pIdLocal;
-formas_pago=MySQL_Util.Llenar_Seleccionados(g_ocio.Conn,cadsql,"ID_FORMA_PAGO");
+String cadsql="SELECT id_postre FROM postres_persona";
+cadsql+=" WHERE id_encuesta="+pIdLocal;
+formas_pago=MySQL_Util.Llenar_Seleccionados(g_ocio.Conn,cadsql,"id_postre");
 }
     /**
      * @return the nombre

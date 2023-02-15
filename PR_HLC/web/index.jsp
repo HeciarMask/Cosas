@@ -74,7 +74,7 @@
                     </f:facet>
                     <h:dataTable value="#{g_ocio.rsFPago}" var="item">
                         <h:column>
-                            <h:outputText value="#{item.nombre_pref}"/>
+                            <h:outputText value="#{item.nombre}"/>
                         </h:column> 
                     </h:dataTable>
                 </h:column>
