@@ -7,32 +7,37 @@ import java.util.ArrayList;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author alumno
  */
 public class locales {
 
-   private String nombre;
-   private String zona;
-   private String direccion;
-   private String[] formas_pago;
-   private String mensaje;
+    private String nombre;
+    private String zona;
+    private String direccion;
+    private String consume;
+    private String[] formas_pago;
+    private String mensaje;
+
     public locales() {
-        if (!g_ocio.idLocal.equals(""))
+        if (!g_ocio.idLocal.equals("")) {
             recoge_datos(g_ocio.idLocal);
-        
+        }
+
     }
-public void recoge_datos(String pIdLocal){
-nombre=MySQL_Util.ObtenerDato("encuesta", "id_encuesta", pIdLocal, "nombre");
-direccion=MySQL_Util.ObtenerDato("encuesta", "id_encuesta", pIdLocal, "edad");
-zona=MySQL_Util.ObtenerDato("encuesta", "id_encuesta", pIdLocal, "id_preferido");
+
+    public void recoge_datos(String pIdLocal) {
+        nombre = MySQL_Util.ObtenerDato("encuesta", "id_encuesta", pIdLocal, "nombre");
+        direccion = MySQL_Util.ObtenerDato("encuesta", "id_encuesta", pIdLocal, "edad");
+        consume = MySQL_Util.ObtenerDato("encuesta", "id_encuesta", pIdLocal, "consumeMas");
+        zona = MySQL_Util.ObtenerDato("encuesta", "id_encuesta", pIdLocal, "id_preferido");
 //Obtener las formas de pago del local
-String cadsql="SELECT id_postre FROM postres_persona";
-cadsql+=" WHERE id_encuesta="+pIdLocal;
-formas_pago=MySQL_Util.Llenar_Seleccionados(g_ocio.Conn,cadsql,"id_postre");
-}
+        String cadsql = "SELECT id_postre FROM postres_persona";
+        cadsql += " WHERE id_encuesta=" + pIdLocal;
+        formas_pago = MySQL_Util.Llenar_Seleccionados(g_ocio.Conn, cadsql, "id_postre");
+    }
+
     /**
      * @return the nombre
      */
@@ -88,26 +93,29 @@ formas_pago=MySQL_Util.Llenar_Seleccionados(g_ocio.Conn,cadsql,"id_postre");
     public void setFormas_pago(String[] formas_pago) {
         this.formas_pago = formas_pago;
     }
-    public ArrayList getListaZonas(){
-        String cadena="SELECT id_preferido id,nombre_pref nombre FROM preferido order by nombre";
+
+    public ArrayList getListaZonas() {
+        String cadena = "SELECT id_preferido id,nombre_pref nombre FROM preferido order by nombre";
         return MySQL_Util.Llenar_Lista(g_ocio.Conn, cadena);
     }
-    public ArrayList getListaFPago(){
-        String cadena="SELECT id_postre id, nombre FROM postres_base";
+
+    public ArrayList getListaFPago() {
+        String cadena = "SELECT id_postre id, nombre FROM postres_base";
         return MySQL_Util.Llenar_Lista(g_ocio.Conn, cadena);
     }
-    public String guardar_L(){
+
+    public String guardar_L() {
         //INsert en locales
-        String insert1="INSERT INTO locales(NOMBRE,ZONA,DIRECCION) VALUES('";
-        insert1+=nombre+"',"+zona+",'"+direccion+"')";       
-        int idNuevoLocal=MySQL_Util.Ej_Consulta_Id_Auto(g_ocio.Conn,insert1);
+        String insert1 = "INSERT INTO encuesta(nombre,id_preferido,edad,consumeMas) VALUES('";
+        insert1 += nombre + "'," + zona + ",'" + direccion + "','" + consume + "')";
+        int idNuevoLocal = MySQL_Util.Ej_Consulta_Id_Auto(g_ocio.Conn, insert1);
         //INsert en locales_formas_pago
-        mensaje=idNuevoLocal+"";
-        for (int i=0;i<formas_pago.length;i++){
-            String insert2="INSERT INTO locales_formas_pago ";
-            insert2+=" VALUES("+idNuevoLocal+","+formas_pago[i]+")";
+        mensaje = idNuevoLocal + "";
+        for (int i = 0; i < formas_pago.length; i++) {
+            String insert2 = "INSERT INTO postres_persona ";
+            insert2 += " VALUES(" + idNuevoLocal + "," + formas_pago[i] + ")";
             MySQL_Util.Ej_ConsultaAccion(g_ocio.Conn, insert2);
-        
+
         }
         return "index";
     }
@@ -118,21 +126,37 @@ formas_pago=MySQL_Util.Llenar_Seleccionados(g_ocio.Conn,cadsql,"id_postre");
     public String getMensaje() {
         return mensaje;
     }
-    public String modificar_local(){
+
+    public String modificar_local() {
         //primero modifico en locales
-    String cadsql1="UPDATE locales SET nombre='"+nombre+"',direccion='";
-    cadsql1+=direccion+"', zona="+zona+" WHERE id="+g_ocio.idLocal;
-    MySQL_Util.Ej_ConsultaAccion(g_ocio.Conn, cadsql1);
-    //para modificar las formas de pago, primero borro las que había
-    String cadBorra="DELETE FROM locales_formas_pago WHERE ID_LOCAL="+g_ocio.idLocal;
-    MySQL_Util.Ej_ConsultaAccion(g_ocio.Conn, cadBorra);
-    //Y a continuación meto las nuevas
-    for (int i=0;i<formas_pago.length;i++){
-            String insert2="INSERT INTO locales_formas_pago ";
-            insert2+=" VALUES("+g_ocio.idLocal+","+formas_pago[i]+")";
+        String cadsql1 = "UPDATE encuesta SET nombre='" + nombre + "',edad='";
+        cadsql1 += direccion + "', id_preferido=" + zona + ", consumeMas ='"+consume+"' WHERE id_encuesta=" + g_ocio.idLocal;
+        MySQL_Util.Ej_ConsultaAccion(g_ocio.Conn, cadsql1);
+        //para modificar las formas de pago, primero borro las que había
+        String cadBorra = "DELETE FROM postres_persona WHERE id_encuesta=" + g_ocio.idLocal;
+        MySQL_Util.Ej_ConsultaAccion(g_ocio.Conn, cadBorra);
+        //Y a continuación meto las nuevas
+        for (int i = 0; i < formas_pago.length; i++) {
+            String insert2 = "INSERT INTO postres_persona ";
+            insert2 += " VALUES(" + g_ocio.idLocal + "," + formas_pago[i] + ")";
             MySQL_Util.Ej_ConsultaAccion(g_ocio.Conn, insert2);
-        
+
         }
-    return "index";
+        return "index";
+    }
+    
+
+    /**
+     * @return the consume
+     */
+    public String getConsume() {
+        return consume;
+    }
+
+    /**
+     * @param consume the consume to set
+     */
+    public void setConsume(String consume) {
+        this.consume = consume;
     }
 }

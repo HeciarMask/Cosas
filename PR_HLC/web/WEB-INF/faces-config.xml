@@ -14,8 +14,15 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>g_tablas_aux</managed-bean-name>
-        <managed-bean-class>g_tablas_aux</managed-bean-class>
+        <managed-bean-name>g_tablas_aux_postre</managed-bean-name>
+        <managed-bean-class>g_tablas_aux_postre</managed-bean-class>
+    
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>g_tablas_aux_pref</managed-bean-name>
+        <managed-bean-class>g_tablas_aux_pref</managed-bean-class>
+    
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
 </faces-config>

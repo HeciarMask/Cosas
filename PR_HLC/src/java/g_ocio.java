@@ -21,6 +21,7 @@ public class g_ocio {
     private String szona_Busc;
     private String[] sfpago_Busc;
     private String sdireccion_Busc;
+    private String sconsume_Busc;
     ///resultado de la búsqueda
     private String sinfo_Sel;
 
@@ -200,6 +201,9 @@ public class g_ocio {
         if (sdireccion_Busc.trim().length() > 0) {
             sWhere += " AND edad LIKE '%" + sdireccion_Busc + "%'";
         }
+        if (sconsume_Busc.trim().length() > 0) {
+            sWhere += " AND consumeMas LIKE '%" + sconsume_Busc + "%'";
+        }
         if (!szona_Busc.equals("-1")) {
             sWhere += "  AND id_preferido = " + szona_Busc;
         }
@@ -212,6 +216,7 @@ public class g_ocio {
     public void limpiar_buscar_local(ActionEvent event) {
         snombre_Busc = "";
         sdireccion_Busc = "";
+        sconsume_Busc = "";
         szona_Busc = "-1";
         sfpago_Busc = null;
         sWhere = " WHERE true";
@@ -219,22 +224,36 @@ public class g_ocio {
 
     public String gestion_Zonas() {
 
-        g_tablas_aux.stabla = "preferido";
+        g_tablas_aux_pref.stabla = "preferido";
 
-        g_tablas_aux.stitulo = "Gestión de Preferidos:";
+        g_tablas_aux_pref.stitulo = "Gestión de Preferidos:";
 
-        return "g_tablas_aux";
+        return "g_tablas_pref";
 
     }
 
     public String gestion_FormasPago() {
 
-        g_tablas_aux.stabla = "postres_base";
+        g_tablas_aux_postre.stabla = "postres_base";
 
-        g_tablas_aux.stitulo = "Gestión de Postres:";
+        g_tablas_aux_postre.stitulo = "Gestión de Postres:";
 
-        return "g_tablas_aux";
+        return "g_tablas_postre";
 
+    }
+
+    /**
+     * @return the sconsume_Busc
+     */
+    public String getSconsume_Busc() {
+        return sconsume_Busc;
+    }
+
+    /**
+     * @param sconsume_Busc the sconsume_Busc to set
+     */
+    public void setSconsume_Busc(String sconsume_Busc) {
+        this.sconsume_Busc = sconsume_Busc;
     }
 
 }

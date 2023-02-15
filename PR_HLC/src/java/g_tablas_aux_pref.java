@@ -4,7 +4,7 @@ import javax.faces.component.html.HtmlDataTable;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.event.ActionEvent;
 
-public class g_tablas_aux {
+public class g_tablas_aux_pref {
 
 public static String stabla;
 public static String stitulo;
@@ -15,7 +15,7 @@ private HtmlInputText nombre_mod;
 private String id;
 private String nombre;
 
-public g_tablas_aux() {
+public g_tablas_aux_pref() {
 }
 
 public HtmlDataTable getTabla() {
@@ -38,19 +38,19 @@ return stitulo;
 }
 
 public String ObtenerID() {
-return ((Map<String, Object>) tabla.getRowData()).get("ID").toString();
+return ((Map<String, Object>) tabla.getRowData()).get("id_preferido").toString();
 }
 
 
 public ResultSet getRsTabla() {
-String sc = "Select ID, NOMBRE From " + stabla;
+String sc = "Select id_preferido, nombre_pref From " + stabla;
 rsTabla = MySQL_Util.Sel_Consulta(g_ocio.Conn, sc);
 return rsTabla;
 }
 
 public void borrar_Fila(ActionEvent event){
 String sid_borrar = ObtenerID();
-String sc = "Delete From " + stabla + " Where ID = " + sid_borrar;
+String sc = "Delete From " + stabla + " Where id_preferido = " + sid_borrar;
 MySQL_Util.Ej_ConsultaAccion(g_ocio.Conn, sc);
 //  Informar de alguna manera si se ha producido un error. ..... 	(¿ o no?)
 }
@@ -58,12 +58,12 @@ MySQL_Util.Ej_ConsultaAccion(g_ocio.Conn, sc);
 
 
 public void modificar_Fila(ActionEvent event){
-String sc = "Update " + stabla + " Set NOMBRE = '" + nombre_mod.getValue() + "' Where ID = " + ObtenerID();
+String sc = "Update " + stabla + " Set nombre_pref = '" + nombre_mod.getValue() + "' Where id_preferido = " + ObtenerID();
 MySQL_Util.Ej_ConsultaAccion(g_ocio.Conn, sc);
 }
 
 public void insertar_Fila(ActionEvent event){
-String sc = "Insert into " + stabla + "(NOMBRE) Values('" + nombre + "')";
+String sc = "Insert into " + stabla + "(nombre_pref) Values('" + nombre + "')";
 MySQL_Util.Ej_ConsultaAccion(g_ocio.Conn, sc);
 }
 
@@ -81,7 +81,7 @@ this.nombre = nombre;
 
 //  Creo este método para poder añadirle un valor a nombre_mod:
 public String getIterar_Nombre() {
-nombre_mod.setValue(MySQL_Util.Leer_campo(rsTabla, "NOMBRE"));
+nombre_mod.setValue(MySQL_Util.Leer_campo(rsTabla, "nombre_pref"));
 return "";
 }
 }

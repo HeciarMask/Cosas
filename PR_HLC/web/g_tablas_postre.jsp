@@ -8,19 +8,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title><h:outputText value="#{g_tablas_aux.stitulo}"/></title>
+<title><h:outputText value="#{g_tablas_aux_postre.stitulo}"/></title>
 </head>
 <body>
-<h1><h:outputText value="#{g_tablas_aux.stitulo}"/></h1>
+<h1><h:outputText value="#{g_tablas_aux_postre.stitulo}"/></h1>
 <h:form>
-<h:dataTable border="3" value="#{g_tablas_aux.rsTabla}" binding="#{g_tablas_aux.tabla}"
+<h:dataTable border="3" value="#{g_tablas_aux_postre.rsTabla}" binding="#{g_tablas_aux_postre.tabla}"
              var="reg">
     <h:column>
         <f:facet name="header">
             <h:outputText value="Borrar"/>
         </f:facet>
         <h:commandButton value="X" onclick="return confirm('¿Deseas BORRAR esa fila?')"
-                         actionListener="#{g_tablas_aux.borrar_Fila}" />
+                         actionListener="#{g_tablas_aux_postre.borrar_Fila}" />
     </h:column>
     <h:column>
         <f:facet name="header">
@@ -32,8 +32,8 @@
         <f:facet name="header">
             <h:outputText value="Nombres"/>
         </f:facet>
-        <h:outputText value="#{g_tablas_aux.iterar_Nombre}"/>
-        <h:inputText id="mod" size="45" binding="#{g_tablas_aux.nombre_mod}" 
+        <h:outputText value="#{g_tablas_aux_postre.iterar_Nombre}"/>
+        <h:inputText id="mod" size="45" binding="#{g_tablas_aux_postre.nombre_mod}" 
                      required="true" 
                      requiredMessage="No puedes Modificar a Vacio">
 
@@ -45,7 +45,7 @@
             <h:outputText value="Modificación"/>
         </f:facet>
         <h:commandButton value="Modificar" 
-                         actionListener="#{g_tablas_aux.modificar_Fila}"/>
+                         actionListener="#{g_tablas_aux_postre.modificar_Fila}"/>
     </h:column>
 </h:dataTable>
 </h:form>
@@ -53,9 +53,9 @@
 <h:form>
 <table border="3">
 <tr>
-<td> <h:commandButton value="Añadir" actionListener="#{g_tablas_aux.insertar_Fila}"/></td>
+<td> <h:commandButton value="Añadir" actionListener="#{g_tablas_aux_postre.insertar_Fila}"/></td>
 <td>
-<h:inputText id="nuevo" size="44" value="#{g_tablas_aux.nombre}" 
+<h:inputText id="nuevo" size="44" value="#{g_tablas_aux_postre.nombre}" 
              required="true" requiredMessage="No puedes Añadir Vacio">
 <f:validateLength minimum="2"/>
 </h:inputText>

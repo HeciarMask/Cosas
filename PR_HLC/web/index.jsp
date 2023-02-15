@@ -36,9 +36,9 @@
                     </h:selectManyListbox>
                      <h:outputText value="Edad:" />
                      <h:inputText value="#{g_ocio.sdireccion_Busc}" />
+                     <h:outputText value="Consume:" />
+                     <h:inputText value="#{g_ocio.sconsume_Busc}" />
                      <h:commandButton value="Buscar" actionListener="#{g_ocio.buscar_local(event)}"  />
-                     <h:outputText value="" />
-                     <h:outputText value="" />
                      <h:commandButton value="Limpiar Búsqueda" actionListener="#{g_ocio.limpiar_buscar_local(event)}"/>
                 </h:panelGrid>
             <br/><br/>			
@@ -70,6 +70,12 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">
+                        <h:outputText value="Consume"/>
+                    </f:facet>
+                    <h:outputText value="#{fila.consumeMas}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
                         <h:outputText value="Postres"/>
                     </f:facet>
                     <h:dataTable value="#{g_ocio.rsFPago}" var="item">
@@ -97,8 +103,8 @@
                     </f:facet>
             </h:dataTable>
                 <h:commandButton value="Añadir Encuesta" action="#{g_ocio.nuevoLocal}"/>
-                 <h:commandButton value="Gestión Postres" action="#{g_ocio.gestion_Zonas}"/>
-                <h:commandButton value="Gestión Comidas" action="#{g_ocio.gestion_FormasPago}"/>
+                 <h:commandButton value="Gestión Comidas" action="#{g_ocio.gestion_Zonas}"/>
+                <h:commandButton value="Gestión Postres" action="#{g_ocio.gestion_FormasPago}"/>
             </h:form>
             <%--<h:outputText value="#{locales.mensaje}"/>--%>
         </body>

@@ -24,13 +24,15 @@
             <h:panelGrid columns="2">
                 <h:outputText value="Nombre:"/>
                 <h:inputText value="#{locales.nombre}"/>
-                <h:outputText value="Zona"/>
+                <h:outputText value="Preferido"/>
                 <h:selectOneMenu value="#{locales.zona}">
                     <f:selectItems value="#{locales.listaZonas}"/>
                 </h:selectOneMenu>
-                <h:outputText value="Dirección"/>
+                <h:outputText value="Edad"/>
                 <h:inputText value="#{locales.direccion}"/>
-                <h:outputText value="Formas de pago"/>
+                <h:outputText value="Consume"/>
+                <h:inputText value="#{locales.consume}"/>
+                <h:outputText value="Postres"/>
                 <h:selectManyListbox value="#{locales.formas_pago}">
                     <f:selectItems value="#{locales.listaFPago}"/>
                 </h:selectManyListbox>

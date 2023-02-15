@@ -30,12 +30,13 @@
                 </h:selectOneMenu>
                 <h:outputText value="Edad"/>
                 <h:inputText value="#{locales.direccion}"/>
+                <h:outputText value="Consume"/>
+                <h:inputText value="#{locales.consume}"/>
                 <h:outputText value="Postres"/>
                 <h:selectManyListbox value="#{locales.formas_pago}">
                     <f:selectItems value="#{locales.listaFPago}"/>
                 </h:selectManyListbox>
-                <h:outputText value="Forma de comer"/>
-                <h:inputText value="#{locales.direccion}"/>
+                
             </h:panelGrid>
                 <h:commandButton value="Añadir" action="#{locales.guardar_L}"/>
             </h:form>
