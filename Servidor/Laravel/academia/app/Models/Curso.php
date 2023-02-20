@@ -16,4 +16,9 @@ class Curso extends Model
     public function profesor(){
     	return $this->belongsTo(Profesor::class);
     }
+    //En un curso puede haber muchos alumnos
+    public function alumnos(){
+    	return $this->belongsToMany(Alumno::class);
+   
+    }
 }

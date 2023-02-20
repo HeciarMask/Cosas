@@ -26,6 +26,7 @@ class ProfesorController extends Controller
     public function create()
     {
         //
+        return view('profesores.crear');
     }
 
     /**
@@ -36,11 +37,13 @@ class ProfesorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nuevo=new Profesor($request->all());
+        $nuevo->save();
+        return redirect()->action([ProfesorController::class,'index']);
     }
 
     /**
-     * Display the specified resource.
+     * Disp lay the spec ified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -60,7 +63,8 @@ class ProfesorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profesor=Profesor::find($id);
+        return view('profesores.editar',array('profesor'=>$profesor));
     }
 
     /**
@@ -72,7 +76,18 @@ class ProfesorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      
+        $actualizado=Profesor::find($id);
+        /* cambio el contenido de las columnas de la fila
+        por lo que se ha tecleado en el formulario*/
+        $actualizado->nombre_apellido=$request->nombre_apellido;
+        $actualizado->profesion=$request->profesion;
+        $actualizado->telefono=$request->telefono;
+        $actualizado->grado_academico=$request->grado_academico;
+        /* almacenar cambios */
+        $actualizado->save();
+        /* volver a la lista */
+        return redirect()->action([ProfesorController::class,'index']);
     }
 
     /**
@@ -83,6 +98,10 @@ class ProfesorController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $borrar=Profesor::find($id);
+        /*lo borro*/
+        $borrar->delete();
+        /* volver a la lista */
+        return redirect()->action([ProfesorController::class,'index']);
     }
 }
