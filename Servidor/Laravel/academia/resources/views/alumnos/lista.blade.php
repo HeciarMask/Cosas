@@ -25,9 +25,9 @@ wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="a
             <th>>@sortablelink('nombre')</th>
             <th>>@sortablelink('apellido')</th>
             <th>>@sortablelink('edad')</th>
-            <th>@sortablelink('Dirección')</th>
-            <th>@sortablelink('Teléfono')</th>
-            <th>@sortablelink('Operaciones')</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Operaciones</th>
         </tr>
         </thead>
         <tbody>
