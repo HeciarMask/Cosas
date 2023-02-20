@@ -1,0 +1,34 @@
+{
+  "modulos": {
+    "-NO50LhJm8O00q1cAAuu": {
+      "nombre": "Aplicaciones Ofimáticas",
+      "curso": "1º SMR",
+      "profesor": "Julián González Martínez",
+      "alumnos": 25
+    },
+    "-NO50_Dp2IOuhJX4t2xL": {
+      "nombre": "Programación",
+      "curso": "1º DAW",
+      "profesor": "Carmen López Navarro",
+      "alumnos": 29
+    },
+    "-NO50yKgi9iVXNrdo510": {
+      "nombre": "Sistemas de Gestión Empresarial",
+      "curso": "2º DAM",
+      "profesor": "Rosario Gutiérrez Salguero",
+      "alumnos": 16
+    },
+    "-NO514EEYamndOxrNyqe": {
+      "nombre": "Empresa e Iniciativa Emprendedora",
+      "curso": "2º DAW",
+      "profesor": "Pablo Carmona Salas",
+      "alumnos": 12
+    },
+    "-NO518hBEAp-OpkpNH3m": {
+      "nombre": "Redes Locales",
+      "curso": "1º SMR",
+      "profesor": "Esther Santos Ramírez",
+      "alumnos": 30
+    }
+  }
+}

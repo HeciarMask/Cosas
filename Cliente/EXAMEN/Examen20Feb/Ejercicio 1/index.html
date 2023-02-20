@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen-Parte 1</title>
+</head>
+
+<body>
+    <form name="formCrear" id="formCrear" style="margin: 5px">
+        <h3>Creacion de Clase</h3><br>
+        <table>
+            <tr>
+                <th>Nombre:</th>
+                <td><input type="text" name="nombre"></td>
+            </tr>
+            <tr>
+                <th>Curso: </th>
+                <td><input type="text" name="curso"></td>
+            </tr>
+            <tr>
+                <th>Profesor:</th>
+                <td><input type="text" name="profesor"></td>
+            </tr>
+            <tr>
+                <th>Alumnos:</th>
+                <td><input type="text" name="alumnos"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Crear" id="crear">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <form name="formBorrar" id="formBorrar" style="margin: 5px">
+        <h3>Borrar Clase</h3>
+        <table>
+            <tr>
+                <th>Id de la clase:</th>
+                <td><input type="text" name="nombre" id="nombreBorra"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Borrar" id="borrar">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <form name="formUpdate" id="formUpdate" style="margin: 5px">
+        <h3>Modifica Clase</h3>
+        <table>
+            <tr>
+                <th>Id de la clase:</th>
+                <td><input type="text" name="id" id="nombreUpdate"></td>
+            </tr>
+
+            <tr>
+                <th>Nombre:</th>
+                <td><input type="text" name="nombre"></td>
+            </tr>
+            <tr>
+                <th>Curso: </th>
+                <td><input type="text" name="curso"></td>
+            </tr>
+            <tr>
+                <th>Profesor:</th>
+                <td><input type="text" name="profesor"></td>
+            </tr>
+            <tr>
+                <th>Alumnos:</th>
+                <td><input type="text" name="alumnos"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Modificar" id="modificar">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <p id="salida"></p>
+    <script src="./parte1.js"></script>
+</body>
+
+</html>
