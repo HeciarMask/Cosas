@@ -43,9 +43,15 @@ class Pokeapi extends React.Component {
 		aux["sprite1"] = datos.sprites["front_default"];
 		aux["sprite2"] = datos.sprites["back_default"];
 
+		aux["types"] = datos.types.map((res) => {
+			return res.type.name;
+		});
+		console.log(aux["types"]);
 		this.lista.unshift(aux);
 		this.setState({salida: this.lista});
 	}
+
+	recogeTipos(res) {}
 
 	borrarLista() {
 		this.lista = [];

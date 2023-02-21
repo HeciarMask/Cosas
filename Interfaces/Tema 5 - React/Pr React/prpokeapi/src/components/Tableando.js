@@ -72,6 +72,17 @@ const Tableando = (props) => {
 									fontSize: "18px",
 									fontWeight: "bold",
 								}}
+								title="tipos"
+							>
+								Tipos - {fila["types"].toString()}
+							</Typography>
+							<Typography
+								variant="body2"
+								sx={{
+									color: "#ffcc00",
+									fontSize: "18px",
+									fontWeight: "bold",
+								}}
 								title="altura"
 							>
 								Altura - {fila["height"]}
