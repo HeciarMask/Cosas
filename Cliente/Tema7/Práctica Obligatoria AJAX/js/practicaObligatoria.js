@@ -13,11 +13,15 @@ let gestor = new Gestor();
 const apiLink =
   "https://flb-test-firebase-default-rtdb.europe-west1.firebasedatabase.app/";
 
+let salida = document.getElementById("salida");
+
 comienzo();
 document.getElementById("mesas").addEventListener("click", cambiarMesa);
 document.frmControles.addEventListener("change", cambioProducto);
 document.getElementById("teclado").addEventListener("click", teclaPulsada);
 document.getElementById("cuenta").addEventListener("click", cambioUnidades);
+document.getElementById("consultar").addEventListener("click", mostrar);
+document.getElementById("formulario").addEventListener("submit", formProductos);
 
 function comienzo() {
   let mesas = document.getElementsByClassName("mesa");
@@ -34,6 +38,7 @@ function comienzo() {
 
 function cargarControles() {
   let cat = frmControles.categorias;
+  cat.innerHTML = "";
   for (let i = 0; i < listaCategorias.length; i++) {
     let opcion = document.createElement("option");
     opcion.setAttribute("value", i);
@@ -44,6 +49,7 @@ function cargarControles() {
 
   let seleccionado = cat.value;
   let productos = frmControles.productos;
+  productos.innerHTML = "";
 
   for (let prod of catalogo.productos) {
     if (prod.idCategoria == seleccionado) {
@@ -247,8 +253,8 @@ function teclaPulsada(event) {
       );
       cuentaSeleccionada.lineasDeCuentas.push(linea);
     }
-
-    cambiaCuenta(gestor.mesaActual);
+    actualizamos(gestor);
+    setTimeout(cambiaCuenta(gestor.mesaActual), 800);
   }
 }
 
@@ -267,7 +273,9 @@ function cambioUnidades(event) {
       if (linea.unidades == 0) cuentaSeleccionada.lineasDeCuentas.pop(linea);
     }
     //No se si esta feo refrescar el DOM entero de la cuenta pero no me voy a comer la cabeza
-    cambiaCuenta(gestor.mesaActual);
+
+    actualizamos(gestor);
+    setTimeout(cambiaCuenta(gestor.mesaActual), 800);
   } else if (selec.getAttribute("id") == "pagar") pagamosCuenta();
 }
 
@@ -317,6 +325,7 @@ function anadirProdCat() {
 }
 
 function anadirProdCatApi() {
+  catalogo.productos = [];
   fetch(apiLink + ".json")
     .then((res) => res.json())
     .then((res) => {
@@ -336,6 +345,10 @@ function anadirProdCatApi() {
       for (let cnt of res.gestor._cuentas) {
         let cuenta = new Cuenta(cnt._mesa, cnt._pagada);
         let lineas = [];
+        if (!cnt._pagada) {
+          let mesas = document.getElementsByClassName("mesa");
+          mesas[cnt._mesa - 1].setAttribute("class", "mesa ocupada");
+        }
         if (cnt._lineasDeCuentas) {
           for (let linea of cnt._lineasDeCuentas) {
             lineas.push(new LineaCuenta(linea._idProducto, linea._unidades));
@@ -346,8 +359,6 @@ function anadirProdCatApi() {
       }
 
       gestor = new Gestor(cuentas);
-
-      console.log(gestor);
     })
     .catch((res) => console.log(res));
 }
@@ -384,4 +395,111 @@ function pagamosCuenta() {
     .catch(console.log("error"));
 }
 
-function actualizamos(datos) {}
+function actualizamos(datos) {
+  fetch(apiLink + ".json", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    BODY: JSON.stringify(datos),
+  }).catch(console.log("error"));
+}
+
+function mostrar() {
+  salida.innerHTML = "";
+  let mesa = document.getElementById("selCerradas").value;
+
+  fetch(apiLink + "pagadas/" + mesa + ".json")
+    .then((res) => res.json())
+    .then((data) => Object.values(data))
+    .then((res) => {
+      let lista = [];
+      for (let cuenta of res) {
+        lista.push([cuenta[1], cuenta[2].total]);
+      }
+      lista.sort(function (a, b) {
+        return a[0] - b[0];
+      });
+
+      let tabla = document.createElement("table");
+      let cabecera = document.createElement("thead");
+      let fila, celda;
+      cabecera.innerHTML = "<th>Fecha</th><th>Importe</th>";
+      tabla.append(cabecera);
+      for (let item of lista) {
+        fila = tabla.insertRow();
+        celda = fila.insertCell();
+        celda.textContent = item[0];
+        celda = fila.insertCell();
+        celda.textContent = item[1];
+      }
+      return tabla;
+    })
+    .then((res) => {
+      setTimeout(darSalida(res), 800);
+    })
+    .catch("error");
+}
+
+function darSalida(res) {
+  salida.append(res);
+}
+
+function formProductos(event) {
+  event.preventDefault();
+  let idProd = formulario.idProducto.value;
+  let idCat = formulario.idCat.value;
+  let nombre = formulario.nombre.value;
+  let precio = formulario.precio.value;
+  let prodAux = {
+    _idProducto: idProd,
+    _idCategoria: idCat,
+    _precioUnidad: precio,
+    _nombreProducto: nombre,
+  };
+  let idFire = idProd - 1;
+
+  fetch(apiLink + "catalogo/_productos.json")
+    .then((res) => res.json())
+    .then((res) => Object.values(res))
+    .then((res) => {
+      setTimeout(() => {
+        let encontrado = false;
+        for (let prod of res) {
+          if (prod._idProducto == idProd) {
+            fetch(apiLink + "catalogo/_productos/" + idFire + ".json", {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json;charset=utf-8",
+              },
+              body: JSON.stringify(prodAux),
+            }).then((res) => res.json());
+
+            encontrado = true;
+          }
+        }
+        if (!encontrado) {
+          catalogo.addProducto(idProd, nombre, precio, idCat);
+
+          fetch(apiLink + "catalogo.json", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify(catalogo),
+          })
+            .then((res) => res.json())
+            .catch(console.log("error"));
+        }
+      }, 800);
+    })
+    .catch("error");
+
+  setTimeout(comienzo, 1200);
+}
+/* 
+function gestionFrom(res){
+  for(let prod of res){
+    if(res._idProducto)
+  }
+} */

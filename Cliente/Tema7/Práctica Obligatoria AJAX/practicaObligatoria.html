@@ -49,6 +49,40 @@
       </div>
     </div>
     <div id="cuenta" class="panel"></div>
+    <div id="cerradas" class="panel">
+      <h1>Cuentas cerradas</h1>
+      <br />
+      <h3>
+        Mesas:
+        <select id="selCerradas">
+          <option value="1">Mesa 1</option>
+          <option value="2">Mesa 2</option>
+          <option value="3">Mesa 3</option>
+          <option value="4">Mesa 4</option>
+          <option value="5">Mesa 5</option>
+          <option value="6">Mesa 6</option>
+          <option value="7">Mesa 7</option>
+          <option value="8">Mesa 8</option>
+          <option value="9">Mesa 9</option>
+        </select>
+      </h3>
+      <input type="button" value="Consultar" id="consultar" />
+      <div id="salida"></div>
+    </div>
+    <div id="productos" class="panel">
+      <h1>Modifique o borre producto por id del producto</h1>
+      <form id="formulario" name="formulario">
+        <label>Id producto: </label>
+        <input type="number" name="idProducto" min="1" value="1" /><br />
+        <label>Id categoria: </label>
+        <input type="number" name="idCat" min="0" value="0" /><br />
+        <label>Nombre: </label>
+        <input type="text" name="nombre" /><br />
+        <label>Precio: </label>
+        <input type="text" name="precio" /><br />
+        <input type="submit" value="Actualizar o Modificar" />
+      </form>
+    </div>
     <script src="./js/clases.js"></script>
     <script src="./js/practicaObligatoria.js"></script>
   </body>
