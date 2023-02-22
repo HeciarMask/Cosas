@@ -8,6 +8,8 @@ use App\Models\Propiedad;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function PHPUnit\Framework\isEmpty;
+
 class PropiedadController extends Controller
 {
     /**
@@ -30,18 +32,40 @@ class PropiedadController extends Controller
 
     public function buscar(Request $request)
     {
+        $op = "IN";
         $localidad = $request->input("localidad");
+        if ($localidad == 0) $localidad = "%%";
         $orden = $request->input("orden");
-        $tipo = $request->input("tipo");
         $precioMin = $request->input("minimo");
         $precioMax = $request->input("maximo");
-        $propiedades = DB::table("propiedades")->select("localidad", "domicilio", "tipo", "precio")->where([
-            ['localidad', '=', $localidad],
-            ['tipo', 'IN', $tipo],
-            ['precio', '<=', $precioMax],
-            ['precio', '>=', $precioMin],
-            ['vendida', '=', 'NO'],
-        ])->orderBy("precio", $orden)->get();
+        $dataTipo = $request->input("tipo");
+        if (gettype($dataTipo) != "array") {
+            $op = "LIKE";
+            $dataTipo = "%";
+
+            $propiedades = DB::table("propiedades")
+                ->join('localidades', 'localidades.id', '=', 'propiedades.localidad')
+                ->join("tipos_vivienda", "tipos_vivienda.id", "=", "propiedades.tipo")
+                ->select("localidades.nombre as localidad", "domicilio", "tipos_vivienda.nombre as tipo", "precio")
+                ->where([
+                    ['localidad', 'LIKE', $localidad],
+                    ['tipo', $op,  $dataTipo],
+                    ['precio', '<=', $precioMax],
+                    ['precio', '>=', $precioMin],
+                    ['vendida', 'LIKE', 'NO'],
+                ])->orderBy("precio", $orden)->get();
+        } else {
+            $propiedades = DB::table("propiedades")
+                ->join('localidades', 'localidades.id', '=', 'propiedades.localidad')
+                ->select("localidades.nombre as localidad", "domicilio", "tipos_vivienda.nombre as tipo", "precio")
+                ->where([
+                    ['localidad', 'LIKE', $localidad],
+                    ['precio', '<=', $precioMax],
+                    ['precio', '>=', $precioMin],
+                    ['vendida', 'LIKE', 'NO'],
+                ])->whereIn('tipo', $dataTipo)->orderBy("precio", $orden)->get();
+        }
+
 
         return view('propiedades.mostrar', array("propiedades" => $propiedades));
     }

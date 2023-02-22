@@ -39,7 +39,7 @@
             <tr>
                 <td>Ordenar Precios: </td>
                 <td>
-                    <input type="radio" value="asc" name="orden">Ascendente</input>
+                    <input type="radio" value="asc" name="orden" checked>Ascendente</input>
                     <input type="radio" value="desc" name="orden">Descendente</input>
                 </td>
             </tr>
