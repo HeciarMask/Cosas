@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Contacto;
 use Illuminate\Http\Request;
 
@@ -15,9 +14,9 @@ class ContactoController extends Controller
     public function index()
     {
         //como la select *
-        $contactos = Contacto::all();
-        //enviar datos a la vista
-        return view('contactos.lista', array('miscontactos' => $contactos));
+        $contactos=Contacto::all();
+       //enviar datos a la vista
+        return view('contactos.lista',array('miscontactos'=>$contactos));
     }
 
     /**
@@ -38,9 +37,9 @@ class ContactoController extends Controller
      */
     public function store(Request $request)
     {
-        $contactoNuevo = new Contacto($request->all());
+        $contactoNuevo=new Contacto($request->all());
         $contactoNuevo->save();
-        return redirect()->action([ContactoController::class, 'index']);
+        return redirect()->action([ContactoController::class,'index']);
 
     }
 
@@ -52,8 +51,8 @@ class ContactoController extends Controller
      */
     public function show($id)
     {
-        $contacto = Contacto::find($id);
-        return view('contactos.ver', array('contactoActual' => $contacto));
+        $contacto=Contacto::find($id);
+        return view('contactos.ver',array('contactoActual'=>$contacto));
 
     }
 
@@ -65,8 +64,9 @@ class ContactoController extends Controller
      */
     public function edit($id)
     {
-        $contacto = Contacto::find($id);
-        return view('contactos.editar', array('contactoActual' => $contacto));
+        $contacto=Contacto::find($id);
+        return view('contactos.editar',array('contactoActual'=>$contacto));
+
     }
 
     /**
@@ -78,16 +78,20 @@ class ContactoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Creo un nuevo objeto contacto con los datos recibidos
-        $actualizado = Contacto::find($id);
-        $actualizado->nombre = $request->nombre;
-        $actualizado->apellido = $request->apellido;
-        $actualizado->direccion = $request->direccion;
-        $actualizado->telefono = $request->telefono;
-
+        /*Creo un nuevo objeto contacto con los datos del contacto
+        que estoy editando*/
+        $actualizado=Contacto::find($id);
+        /* cambio el contenido de las columnas de la fila
+        por lo que se ha tecleado en el formulario*/
+        $actualizado->nombre=$request->nombre;
+        $actualizado->apellido=$request->apellido;
+        $actualizado->telefono=$request->telefono;
+        $actualizado->direccion=$request->direccion;
+        /* almacenar cambios */
         $actualizado->save();
+        /* volver a la lista */
+        return redirect()->action([ContactoController::class,'index']);
 
-        return redirect()->action([ContactoController::class, 'index']);
     }
 
     /**
@@ -98,6 +102,11 @@ class ContactoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        /*Recupero el contacto*/
+        $borrar=Contacto::find($id);
+        /*lo borro*/
+        $borrar->delete();
+        /* volver a la lista */
+        return redirect()->action([ContactoController::class,'index']);
     }
 }

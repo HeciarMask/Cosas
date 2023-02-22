@@ -13,6 +13,6 @@
 <input type="submit" name="enviar" value="Envio">
 
 </form>
+<a href="/contactos">Volver al listado</a>
 
-<a href="/contactos">Volver</a>
 </body></html>

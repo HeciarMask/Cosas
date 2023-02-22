@@ -21,15 +21,12 @@ Route::get('/entrada', function () {
 });
 Route::post('/entrada', function () {
     return view('formulario.mostrar');
-    /*Otro ejemplo usando un metodo en el controller que cargue un objeto request*/
-    Route::get(
-        '/entrada0',
-        function () {
-            return view('formulario.entrada0');
-        }
-    );
-    Route::post('/entrada0', [PrimerController::class, 'recibirPost']);
 });
+/*Otro ejemplo usando un metodo en el controller que cargue un objeto request*/
+Route::get('/entrada0', function () {
+    return view('formulario.entrada0');
+});
+Route::post('/entrada0', [PrimerController::class, 'recibirPost']);
 //////////a apartir de aquí para gestionar la tabla contactos
 
 /*una prueba sin usar el controller
@@ -42,4 +39,4 @@ Route::post('/contactos/crear', [ContactoController::class, 'store']);
 Route::get('/contactos/ver/{id}', [ContactoController::class, 'show']);
 Route::get('/contactos/editar/{id}', [ContactoController::class, 'edit']);
 Route::post('/contactos/editar/{id}', [ContactoController::class, 'update']);
-Route::get('/contactos/borrar/{id}', [ContactoController::class, 'destroy']);
+Route::get('/contactos/eliminar/{id}', [ContactoController::class, 'destroy']);

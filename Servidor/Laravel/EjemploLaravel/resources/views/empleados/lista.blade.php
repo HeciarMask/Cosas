@@ -22,8 +22,8 @@
       <td>{{$unEmpleado->sueldo}}</td>
       <td>{{$unEmpleado->departamento->nombre}}</td>
       <td>
-        @foreach ($losIdiomas[$unEmpleado->id] as $unIdioma)
-          {{$unIdioma}}<br>
+        @foreach ($unEmpleado->idiomas as $unIdioma)
+          {{$unIdioma->nombre}}<br>
         @endforeach
       </td>
     </tr>
