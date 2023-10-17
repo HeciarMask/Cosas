@@ -1,0 +1,57 @@
+body {
+    background-color: #fcdcc1;
+    color: #002133;
+}
+
+.contenedor-formulario {
+    display: flex;
+    margin: 2rem;
+}
+
+.formulario {
+    background-color: #efa96f;
+    padding: 0.5rem 1rem 1rem 1rem;
+    border-radius: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formField {
+    margin-bottom: 0.5rem;
+}
+
+.formField select{
+    width: 100%;
+}
+
+input[type="button"] {
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    background-color: #58bbef;
+    transition: all 0.3 ease-in;
+}
+
+input[type="button"]:hover {
+    background-color: #0da1f0;
+}
+
+.contenedor-tarjetas {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.tarjeta {
+    background-color: #efa96f;
+    padding: 0.5rem 1rem 1rem 1rem;
+    border-radius: 1rem;
+    margin: 1rem 0 0 1rem;
+    width: 10rem;
+}
+
+.tarjeta .titulo {
+    font-size: large;
+}
+
+.tarjeta .subtitulo {
+    color: #534109;
+}
